@@ -1,0 +1,160 @@
+% ---------------------------------------------------------------------
+% --- Arquivo principal e os demais serao os dos capitulos.
+% --- EXPRESSÔES ENTRE <> DEVERÃO SER COMPLETADAS COM A INFORMAÇÂO ESPECÍFICA DO TRABALHO 
+% ---------------------------------------------------------------------
+
+\documentclass[ruledheader]{abnt_UFF}
+
+%==\usepackage[colorlinks]{hyperref}
+%\usepackage[printonlyused,withpage]{acronym}
+
+%---pacotes para hiphenizacao e acentuacao em portugues
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+
+
+%---fornece a capacidade de criar hiperlinks no documento
+%\usepackage[dvips,colorlinks=False, pdfstartview=FitV,citecolor=green,urlcolor=black,plainpages=false, pdftitle={Dissertação de Mestrado Yona Lopes}]{hyperref}%backref,
+\usepackage[hidelinks, breaklinks, colorlinks=false, pdfstartview=FitV, linkcolor=black, citecolor=green,urlcolor=black,plainpages=false]{hyperref} % usar  hidelinks para esconder os links, continuara o link mas sem aparecer cor ou borda
+
+\usepackage[breaklinks]{hyperref} % Problema quando o nome da figura/tabela/seção eh grande
+%\usepackage[dvips,pdfstartview=FitV]{hyperref}%backref,
+%\usepackage[dvips]{color}
+	
+%---pacotes para criacao de index
+\usepackage{makeidx}
+%\usepackage[pdftex,colorlinks=true, pdfstartview=FitV, linkcolor=black, citecolor=black,urlcolor=black,plainpages=false]{hyperref}
+\usepackage{pdfcolmk}
+
+%--- pacote para figuras
+\usepackage{epsf}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+
+
+%--- pacote de simbolos
+\usepackage{latexsym}
+%\usepackage{textcomp}
+
+%--- simbolos matematicos
+\usepackage{amsmath}
+%\usepackage{amssymb}
+
+%----- códigos fonte
+%\usepackage{listings}
+%% opções do pacote listings
+%\lstset{numbers=left,
+%language=python,
+%stepnumber=1,
+%firstnumber=1,
+%numberstyle=\tiny,
+%extendedchars=true,
+%breaklines=true,
+%frame=tb,
+%basicstyle=\footnotesize,
+%stringstyle=\ttfamily,
+%showstringspaces=false
+%backgroundcolor=\color{gray}
+%}
+%
+
+
+%--- pacote para gerar pseudo-codigo
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+% \usepackage[linesnumbered,boxed,lined]{algorithm2e} 
+\usepackage[algoruled,portuguese,linesnumbered]{algorithm2e} 
+%\floatname{algorithm}{Algoritmo}
+
+%--- outros pacotes
+\usepackage{url}
+\usepackage{longtable}
+\usepackage{lscape}
+
+%\usepackage[notbib, notlof, notlot]{tocbibind}
+
+%Tabela Colorida e pacotes de tabela
+%\usepackage{colortbl}
+\usepackage{array}
+
+%--- Acronyms
+%\usepackage{acronym}
+\usepackage[printonlyused,withpage]{acronym}
+
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{rotating}
+
+%--- Notes
+\usepackage{todonotes}
+
+\hyphenation{
+a-de-qua-da-men-te 
+di-men-sio-na-men-to 
+re-di-re-cio-na
+}
+
+%---------usando tipo de fonte padrao
+\renewcommand{\ABNTchapterfont}{\bfseries\fontfamily{cmr}\fontseries{b}\selectfont}
+\renewcommand{\ABNTsectionfont}{\bfseries\fontfamily{cmr}}
+
+\newcommand{\todot}[1]{\todo[color=green!40,fancyline]{#1}}
+
+
+\makeindex
+% --- -----------------------------------------------------------------
+% --- Documento Principal.
+% --- -----------------------------------------------------------------
+%\usepackage[pdftex]{hyperref}
+%\hypersetup{colorlinks, sitecolor=black, pdftex}
+\begin{document}
+
+% --- -----------------------------------------------------------------
+% --- Titulo, abstract, dedicatorias e agradecimentos.
+% --- Indice geral, lista de figuras e tabelas.
+% --- -----------------------------------------------------------------
+
+\include{0_pretextual}
+
+% --- -----------------------------------------------------------------
+% --- Insercao dos capitulos.
+% --- -----------------------------------------------------------------
+\pagestyle{ruledheader}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\inputencoding{utf8}
+
+\include{1_int}
+\include{2_ReferencialTeorico}
+\include{5_proposta}
+\include{6_implementacao}
+\include{7_conclusoes}
+
+
+% --- -----------------------------------------------------------------
+% --- Referencias Bibliograficas. (Obrigatorio)
+% --- -----------------------------------------------------------------
+\cleardoublepage
+%\bibliographystyle{acm-2} 
+%\bibliographystyle{abnt-num} % abbrv - abnt-num
+\inputencoding{latin1}
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{uff-ic}
+\bibliography{referencia} % arquivo fonte com a bibliografia
+%\bibliography{articles,books,standards,websites} % arquivo fonte com a bibliografia
+
+
+% --- -----------------------------------------------------------------
+% --- Apendice.(Opcional)
+% --- -----------------------------------------------------------------
+\cleardoublepage
+\appendix
+\inputencoding{latin1}
+\include{appendixA}
+
+%\addcontentsline{toc}{part}{Index}
+%\printindex
+\label{LastPage}
+\end{document}

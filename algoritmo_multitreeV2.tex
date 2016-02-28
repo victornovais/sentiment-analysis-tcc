@@ -1,0 +1,31 @@
+%\dontprintsemicolon
+%\SetLine
+\KwIn{$E$, $N$, $mac\_map$, $gruposmulticastgerados$}
+\KwOut{$caminhos\_completos$}
+% Calculando árvore para cada grupo multicast da rede
+\For {$ grupo $ \textbf{in} $ gruposmulticastgerados $}
+{
+$ end\_GM =  descobre\_end(grupo) $
+
+$ raiz = descobre\_raiz(mac\_map,grupo)$
+
+$ sws\_destino  = descobre\_dst(mac\_map,grupo) $
+
+% função SPF implementa o Dijkstra estendido e entrega como saida os melhores caminhos da raiz para os demais nós na rede
+$ melhores\_rotas = SPF\_multicast (raiz,N,E) $
+
+\For {$rota$ \textbf{in} $ melhores\_rotas$} % coloca na lista dos caminhos da arvore apenas aqueles que vão para os destinos do grupo multicast
+	{
+	\If {$ rota[dst]$ \textbf{in} $ sws\_destino$ }
+		{$ caminhos\_arvore.append(rota) $}
+	}
+	
+$ arvore\_multicast= remove\_redundancias(caminhos\_arvore) $	
+
+%acrescentando por quais portas os nós tem que enviar os pacotes para construir o caminho completo
+$ caminhos\_completos = acrescenta\_portas(mac\_map,arvore\_multicast) $
+	$ instala\_fluxos(caminhos\_completos,end\_GM,raiz) $
+$return caminhos\_completos$
+}
+
+
