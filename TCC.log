@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2016.3.4)  8 MAR 2016 14:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2016.3.4)  14 MAR 2016 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1088,9 +1088,8 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 
 
 Writing index file TCC.idx
-(./TCC.aux (./0_pretextual.aux) (./1_int.aux) (./2_ReferencialTeorico.aux)
-(./5_proposta.aux) (./6_implementacao.aux) (./7_conclusoes.aux)
-(./appendixA.aux))
+(./TCC.aux (./0_pretextual.aux) (./1_int.aux) (./2_referencial_teorico.aux)
+(./3_proposta.aux) (./4_resultados.aux) (./5_conclusao.aux) (./appendixA.aux))
 \openout1 = `TCC.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
@@ -1109,7 +1108,8 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
 LaTeX Font Info:    ... okay on input line 111.
 \AtBeginShipoutBox=\box78
 Package hyperref Info: Link coloring OFF on input line 111.
- (c:/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(c:/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (c:/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1354,9 +1354,9 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 129.
  [2]
-\openout2 = `2_ReferencialTeorico.aux'.
+\openout2 = `2_referencial_teorico.aux'.
 
- (./2_ReferencialTeorico.tex
+ (./2_referencial_teorico.tex
 Cap\'{\i }tulo 2.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
@@ -1451,9 +1451,9 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 130.
  [5 <./figuras/images.png>]
-\openout2 = `5_proposta.aux'.
+\openout2 = `3_proposta.aux'.
 
- (./5_proposta.tex
+ (./3_proposta.tex
 Cap\'{\i }tulo 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
@@ -1467,9 +1467,9 @@ Package babel Info: Redefining portuges shorthand "|
 
 
 ]
-\openout2 = `6_implementacao.aux'.
+\openout2 = `4_resultados.aux'.
 
- (./6_implementacao.tex
+ (./4_resultados.tex
 Cap\'{\i }tulo 4.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
@@ -1487,9 +1487,9 @@ Package babel Info: Redefining portuges shorthand "|
 
 
 ]
-\openout2 = `7_conclusoes.aux'.
+\openout2 = `5_conclusao.aux'.
 
- (./7_conclusoes.tex
+ (./5_conclusao.tex
 Cap\'{\i }tulo 5.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
@@ -1569,9 +1569,8 @@ Package babel Info: Redefining portuges shorthand "|
 +-------------------------------------------------------------------+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
-(./TCC.aux (./0_pretextual.aux) (./1_int.aux) (./2_ReferencialTeorico.aux)
-(./5_proposta.aux) (./6_implementacao.aux) (./7_conclusoes.aux)
-(./appendixA.aux))
+(./TCC.aux (./0_pretextual.aux) (./1_int.aux) (./2_referencial_teorico.aux)
+(./3_proposta.aux) (./4_resultados.aux) (./5_conclusao.aux) (./appendixA.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
 Package rerunfilecheck Info: File `TCC.out' has not changed.
@@ -1583,10 +1582,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 19733 strings out of 493033
- 353130 string characters out of 6137755
- 462369 words of memory out of 5000000
- 22710 multiletter control sequences out of 15000+600000
+ 19729 strings out of 493033
+ 353080 string characters out of 6137755
+ 462195 words of memory out of 5000000
+ 22706 multiletter control sequences out of 15000+600000
  31541 words of font info for 78 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  62i,19n,56p,1216b,12748s stack positions out of 5000i,500n,10000p,200000b,80000s
