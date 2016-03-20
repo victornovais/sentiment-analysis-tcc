@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2016.3.4)  14 MAR 2016 19:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2016.3.4)  20 MAR 2016 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1256,17 +1256,17 @@ Package babel Info: Redefining portuges shorthand "|
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 152.
+(babel)             in language  on input line 158.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 152.
+(babel)             in language  on input line 158.
  [4
 
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
+(babel)             in language  on input line 172.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
+(babel)             in language  on input line 172.
  [5
 
 
@@ -1275,9 +1275,9 @@ Package babel Info: Redefining portuges shorthand "|
 \openout7 = `TCC.lof'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 185.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 185.
  [6
 
 
@@ -1286,19 +1286,19 @@ Package babel Info: Redefining portuges shorthand "|
 \openout8 = `TCC.lot'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 182.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 182.
+(babel)             in language  on input line 188.
  [7
 
 
 ]
 Package acronym Info: Acronym TPAA used in text but not spelled out in full in 
-text on input line 196.
+text on input line 202.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 203.
+(babel)             in language  on input line 209.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 203.
+(babel)             in language  on input line 209.
  [8
 
 
@@ -1313,9 +1313,9 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
 \openout9 = `TCC.toc'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 203.
+(babel)             in language  on input line 209.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 203.
+(babel)             in language  on input line 209.
  [9
 
 ])
@@ -1474,9 +1474,9 @@ Cap\'{\i }tulo 4.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 7.
+(babel)             in language  on input line 5.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 10.
+(babel)             in language  on input line 8.
 )
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 132.
@@ -1574,7 +1574,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
 Package rerunfilecheck Info: File `TCC.out' has not changed.
-(rerunfilecheck)             Checksum: 2C18B2AD2E060123F154EDC7A1F49F19;1088.
+(rerunfilecheck)             Checksum: F513AAC164CA10EE5471F9F78B884B90;1067.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
  )
 (\end occurred inside a group at level 1)
@@ -1583,8 +1583,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
 ### bottom level 
 Here is how much of TeX's memory you used:
  19729 strings out of 493033
- 353080 string characters out of 6137755
- 462195 words of memory out of 5000000
+ 353090 string characters out of 6137755
+ 462144 words of memory out of 5000000
  22706 multiletter control sequences out of 15000+600000
  31541 words of font info for 78 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1608,10 +1608,10 @@ er/sfrm1000.pfb><c:/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm109
 texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/20
 15/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2015/texmf-d
 ist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on TCC.pdf (22 pages, 323451 bytes).
+Output written on TCC.pdf (22 pages, 323088 bytes).
 PDF statistics:
- 355 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
+ 354 PDF objects out of 1000 (max. 8388607)
+ 301 compressed objects within 4 object streams
  75 named destinations out of 1000 (max. 500000)
  151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
