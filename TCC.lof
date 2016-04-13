@@ -1,5 +1,1 @@
 \select@language {brazil}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces -----}}{4}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Princ\IeC {\'\i }pios de comunica\IeC {\c c}\IeC {\~a}o TPAA e MCAA da norma IEC 61850~\cite {fangxing2010}.}}{5}{figure.2.2}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\ac {TPAA}, baseado em mensagens \textit {unicast}.}}}{5}{figure.2.2}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\ac {MCAA}, baseado em mensagens \textit {multicast}.}}}{5}{figure.2.2}
