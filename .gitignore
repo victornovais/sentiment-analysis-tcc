@@ -1,1 +1,8 @@
 *.aux
+
+TCC.bbl
+TCC.blg
+TCC.log
+TCC.out
+TCC.synctex.gz
+TCC.toc

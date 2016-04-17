@@ -21,15 +21,16 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{fangxing2010}
-F.~Li, W.~Qiao, H.~Sun, H.~Wan, J.~Wang, Y.~Xia, Z.~Xu, and P.~Zhang, ``Smart
-  transmission grid: Vision and framework,'' \emph{IEEE Transactions on Smart
-  Grid}, vol.~1, no.~2, pp. 168 --177, Sep. 2010.
+\bibitem{lastres1999informaccao}
+H.~M.~M. Lastres, S.~Albagli, and C.~A.~K. Passos, \emph{Informa{\c{c}}{\~a}o e
+  globaliza{\c{c}}{\~a}o na era do conhecimento}.\hskip 1em plus 0.5em minus
+  0.4em\relax Campus Rio de Janeiro, 1999.
 
-\bibitem{gungor2011}
-V.~Gungor, D.~Sahin, T.~Kocak, S.~Ergut, C.~Buccella, C.~Cecati, and G.~Hancke,
-  ``Smart grid technologies: Communication technologies and standards,''
-  \emph{IEEE Transactions on Industrial Informatics}, vol.~7, no.~4, pp.
-  529--539, Nov. 2011.
+\bibitem{santos2000projecto}
+D.~Santos, ``O projecto processamento computacional do portugu{\^e}s:
+  Balan{\c{c}}o e perspectivas,'' \emph{quot; In Maria das Gra{\c{c}}as Volpe
+  Nunes (ed) V Encontro para o processamento computacional da l{\'\i}ngua
+  portuguesa escrita e falada (PROPOR 2000)(Atibaia SP 19-22 de Novembro de
+  2000) S{\~a}o Paulo: ICMC/USP}, 2000.
 
 \end{thebibliography}
