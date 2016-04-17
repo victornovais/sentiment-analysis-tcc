@@ -1,4 +1,4 @@
-\chapter{Referencial Teórico}\label{cap:XX}
+\chapter{Referencial Teórico}\label{cap:referencial_teorico}
 
 Normalmente o Capítulo~\ref{cap:XX} é parte do referencial teórico/estudo da arte/histórico... Aqui você precisa dar conhecimento para o leitor entender a sua proposta, deixando claro qual o problema. Pode ter mais de um capítulo no caso.
 
@@ -7,79 +7,17 @@ Continue usando citações como esta de exemplo~\cite{fangxing2010,gungor2011}.
 
 Para itens estrangeiros como \textit{feedback}  não esqueça de colocar em itálico. Afirmações como essa: são os mesmos de 40 anos atrás~\cite{gungor2011}, precisam de referencia. 
 
-\section{para seção}\label{sec:XX} %usar o label ajuda muito 
+\section{API}\label{sec:api}
 
-Usar o pacote de acronimos ajuda e muito, pois na primeira vez que o item aparecer no texto ele vai colocar o significado, e depois só a sigla ex: O \ac{SEP} tem como objetivo...
 
-Para enumerar:
+\section{Mineração de dados}\label{sec:mineracao_dados}
 
-\begin{enumerate}
-\item Geração: 
-na geração, as usinas são classificadas conforme os recursos que utilizam, podendo ser hidroelétricas, termoelétricas, eólicas, nucleares, etc. Nesta fase, certo tipo de energia é transformado em energia elétrica. %A geração de energia inclui as instalações para esta finalidade. 
-No caso do uso de hidrelétricas, envolve o armazenamento de um fluido, normalmente água de rios, conversão de energia hidráulica do fluido em energia mecânica em uma turbina hidráulica e a conversão da energia mecânica em energia elétrica por um gerador elétrico. 
-\item Transmissão e Distribuição:
-condução da energia elétrica das usinas de geração até os consumidores. Após gerada, a tensão é aumentada para que se evite perdas, em seguida, a energia elétrica é transportada em altas tensões, por fim, é distribuída ao consumidor final em baixas tensões. 
-\end{enumerate}
 
-Para siglas no plural use o acp: Em resumo, os \acp{TP} e \acp{TC} traduzem. 
+\section{Processamento de linguagem natural}\label{sec:nlp}
 
-Outro exemplo:  \acp{IED}, são capazes não só...
 
-O label nas seções ajuda muito, veja: Conforme descrito na Seção~\ref{sec:XX}, ou no Capítulo~\ref{cap:XX}.
+\section{Análise de sentimento}\label{sec:analise_sentimento}
 
-A Figura~\ref{fig:2_juncaomodelodados} precisa sempre vir referenciada.
 
-\begin{figure}[ht]
-	\begin{center}
-		\centering
-		\includegraphics[width=0.5\linewidth]{figuras/images}
-	\end{center}	
-	\caption{-----}
-	\label{fig:2_juncaomodelodados}
-\end{figure}
-
-Exemplo de Figura lado a lado na Figura~\ref{fig:2_principioscom}.
-
-\begin{figure*}[ht]
-\begin{center}
-\mbox{
-	\subfigure[\ac{TPAA}, baseado em mensagens \textit{unicast}.]{\epsfig{figure=./figuras/images, width=0.4\textwidth}
-	\label{subfig:2_principioscoma}
-					}
-	\hspace{0.2cm}
-	\subfigure[\ac{MCAA}, baseado em mensagens \textit{multicast}.]{\epsfig{figure=./figuras/images, width=0.4\textwidth}
-	\label{subfig:2_principioscomb}
-					}
-	}
-\end{center}
-\caption{Princípios de comunicação TPAA e MCAA da norma IEC 61850~\cite{fangxing2010}.}
-\label{fig:2_principioscom}
-\end{figure*}
-
-E um exemplo de tabela, conforme Tabela ~\ref{tab:2_tabmsg}.
-
-\begin{table}[h!]	
-	\begin{center}
-		\caption{Tipos de mensagens suportadas pelo padrão IEC 61850~\cite{fangxing2010}.}	
-		%\setlength{\extrarowheight}{1.5pt}
-		\begin{tabular}{|c|p{3.5cm}|p{4cm} |c|c|} \hline
-		\label{tab:2_tabmsg}
-{\bf Tipo} & {\bf Descrição} & {\bf Exemplo} & {\bf Classes} & {\bf Mensagem e }	\\
-		   &			  &				  &	& Requisitos Temporais \\ \hline
-		\hline
-        1A & Mensagens Rápidas 				& {\it Trips} 					& P2 e P3 & GOOSE (3ms)		\\ \cline{4-5}
-           &  				 				& 								& P1 	  & GOOSE (10ms)	\\ \hline 
-        1B & Mensagens Rápidas 			 	& Comandos, 					& P2 e P3 & GOOSE (20ms)  	\\ \cline{4-5}
-           & (outras)					 	& Mensagens Simples 			& P1	  & GOOSE (100ms) 	\\ \hline
-         2 & Velocidade Média 				& Valores de Medidas 			& -  & MMS (100ms)			\\ \hline
-         3 & Velocidade Baixa 				& Parâmetros 					& -  & MMS (500ms)			\\ \hline
-         4 & Rajada de Dados                & Saída de dados dos 			& P2 e P3 & SV (3ms) 		\\ \cline{4-5}
-		       &							&  transformadores				& P1      & SV (10ms)		\\ \hline
-         5 & Transferência de Arquivos		& Arquivos grandes 				& -  & MMS($\geq$1000ms)	\\ \hline
-        6A & Sincronização de Tempo A 		& Sincronização (\textit{station bus}) 		& -  & TimeSync	\\  \hline
-        6B & Sincronização de Tempo A 		& Sincronização (\textit{process bus}) 		& -  & TimeSync \\ \hline
-        7 & Mensagem de Comando 			& Comandos da estação HMI 		& -  & MMS(500ms)			\\ \hline
-		\end{tabular}
-	\end{center}
-\end{table}
+\section{Naive Bayes}\label{sec:naive_bayes}
 
