@@ -36,12 +36,10 @@ e os usuário fazem o uso desse marcador da seguinte forma, hashtag-palavra, com
 * O que é linguagem e linguagem natural
 * Maiores dificuldades
 
+\section{Classificação}\label{sec:classificacao}
+* O que é classificar
+* Contexto histórico
 
-\section{Análise de sentimento}\label{sec:analise_sentimento}
-* O que é sentimento
-* Como fazer a análise
-* Como tirar insumo
-* Exemplos 
 
 
 
@@ -49,3 +47,11 @@ e os usuário fazem o uso desse marcador da seguinte forma, hashtag-palavra, com
 * O que é o Naive Bayes
 * Demonstração matemática do algoritmo
 * Uso dele em analise de sentimento/classificação
+\\ \emph{Naive Bayes} é um algoritmo probabilístico. Baseado no teorema de bayes. $$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)} $$ onde se infere qual é a probabilidade de um evento A dado um evento B. Porém nesse trabalho é utilizado o \emph{Naive Bayes} e sua diferença para o teorema de Bayes é assumir que a posição das palavras que aparecem no texto não importa, daí é acrescentado o \emph{naive}(ingênuo) ao teorema.
+\\ Como visto em \cite{lucca2013implementaccao} o algoritmo computa qual a probabilidade de uma frase, denominada de documento pertencer a uma determinada classe(polaridade) \emph{P(c/d)}, a partir da probabilidade a \emph{priori} de \emph{P(c)} do documento pertencer a esta classe e da probabilidades condicionais de cada termo \emph{tk} ocorrer em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a\emph{posteriori} conforme a equação abaixo, onde $ n_{d} $ é o número de termos no documento \emph{d}. $$ C_{map}= argmax_{c \epsilon C}P(c|d)=argmax_{c \epsilon C}P(c)\prod 1sksn_{d}P(t_{k}/d) $$
+
+\section{Análise de sentimento}\label{sec:analise_sentimento}
+* O que é sentimento
+* Como fazer a análise
+* Como tirar insumo
+* Exemplos 
