@@ -1,57 +1,45 @@
 \chapter{Referencial Teórico}\label{cap:referencial_teorico}
 
-Normalmente o Capítulo~\ref{cap:XX} é parte do referencial teórico/estudo da arte/histórico... Aqui você precisa dar conhecimento para o leitor entender a sua proposta, deixando claro qual o problema. Pode ter mais de um capítulo no caso.
-
-
-Continue usando citações como esta de exemplo~\cite{fangxing2010,gungor2011}.
-
-Para itens estrangeiros como \textit{feedback}  não esqueça de colocar em itálico. Afirmações como essa: são os mesmos de 40 anos atrás~\cite{gungor2011}, precisam de referencia. 
-
 \section{Twitter}\label{sec:twitter}
 
 * Como começou
-* Do que é feito , 140 caracteres
-* Marcadores, hashtag
-* Identificação de idioma
-* Relevância na internet
+* Objetivo (visão) do Twitter
+* Princípios 140 caracteres, hashtags
+* Quantidade de usuários ativos, alcance, volume de informações
+* Relevância para estudos estatísticos de natureza comportamental
 
-O \textit{twitter} é conhecido como um \textit{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Ele consiste em pequenos pedaços de informação de até 140 caracteres, e muitas vezes esses 140 caracteres são utilizados pelos usuário para passar um sentimento com o intuito de expressas o seu \textit{status} naquele momento. O twitter faz uso de marcadores conhecidos como \textit{hashtag}
-e os usuário fazem o uso desse marcador da seguinte forma, hashtag-palavra, com isso palavra se torna um marcador e o twitter começa a agregar qualquer usuário que faça a mesma ação. Esse uso massivo de marcadores e agregação foi criado os \textit{trending topics}, onde é mostrado o qual relevante aquele marcador está em determinado lugar, de escolha do usuário, como: Brasil, Mundo, Rio de Janeiro ou outra qualquer localidade.O twitter de acordo com o \cite{arneromannkurrik2013} faz uso de \textit{machine learning} para identificar e classificar o idioma da mensagem escrita pelo usuário.
+O Twitter é conhecido como um \textit{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Ele consiste em pequenas publicações de até 140 caracteres, conhecidas como \textit{tweet}, que tem como objetivo possibilitar que o usuário se expresse de forma rápida e resumida. No corpo de um \textit{tweet}, o usuário pode fazer uso de marcadores conhecidos como \textit{hashtags}\cite{waite2012paperback}, para vincular aquela mensagem à um tópico específico.
+%\cite{arneromannkurrik2013} A referência tava no texto, mas não to no .bib
 
+
+\section{Mineração de opinião}\label{sec:mineracao_dados}
+
+* O que é?
+* Exemplos no mercado
+* Etapas(http://www.inf.ufsc.br/~alvares/INE5644/MineracaoOpiniao.pdf)
 
 \section{API}\label{sec:api}
-* O que é uma api
-* Diferença de api x crawler
-* Apis mais utilizadas
-
-\section{Mineração de dados}\label{sec:mineracao_dados}
-* O que é mineração de dados
-* Como é feita
-* Dificuldades
-* Exemplos no mercado
-
+* O que é
+* APIs mais utilizadas no mundo (case do twitter)
+* Papel de uma API para integração de serviços (achar referência foda)
 
 \section{Processamento de linguagem natural}\label{sec:nlp}
-* O que é processamento de linguagem natural
-* O que é linguagem e linguagem natural
-* Maiores dificuldades
+* Linguagem natural (foto da matéria de autômato do Aquino?)
+* Processamento de linguagem natural
+* Dificuldades dentro da nossa área de estudo
 
-\section{Classificação}\label{sec:classificacao}
-* O que é classificar
-* Contexto histórico
-
-
+\section{Análise de sentimento}\label{sec:analise_sentimento}
+* Definição
+* Objetivo
+* Premissas
+* Exemplos e cases de sucesso
 
 
 \section{Naive Bayes}\label{sec:naive_bayes}
 * O que é o Naive Bayes
 * Demonstração matemática do algoritmo
 * Uso dele em analise de sentimento/classificação
+
+
 \\ \emph{Naive Bayes} é um algoritmo probabilístico. Baseado no teorema de bayes. $$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)} $$ onde se infere qual é a probabilidade de um evento A dado um evento B. Porém nesse trabalho é utilizado o \emph{Naive Bayes} e sua diferença para o teorema de Bayes é assumir que a posição das palavras que aparecem no texto não importa, daí é acrescentado o \emph{naive}(ingênuo) ao teorema.
 \\ Como visto em \cite{lucca2013implementaccao} o algoritmo computa qual a probabilidade de uma frase, denominada de documento pertencer a uma determinada classe(polaridade) \emph{P(c/d)}, a partir da probabilidade a \emph{priori} de \emph{P(c)} do documento pertencer a esta classe e da probabilidades condicionais de cada termo \emph{tk} ocorrer em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a\emph{posteriori} conforme a equação abaixo, onde $ n_{d} $ é o número de termos no documento \emph{d}. $$ C_{map}= argmax_{c \epsilon C}P(c|d)=argmax_{c \epsilon C}P(c)\prod 1sksn_{d}P(t_{k}/d) $$
-
-\section{Análise de sentimento}\label{sec:analise_sentimento}
-* O que é sentimento
-* Como fazer a análise
-* Como tirar insumo
-* Exemplos 
