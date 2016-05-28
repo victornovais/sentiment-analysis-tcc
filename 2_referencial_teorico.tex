@@ -8,15 +8,12 @@
 * Quantidade de usuários ativos, alcance, volume de informações
 * Relevância para estudos estatísticos de natureza comportamental
 
-O Twitter é conhecido como um \textit{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Ele consiste em pequenas publicações de até 140 caracteres, conhecidas como \textit{tweet}, que tem como objetivo possibilitar que o usuário se expresse de forma rápida e resumida. No corpo de um \textit{tweet}, o usuário pode fazer uso de marcadores conhecidos como \textit{hashtags}\cite{waite2012paperback}, para vincular aquela mensagem à um tópico específico.
-%\cite{arneromannkurrik2013} A referência tava no texto, mas não to no .bib
+O Twitter é conhecido como um \emph{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Ele consiste em pequenas publicações de até 140 caracteres, conhecidas como \emph{tweet}, que tem como objetivo possibilitar que o usuário se expresse de forma rápida e resumida. No corpo de um \emph{tweet}, o usuário pode fazer uso de marcadores conhecidos como \emph{hashtags} \cite{waite2012paperback}, para vincular aquela mensagem à um tópico específico. Com o uso massivo de marcadores em palavras ou frases gera uma grande massa de \emph{tweets} foi criado os \emph{trending topics}, em tradução livre seria os "assuntos mais comentados" onde é mostrado o qual relevante aquele marcador está em determinado lugar, de escolha do usuário, como: Brasil, Mundo, Rio de Janeiro ou outra qualquer localidade. O twitter de acordo com  faz uso de \emph{machine learning} para identificar e classificar o idioma da mensagem escrita pelo usuário \cite{arneromannkurrik2013}.
 
 
 \section{Mineração de opinião}\label{sec:mineracao_dados}
 
-* O que é?
-* Exemplos no mercado
-* Etapas(http://www.inf.ufsc.br/~alvares/INE5644/MineracaoOpiniao.pdf)
+* O que é?* Exemplos no mercado* Etapas(http://www.inf.ufsc.br/~alvares/INE5644/MineracaoOpiniao.pdf)
 
 \section{API}\label{sec:api}
 * O que é
@@ -41,5 +38,5 @@ O Twitter é conhecido como um \textit{microblog} fundado em março de 2006 por 
 * Uso dele em analise de sentimento/classificação
 
 
-\\ \emph{Naive Bayes} é um algoritmo probabilístico. Baseado no teorema de bayes. $$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)} $$ onde se infere qual é a probabilidade de um evento A dado um evento B. Porém nesse trabalho é utilizado o \emph{Naive Bayes} e sua diferença para o teorema de Bayes é assumir que a posição das palavras que aparecem no texto não importa, daí é acrescentado o \emph{naive}(ingênuo) ao teorema.
+\emph{Naive Bayes} é um algoritmo probabilístico. Baseado no teorema de bayes. $$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)} $$ onde se infere qual é a probabilidade de um evento A dado um evento B. Porém nesse trabalho é utilizado o \emph{Naive Bayes} e sua diferença para o teorema de Bayes é assumir que a posição das palavras que aparecem no texto não importa, daí é acrescentado o \emph{naive}(ingênuo) ao teorema.
 \\ Como visto em \cite{lucca2013implementaccao} o algoritmo computa qual a probabilidade de uma frase, denominada de documento pertencer a uma determinada classe(polaridade) \emph{P(c/d)}, a partir da probabilidade a \emph{priori} de \emph{P(c)} do documento pertencer a esta classe e da probabilidades condicionais de cada termo \emph{tk} ocorrer em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a\emph{posteriori} conforme a equação abaixo, onde $ n_{d} $ é o número de termos no documento \emph{d}. $$ C_{map}= argmax_{c \epsilon C}P(c|d)=argmax_{c \epsilon C}P(c)\prod 1sksn_{d}P(t_{k}/d) $$
