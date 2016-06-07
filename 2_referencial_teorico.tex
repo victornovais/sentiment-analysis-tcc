@@ -11,9 +11,21 @@ Dentro do Twitter, O usuário pode fazer uso de marcadores conhecidos como \emph
 \item Aproximar o usuários de um conteúdo relevante com auxílio de uma busca
 \end{itemize}
 
-Um dos exemplos mais recentes e impressionantes de como as redes sociais desempenharam o papel de aproximar ideologias semelhantes e encorajar debates profundos foi a Primavera Árabe - onda de manifestações e protestos que tiveram início em dezembro de 2010, tendo como cenário o Norte da África e Oriente Médio. Os principais alvos foram os regimes ditatoriais e patriarcais que há muito tempo estavam no poder.\cite{howard2011opening}. Através de discussões sobre democracia e direitos democráticos, protestos, manifestações e guerras civis foram tr
+\subsection{Primavera Árabe}
+Um dos exemplos mais recentes e impressionantes de como as redes sociais desempenharam o papel de aproximar ideologias semelhantes e encorajar debates sociais profundos foi a Primavera Árabe - onda de manifestações e protestos que tiveram início em dezembro de 2010, tendo como cenário o Norte da África e Oriente Médio. Os principais alvos foram os regimes ditatoriais e patriarcais que há muito tempo estavam no poder.\cite{howard2011opening}. Redes sociais foram amplamente utilizadas para marcar encontros, debates e manifestações, além de mostrar para o mundo o que acontecia em tempo real, através do Twitter e outras redes sociais, como o YouTube.
 
-Este novo cenário possibilitou que a análise de redes sociais ganhasse incrível relevância nos campos de pesquisa social e comportamental\cite{wasserman1994advances}. A facilidade de acesso, o grande volume de dados, além da observação dos atores sociais e suas interações abre novas perspectivas dentro da pesquisa social e comportamental a cada dia.
+\begin{figure}[ht]
+	
+	\centering\epsfig{file=figuras/primavera_arabe_redes_sociais.eps, width=10cm}
+	\caption{O celular e a internet foram as armas dos rebeldes na Primavera Árabe}
+	\label{uni}
+\end{figure}
+
+\subsection{Análises de redes sociais}
+Este novo cenário possibilitou que a análise de redes sociais ganhasse incrível relevância nos campos de pesquisa social e comportamental\cite{wasserman1994advances}. Ao invés de analisar comportamentos individuais, atitudes e crenças, a análise de redes sociais foca sua atenção em entidades sociais ou atores interagindo entre si e como essas interações constituem uma estrutura que pode ser estudada e analisada.
+
+Outro ponto levantado recorrentemente quando o assunto é análise de redes sociais é o como ela pode ser útil para estudos de ordem \textit{micro} ou \textit{macro}. No nível \textit{micro}, as análises destinam-se a examinar díades, tríades ou outros pequenos sub-grupos. No nível \textit{macro}, o objeto de estudo são grandes redes de atores sociais.
+Todos os dados obtidos durante a coleta permitem segmentar os atores sociais de diversas formas - gênero, idade, religião, posição demográfica, entre outros - possibilitando análises \textit{micro} - a nível de apenas um usuário - ou \textit{macro} - quando analisamos um conjunto de usuários. Por exemplo, os dados extraídos a partir da API do Twitter, que será abordada no Capítulo 3, nos permite entender como um usuário específico reagiu a uma \textit{hashtag}. Da mesma forma, podemos olhar um cenário mais amplo, como por exemplo, todos usuários de uma região do país. As possibilidades de análise crescem e se tornam mais ricas conforme obtemos mais informações sobre os atores no momento de suas interações sociais.
 
 \section{Mineração de opinião}\label{sec:mineracao_dados}
 
@@ -22,13 +34,14 @@ Este novo cenário possibilitou que a análise de redes sociais ganhasse incrív
 É de conhecimento comum que há um acúmulo de dados por toda a internet. Artigos, informações de usuários, comportamento de usuários, essas são alguns tipos de informação que pode ser encontrada hoje na internet. Esse grande acumulo não garante informações confiáveis ou uma análise correta sobre os dados, por isso hoje há uma grande urgência para novas teorias computacionais e ferramentas que ajudem a analisar essa quantidade de dados que só aumenta \cite{fayyad1996data}. E dentro dessa enorme gama de dados, existem as informações adicionadas por usuários através de texto que remetem a suas reações a determinadas situações ou objetos.
 
 \begin{figure}[ht]
-	
 	\centering\epsfig{file=figuras/venn.eps, width=5cm}
 	\caption{Diagrama de Venn - Mineração de Dados}
 	\label{uni}
 \end{figure}
 
-A mineração de opinião também conhecida como mineração de sentimento, análise de sentimento ou extração de opinião, é um campo dentro da mineração de dados \cite{santos2014mineraccao}. Ela tem como intuito extrair o sentimento do texto escrito por uma pessoa, mas fazendo isso sem a interferência humana. Existe  dificuldade em afirmar o que é sentimento, na maioria dos dicionários sentimento é:
+
+\subsection{Definição}
+A mineração de opinião também conhecida como mineração de sentimento, análise de sentimento ou extração de opinião, é um campo dentro da mineração de dados \cite{santos2014mineraccao}. Ela tem como intuito extrair o sentimento do texto escrito por uma pessoa, sem a interferência humana durante o processo. Existe dificuldade em afirmar o que é sentimento, na maioria dos dicionários sentimento é:
 \begin{itemize}
 \item Ato ou efeito de sentir.
 \item Aptidão para receber as impressões.
@@ -37,9 +50,7 @@ A mineração de opinião também conhecida como mineração de sentimento, aná
 \item Faculdade de compreender; intuição; percepção.
 \end{itemize}
 
-Porém de acordo com psicólogo Klaus R. Scherer em \cite{scherer2001emotional}, sentimento é um breve episódio da resposta sincronizada de todos ou grande parte dos subsistemas orgânicos em resposta a um evento interno ou externo de grande significância.
-
- 
+Porém de acordo com psicólogo Klaus R. Scherer, sentimento é um breve episódio da resposta sincronizada de todos os ou grande parte dos subsistemas orgânicos em resposta a um evento interno ou externo de grande significância. \cite{scherer2001emotional}
 
 \section{API}\label{sec:api}
 * O que é
