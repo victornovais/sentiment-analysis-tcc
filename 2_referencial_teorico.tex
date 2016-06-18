@@ -10,7 +10,7 @@
 	\label{uni}
 \end{figure}
 
-\subsection{Definição}
+\subsection{Sentimento}
 De acordo com psicólogo Klaus R. Scherer, sentimento é um breve episódio da resposta sincronizada de todos os ou grande parte dos subsistemas orgânicos em resposta a um evento interno ou externo de grande significância\cite{scherer2001emotional}. Algumas outras definições utilizadas são:
 \begin{itemize}
 	\item Ato ou efeito de sentir;
@@ -105,10 +105,9 @@ Dentro do Twitter, O usuário pode fazer uso de marcadores conhecidos como \emph
 \subsection{Primavera Árabe}
 Um dos exemplos mais recentes e impressionantes de como as redes sociais desempenharam o papel de aproximar ideologias semelhantes e encorajar debates sociais profundos foi a Primavera Árabe - onda de manifestações e protestos que tiveram início em dezembro de 2010, tendo como cenário o Norte da África e Oriente Médio. Os principais alvos foram os regimes ditatoriais e patriarcais que há muito tempo estavam no poder.\cite{howard2011opening}. Redes sociais foram amplamente utilizadas para marcar encontros, debates e manifestações, além de mostrar para o mundo o que acontecia em tempo real, através do Twitter e outras redes sociais, como o YouTube.
 
-\begin{figure}[ht]
-	
+\begin{figure}[!h]
 	\centering\epsfig{file=figuras/primavera_arabe_redes_sociais.eps, width=10cm}
-	\caption{O celular e a internet foram as armas dos rebeldes na Primavera Árabe}
+	\caption{O celular e a internet foram as armas dos rebeldes na Primavera Árabe. Fonte: Desconhecida}
 	\label{uni}
 \end{figure}
 
@@ -119,17 +118,104 @@ Outro ponto levantado recorrentemente quando o assunto é análise de redes soci
 Todos os dados obtidos durante a coleta permitem segmentar os atores sociais de diversas formas - gênero, idade, religião, posição demográfica, entre outros - possibilitando análises \textit{micro} - a nível de apenas um usuário - ou \textit{macro} - quando analisamos um conjunto de usuários. Por exemplo, os dados extraídos a partir da API do Twitter, que será abordada no Capítulo 3, nos permite entender como um usuário específico reagiu a uma \textit{hashtag}. Da mesma forma, podemos olhar um cenário mais amplo, como por exemplo, todos usuários de uma região do país. As possibilidades de análise crescem e se tornam mais ricas conforme obtemos mais informações sobre os atores no momento de suas interações sociais.
 
 \section{API}\label{sec:api}
-* O que é
-* APIs mais utilizadas no mundo (case do twitter)
-* Papel de uma API para integração de serviços (achar referência foda)
 
-\section{Processamento de linguagem natural}\label{sec:nlp}
-* Linguagem natural (foto da matéria de autômato do Aquino?)
-* Processamento de linguagem natural
-* Dificuldades dentro da nossa área de estudo
+Por definição formal, uma API é um conjunto de rotinas estabelecidos por um software para a utilização de suas funcionalidades e acessos à seus dados por outro software que não pretende entender sobre a sua implementação, apenas seus serviços. Através dessa interface, capaz de fazer uma abstração dos dados e funcionalidades de um software, conectar-se a estes serviços se torna muito mais fácil, para ambos os lados.
+
+Outro ponto que demonstra a importância das APIs durante o desenvolvimento de software é a interoperabilidade. Atualmente, temos o mesmo serviço sendo oferecido em diferentes plataformas, como por exemplo \textit{web}, \textit{desktop}, \textit{mobile}, entre outras. Cada plataforma possui características e implementações diferentes, porém é possível que todas as plataformas utilizem as APIs como meio único de acesso a dados e serviços, promovendo uma padronização de protocolos e funcionalidades e serviços, além de alta reusabilidade de código.
+
+\begin{figure}[!h]
+	\centering\epsfig{file=figuras/interoperabilidade_api.eps, width=10cm}
+	\caption{Papel das APIs integrando dados e serviços em diferentes plataformas. Fonte: http://www.programmableweb.com/}
+	\label{uni}
+\end{figure}
+
+O Twitter, nossa fonte de dados durante este trabalho, possui uma API pública que pode ser utilizada por qualquer usuário da rede social \cite{twitterapidocs}. Atualmente, é a API mais utilizada no mundo, com mais de 15 bilhões de requisições por dia, 3 vezes mais acionada do que as APIs do Google, segundo colocado no ranking.
+
+\begin{figure}[!h]
+	\centering\epsfig{file=figuras/api_mais_usada.eps, width=10cm}
+	\caption{APIs mais utilizadas do mundo Fonte: SmartFile}
+	\label{uni}
+\end{figure}
+
+Para efetuar uma comunicação eficiente com quem acessa à API, é necessário implementar um protocolo de acesso aos dados. Entre eles, os mais utilizados são os protocolos REST e SOAP. O primeiro é o mais popular atualmente, segundo levantamento. (REFERÊNCIA)
+
+\subsection{REST}
+O protocolo REST foi criado em 2000 por Roy Fielding \cite{fieldingrest} durante sua dissertação de doutourado na \textit{University of California Irvine}. Por ter sido criado dentro de um ambiente universitário, o objetivo do protocolo abraça a filosofia \textit{open source}. Suas principais vantagens são:
+
+\begin{itemize}
+\item Segue a filosofia \textit{open source};
+\item Fácil implementação e manutenção;
+\item Separa claramente a implementação do cliente e do servidor;
+\item A comunicação não é controlada por uma entidade única;
+\item A informação pode ser armazenada pelo cliente previnindo múltiplas chamadas;
+\item Pode retornar a informação em múltiplos formatos (JSON, XML, entre outros);
+\end{itemize}
+
+Por outro lado, o protocolo REST possui algumas limitações. Entre elas, podemos destacar:
+
+\begin{itemize}
+	\item Só funciona em cima do protocolo HTTP;
+	\item Autorização e recursos de segurança devem ser implementados à parte;
+\end{itemize}
+
+Baseado nessas características, o protocolo REST é comumente utilizado para APIs de aplicações \textit{Web} e \textit{Mobile}, como por exemplo, a API do Twitter, LinkedIn e Slack. (REFERÊNCIAS)
+
+\subsection{SOAP}
+Criado em 1998 por Dave Winer et al com colaboração da Microsoft (REFERÊNCIA), o protocolo SOAP foca-se em endereçar necessidades do mercado corporativo. Como vantagem, o protocolo apresenta os seguintes aspectos:
+
+\begin{itemize}
+	\item Segue uma abordagem mais formal, corporativa;
+	\item Trabalha em cima de qualquer protocolo de comunicação, até mesmo assíncrono;
+	\item Recursos de autorização e segurança incorporados de forma nativa;
+	\item Pode ser descrito utilizando WSDL;
+\end{itemize}
+
+Entre suas principais desvantagens, podemos listar:
+
+\begin{itemize}
+	\item Gasta-se muita banda trafegando metadados
+	\item Difícil e implementação
+	\item Pouco popular entre desenvolvedores \textit{Web} e \textit{Mobile}
+	\item Retorna informação apenas em XML
+\end{itemize}
+
+Geralmente, o protocolo SOAP é mais utilizado em serviços financeiros, \textit{gateways} de pagamento e serviços de telecomunicações.
+
+\section{Processamento de linguagem natural}\label{sec:pnl}
+
+\subsection{Definição}
+
+\ac{PNL} baseia-se em modelos computacionais capazes de executar tarefas envolvem processar informações expresas em língua natural, como por exemplo, interpretação e tradução de textos. \cite{covington1994natural}.
+
+A pesquisa na área está voltada a três aspectos da comunicação essenciais:
+
+\begin{itemize}
+	\item fonologia: estudo dos sons;
+	\item morfologia: estudo da estrutura das palavras;
+	\item semântica: estudo do significado;
+	\item pragmática: estudo do significado aplicado a um contexto;
+\end{itemize}
+
+Neste trabalho, focaremos apenas na PNL aplicada à area da semântica e pragmática, responsável por estudar os elementos usados durante uma comunicação para se expressar através da língua (semântica) e a diversidade que pode surgir a partir de um contexto (pragmática). É também um estudo sobre como usuários de uma língua adquirem conhecimento sobre a mesma, através da comunicação oral ou escrita e como essa língua se altera ao longo do tempo.
+
+Um dos grandes desafios da área é modelar o processamento de uma máquina para compreender uma estrutura tão complexa como uma linguagem. Existe um teste famoso na área de computação, o Teste de Turing, que levanta a questão "As máquinas podem pensar?". O artigo fundamenta conceitos chave sobre a \ac{IA}, que serve como base para o PNL.
+
+\subsection{Teste de Turing}
+
+Introduzido pelo matemático britânico Alan Turing em seu artigo de 1950 "\textit{Computing Machinery and Intelligence} \cite{turing1950computing}, o Teste de Turing explora a capacidade de um computador demonstrar comportamento inteligente equivalente ou indistiguível dos seres humanos.
+
+O teste é composto por três elementos: dois seres humanos, sendo um participante e um juiz e um computador.
+
+O juiz conversa em linguagem natural com um outro ser humano e uma máquina através de um canal de texto, composto por um teclado e uma tela que renderiza a conversa. Todos os participantes estão em ambientes separados. O juiz deve ser capaz de distinguir a máquina do ser humano, caso contrário, a máquina é considerada bem sucedida no teste. O objetivo não é analisar se a máquina é capaz de responder corretamente e sim dizer quão próximas as respostas da máquina foram das do ser humano.  
+
+\begin{figure}[!h]
+	\centering\epsfig{file=figuras/teste_turing.eps, width=10cm}
+	\caption{O participante A (máquina) e o participante B (humano) se comunicam por texto com o participante C (juiz). Fonte: Wikipédia}
+	\label{uni}
+\end{figure}
 
 
-\section{Naive Bayes}\label{sec:naive_bayes}
+\section{Naive Bayes (INCOMPLETO)}\label{sec:naive_bayes}
 * O que é o Naive Bayes
 * Demonstração matemática do algoritmo
 * Uso dele em analise de sentimento/classificação
