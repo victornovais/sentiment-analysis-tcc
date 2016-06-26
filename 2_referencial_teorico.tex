@@ -2,7 +2,7 @@
 
 \section{Mineração de opinião}\label{sec:mineracao_dados}
 
-É de conhecimento comum que há um acúmulo de dados por toda a internet. Artigos, informações de usuários, comportamento de usuários, essas são alguns tipos de informação que pode ser encontrada hoje na internet. Esse grande acumulo não garante informações confiáveis ou uma análise correta sobre os dados, por isso hoje há uma grande urgência para novas teorias computacionais e ferramentas que ajudem a analisar essa quantidade de dados que só aumenta \cite{fayyad1996data}. E dentro dessa enorme gama de dados, existem as informações adicionadas por usuários através de texto que remetem a suas reações a determinadas situações ou objetos.
+É de conhecimento comum que há um acúmulo de dados por toda a internet. Artigos, informações de usuários, comportamento de usuários, essas são alguns tipos de informação que podem ser encontrados hoje na internet. Esse grande acumulo não garante informações confiáveis ou uma análise correta sobre os dados, por isso hoje há uma grande urgência para novas teorias computacionais e ferramentas que ajudem a analisar essa quantidade de dados que só aumenta \cite{fayyad1996data}. E dentro dessa enorme gama de dados, existem as informações adicionadas por usuários através de texto que remetem a suas reações a determinadas situações ou objetos.
 
 \begin{figure}[ht]
 	\centering\epsfig{file=figuras/venn.eps, width=5cm}
@@ -73,7 +73,7 @@ Da mesma forma, é possível utilizar a mesma técnica e direcionar as análises
 
 \subsubsection{Bolsa de valores}
 
-Os números do mercado financeiro são uma consequência direta do sentimento que pessoas(investidores) possuem sobre uma empresa. (REFERÊNCIA SOBRE COMO MERCADO FINANCEIRO É "HUMANO" E DIRIGIDO POR EMOÇÕES) A opinião extraída de especialistas e sites de notícias podem ser usados como um dos fatores decisivos para compra e venda de ações.
+Os números do mercado financeiro são uma consequência direta do sentimento que pessoas(investidores) possuem sobre uma empresa \cite{villela2013financcas}. A opinião extraída de especialistas e sites de notícias podem ser usados como um dos fatores decisivos para compra e venda de ações.
 
 \subsection{Fontes de dados}
 
@@ -93,7 +93,7 @@ Para este trabalho, o Twitter foi escolhido como base para a coleta de dados, po
 
 \section{Twitter}\label{sec:twitter}
 
-Contando com uma base ativa de usuários que ultrapassa 300 milhões\cite{twittercompany2016}, o Twitter é conhecido como um \emph{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Após 10 anos de mercado, a empresa acumula números impressionantes: 300 bilhões de mensagens já foram compartilhadas por seus usuários, que em média enviam 500 milhões de \emph{tweets}\cite{twitterstats2016} - nome pelo qual as mensagens compartilhadas no microblog ficaram conhecidas na Internet - por dia. Os usuários trocam mensagens de até 140 caracteres\cite{twittercharlimit2016} em um ambiente de rede social, que tem como objetivo dar à todos o poder de criar e compartilhar ideias e informações instantaneamente, sem barreiras\cite{twittercompany2016}. 
+Contando com uma base ativa de usuários que ultrapassa 300 milhões\cite{twittercompany2016}, o Twitter é conhecido como um \emph{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Após 10 anos de mercado, a empresa acumula números impressionantes: 300 bilhões de mensagens já foram compartilhadas por seus usuários, que em média enviam 500 milhões de \emph{tweets}\cite{twitterstats2016} - nome pelo qual as mensagens compartilhadas no microblog ficaram conhecidas na Internet - por dia. Os usuários trocam mensagens de até 140 caracteres\cite{twittercharlimit2016} em um ambiente de rede social, que tem como objetivo dar à todos o poder de criar e compartilhar ideias e informações instantaneamente \cite{twittercompany2016}. 
 
 Dentro do Twitter, O usuário pode fazer uso de marcadores conhecidos como \emph{hashtags}\cite{waite2012paperback}, para vincular sua mensagem à um tópico específico. Apesar de simples, as \emph{hashtags} pode ser usadas das mais diversas maneiras:
 \begin{itemize}
@@ -137,7 +137,7 @@ O Twitter, nossa fonte de dados durante este trabalho, possui uma API pública q
 	\label{uni}
 \end{figure}
 
-Para efetuar uma comunicação eficiente com quem acessa à API, é necessário implementar um protocolo de acesso aos dados. Entre eles, os mais utilizados são os protocolos REST e SOAP. O primeiro é o mais popular atualmente, segundo levantamento. (REFERÊNCIA)
+Para efetuar uma comunicação eficiente com quem acessa à API, é necessário implementar um protocolo de acesso aos dados. Entre eles, os mais utilizados são os protocolos REST e SOAP.
 
 \subsection{REST}
 O protocolo REST foi criado em 2000 por Roy Fielding \cite{fieldingrest} durante sua dissertação de doutourado na \textit{University of California Irvine}. Por ter sido criado dentro de um ambiente universitário, o objetivo do protocolo abraça a filosofia \textit{open source}. Suas principais vantagens são:
@@ -158,10 +158,10 @@ Por outro lado, o protocolo REST possui algumas limitações. Entre elas, podemo
 	\item Autorização e recursos de segurança devem ser implementados à parte;
 \end{itemize}
 
-Baseado nessas características, o protocolo REST é comumente utilizado para APIs de aplicações \textit{Web} e \textit{Mobile}, como por exemplo, a API do Twitter, LinkedIn e Slack. (REFERÊNCIAS)
+Baseado nessas características, o protocolo REST é comumente utilizado para APIs de aplicações \textit{Web} e \textit{Mobile}, como por exemplo, a API do Twitter, LinkedIn e Slack.
 
 \subsection{SOAP}
-Criado em 1998 por Dave Winer et al com colaboração da Microsoft (REFERÊNCIA), o protocolo SOAP foca-se em endereçar necessidades do mercado corporativo. Como vantagem, o protocolo apresenta os seguintes aspectos:
+Criado em 1998 por Dave Winer et al com colaboração da Microsoft, o protocolo SOAP foca-se em endereçar necessidades do mercado corporativo. Como vantagem, o protocolo apresenta os seguintes aspectos:
 
 \begin{itemize}
 	\item Segue uma abordagem mais formal, corporativa;
@@ -196,7 +196,7 @@ A pesquisa na área está voltada a três aspectos da comunicação essenciais:
 	\item pragmática: estudo do significado aplicado a um contexto;
 \end{itemize}
 
-Neste trabalho, focaremos apenas na PNL aplicada à area da semântica e pragmática, responsável por estudar os elementos usados durante uma comunicação para se expressar através da língua (semântica) e a diversidade que pode surgir a partir de um contexto (pragmática). É também um estudo sobre como usuários de uma língua adquirem conhecimento sobre a mesma, através da comunicação oral ou escrita e como essa língua se altera ao longo do tempo.
+Neste trabalho, focaremos apenas no PNL aplicado à area da semântica e pragmática, responsável por estudar os elementos usados durante uma comunicação para se expressar através da língua (semântica) e a diversidade que pode surgir a partir de um contexto (pragmática). É também um estudo sobre como usuários de uma língua adquirem conhecimento sobre a mesma, através da comunicação oral ou escrita e como essa língua se altera ao longo do tempo.
 
 Um dos grandes desafios da área é modelar o processamento de uma máquina para compreender uma estrutura tão complexa como uma linguagem. Existe um teste famoso na área de computação, o Teste de Turing, que levanta a questão "As máquinas podem pensar?". O artigo fundamenta conceitos chave sobre a \ac{IA}, que serve como base para o PNL.
 
@@ -215,11 +215,41 @@ O juiz conversa em linguagem natural com um outro ser humano e uma máquina atra
 \end{figure}
 
 
-\section{Naive Bayes (INCOMPLETO)}\label{sec:naive_bayes}
-* O que é o Naive Bayes
+\section{Classificador Naive Bayes}\label{sec:naive_bayes}
 * Demonstração matemática do algoritmo
 * Uso dele em analise de sentimento/classificação
 
 
-\emph{Naive Bayes} é um algoritmo probabilístico. Baseado no teorema de bayes. $$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)} $$ onde se infere qual é a probabilidade de um evento A dado um evento B. Porém nesse trabalho é utilizado o \emph{Naive Bayes} e sua diferença para o teorema de Bayes é assumir que a posição das palavras que aparecem no texto não importa, daí é acrescentado o \emph{naive}(ingênuo) ao teorema.
-\\ Como visto em \cite{lucca2013implementaccao} o algoritmo computa qual a probabilidade de uma frase, denominada de documento pertencer a uma determinada classe(polaridade) \emph{P(c/d)}, a partir da probabilidade a \emph{priori} de \emph{P(c)} do documento pertencer a esta classe e da probabilidades condicionais de cada termo \emph{tk} ocorrer em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a\emph{posteriori} conforme a equação abaixo, onde $ n_{d} $ é o número de termos no documento \emph{d}. $$ C_{map}= argmax_{c \epsilon C}P(c|d)=argmax_{c \epsilon C}P(c)\prod 1sksn_{d}P(t_{k}/d) $$
+O classificador conhecido como \textit{Naive Bayes} é algoritmos probabilístico baseado no Teorema de Bayes que não considera dependências que possam existir. Por este motivo, suas suposições são nomeadas "ingênuas", o que lhe confere uma maior simplicidade e um desempenho maior, em relação a outros algoritmos de classificação \cite{rennie2003tackling}. É um método popular para categorização de textos, como por exemplo a classificação de \textit{e-mails} em legítimos os \textit{spam} \cite{androutsopoulos2000evaluation}
+
+\subsection{O Teorema de Bayes}
+
+onde se infere qual é a probabilidade de um evento A dado um evento B e pode ser expressado pela seguinte equação:
+
+$$ P(A \mid B) = \frac{P(B \mid A) \ P(A)}{P(B)}, $$
+onde A e B são eventos e P(B) != 0.
+
+\begin{itemize}
+	\item P(A) e P(B) são probabilidades de A e B sem considerar a relação entre ambos;
+	\item P(A|B), uma probabilidade condicional, é a probabilidade de observar o evento A, dado que B ocorreu.
+	\item P(B|A) é a probabilidade de observar o evento B, dado que A ocorreu.
+\end{itemize}
+
+Podemos também expressar a equação em puro português, como a seguir:
+
+$$ posterpriori = \frac{priori \times  possibilidade}{evid\hat{e}ncia} $$
+
+Suponha que queremos saber a probabilidade de um indivíduo possuir uma câncer, sem saber nada sobre o indivíduo. Porém, sabemos que a chance de um indivíduo estar infectado com tal câncer é de 1\%, ou seja, uma probabilidade a priori.
+Em seguida, suponha que esta pessoa tenha 70 anos de idade e que essa probabilidade é de 0,2\% e que 0,5\% das pessoas doente possuem 70 anos de idade. Se assumirmos que a incidência de câncer e a idade estão relacionadas, podemos utilizar esta informação para melhor medir as chances desta pessoa estar doente. Logo, queremos saber a probabilidade de uma pessoa estar doente quando a mesma possui 70 anos de idade, ou probabilidade a posteriori.
+
+$$ (0,5\% \times 1\%) \div 0,2\% = 2,5\% $$
+
+Portanto, o resultado do teorema demonstra que possuir 70 anos de idade aumenta a chance de uma pessoa possuir câncer, apesar desta probabilidade ainda ser baixa.
+
+\subsection{Aplicação neste trabalho}
+
+Nesse trabalho é utilizado o \emph{Naive Bayes} para categorizar \textit{tweets} extraídos do Twitter em positivos, neutros ou negativos. A diferença deste algoritmo para o Teorema de Bayes é assumir que a posição das palavras - eventos da probabilidade - que aparecem no texto não importa para determinar o resultado final.
+
+Como visto em \cite{lucca2013implementaccao} o algoritmo computa qual a probabilidade de uma frase, denominada de documento pertencer a uma determinada classe(polaridade) \emph{P(c/d)}, a partir da probabilidade a priori de \emph{P(c)} do documento pertencer a esta classe e da probabilidades condicionais de cada termo \emph{tk} ocorrer em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a posteriori conforme a equação abaixo, onde $ n_{d} $ é o número de termos no documento \emph{d}. 
+
+$$ C_{map}= argmax_{c \epsilon C}P(c|d)=argmax_{c \epsilon C}P(c)\prod 1sksn_{d}P(t_{k}/d) $$
