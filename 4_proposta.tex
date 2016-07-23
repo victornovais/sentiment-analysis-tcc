@@ -1,0 +1,54 @@
+\chapter{Proposta} \label{cap:proposta}
+
+Como visto no Capítulo 2, existe uma corrente dentro da Mineração de Opinião que vem desenvolvendo maneiras de explorar o conteúdo digital gerado pela nossa sociedade todos os dias em redes sociais, através de técnicas utilizando Processamento de Linguagem Natural e \textit{Machine Learning}, principalmente. Com este fato surge a oportunidade de explorar novas ferramentas na
+solução de problemas que envolvem pesquisas de opinião de forma geral.
+Neste trabalho propõem-se um \textit{framework} que torna possível fazer pesquisas de opiniões em língua portuguesa sobre qualquer tema que seja rastreável a partir de uma \textit{hashtag} no Twitter.
+Para tal é necessário que o framework criado seja capaz de:
+
+% TODO: Colocar Lista ordenada
+\begin{itemize}
+	\item Coletar \textit{tweets} escritos em língua portuguesa que contenham uma determinada {hashtag} escolhida como objeto de estudo em tempo real;
+	\item Armazenar as mensagens em uma base de dados;
+	\item Classificar as mensagens em: negativo, neutro e positivo;
+	\item Extrair \textit{insights} que auxiliem em tomadas de decisão a partir da massa de dados classificada;
+\end{itemize}
+
+Para alcançar este objetivo a proposta deste trabalho envolve passos preparatórios que permitem o pleno funcionamento do \textit{framework}.
+
+\begin{itemize}
+	\item Definir as técnicas de normalização que serão aplicadas ao texto antes da classificação;
+	\item Construir base de palavras e termos classificados utilizadas como insumo para o modelo matemático;
+	\item Preparar uma massa de treino para validar o modelo matemático antes da execução;
+\end{itemize}
+
+\section{Construção da base de palavras e termos}
+A construção da base de dados foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, para a utilização do algoritmo. Para isso a base foi dividida em dois arquivos, positivos e negativos. Além dessa divisão foi utilizada outas bases criadas como: Re-li(referencia), SentiLex-PT \cite{marioj.silvapaulacarvalholuissarmento2012}, base da puc \cite{freitas2013construccao}, emoticons \cite{alexanderhogenboomdaniellabalflaviusfrasincarmalissabalfranciskadejonguzaykaymak}. Todas usando a língua portuguesa ou um linguajar universal, no caso dos emoticons e já estarem polarizadas. Essas bases têm em comum é serem feitas apenas de palavras, então ficou-se a dúvida de como a classificação funcionaria posteriormente quando aplicadas a um texto que as palavras podem não estar no mesmo contexto. Ex: "O flamengo jogou muito mal, mas fico feliz pela vitória", onde tem a palavra mal que já dá um tom negativo a frase , porém ao terminar de ler a frase encontrasse as palavras feliz e vitória que tem um contexto positivo.
+Com essas bases já citadas foi compreendida a necessidade de uma base mais específica para o linguajar utilizado na internet, constituído de  
+gírias, abreviação e até erros de português, para isso foi criada uma base utilizando dados pegos do twitter a partir da marcação hashtagoscar2016.
+
+
+\section{Coleta de dados}
+
+
+\section{Armazenamento}
+
+
+\section{Classificação}
+
+
+\subsection{Massa de treino}
+
+
+\subsection{Massa de teste}
+
+\subsection{Algoritmo}
+
+
+
+\subsection{Massa de treino}
+
+
+\subsection{Massa de teste}
+
+
+\subsection{Plataforma de análise}
