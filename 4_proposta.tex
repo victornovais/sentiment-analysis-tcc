@@ -1,0 +1,66 @@
+\chapter{Proposta} \label{cap:proposta}
+
+Como visto no Capítulo 2, existe uma corrente dentro da Mineração de Opinião que vem desenvolvendo maneiras de explorar o conteúdo digital gerado pela nossa sociedade todos os dias em redes sociais, através de técnicas utilizando Processamento de Linguagem Natural e \textit{Machine Learning}, principalmente. Com este fato surge a oportunidade de explorar novas ferramentas na
+solução de problemas que envolvem pesquisas de opinião de forma geral.
+Neste trabalho propõem-se um \textit{framework} que torna possível fazer pesquisas de opiniões em língua portuguesa sobre qualquer tema que seja rastreável a partir de uma \textit{hashtag} no Twitter.
+Para tal é necessário que o framework criado seja capaz de:
+
+% TODO: Colocar Lista ordenada
+\begin{enumerate}
+	\item Coletar \textit{tweets} escritos em língua portuguesa que contenham uma determinada {hashtag};
+	\item Armazenar as mensagens em uma base de dados;
+	\item Classificar as mensagens de acordo com a polaridade: negativo, neutro e positivo;
+	\item Extrair \textit{insights} que auxiliem a tomada de decisão a partir da massa de dados classificada;
+\end{enumerate}
+
+\section{Coleta de dados}
+* Como Twitter expõe seus dados
+* Começando na API, Como podemos usá-la (autenticação como dev)
+* Quantidade de requests por "janela"
+* Resource Search
+* Filtros hashtag, linguagem(falar sobre problema), posição geográfica, etc
+* Exemplo do retorno
+*
+
+A plataforma do Twitter conecta aplicações e sites com seus dados através de diversos serviços. Para este trabalho, nossa principal fonte de dados será sua API REST, que possui uma excelente documentação disponível em \cite{twitterapidocs}. Através dela é possível acessar informações de usuários e \textit{tweets}, assim como escrever novas mensagens. Além disso, a API conta com um mecanismo de busca poderoso, que será fundamental para a coleta de dados. Os dados são entregues no formato \ac{JSON}.
+
+\subsection{Autenticando na API}
+
+Para que ter acesso à API antes é necessário possuir uma conta no Twitter e utilizar o protocolo de autenticação OAuth\cite{oauth}, cujo principal objetivo é permitir que uma aplicação se autentique em outra "em nome de um usuário". A aplicação pede permissão de acesso ao usuário, que possui a escolha de conceder permissão ou não. Um ponto importante: o usuário não precisa informar a sua senha para se autenticar, portanto a permissão continua vigente caso a senha do usuário se altere, o que permite que a aplicação não precise de manutenção caso isso aconteça, tornando-a mais resiliente. A autenticação por meio do OAuth necessita de três passos:
+
+\begin{enumerate}
+	\item Aplicação cliente obtém chave de autenticação;
+	\item Usuário autoriza aplicação cliente na aplicação servidora;
+	\item Aplicação cliente troca a chave de autenticação pela chave de acesso;
+\end{enumerate}
+
+
+\section{Armazenamento}
+
+
+\section{Classificação}
+\begin{itemize}
+	\item Aplicar técnicas de normalização no texto. As mesmas devem ser específicas para a língua portuguesa;
+	\item Construir base de palavras e termos classificados utilizadas como insumo para o modelo matemático;
+	\item Preparar uma massa de treino para validar o modelo matemático antes da execução;
+\end{itemize}
+
+\section{Normalização do texto}
+
+A composição de um \textit{tweet} escrito por muitas vezes possui elementos que serão inúteis ou nocivos para o nosso algoritmo de classificação. Por conta disso, um dos primeiros desafios para tal é conduzir uma normalização nas mensagens, que serão nosso objeto de estudo.
+
+
+\subsection{Construção da base de palavras e termos}
+A construção da base de dados foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, para a utilização do algoritmo. Para isso a base foi dividida em dois arquivos, positivos e negativos. Além dessa divisão foi utilizada outas bases criadas como: Re-li(referencia), SentiLex-PT \cite{marioj.silvapaulacarvalholuissarmento2012}, base da puc \cite{freitas2013construccao}, emoticons \cite{alexanderhogenboomdaniellabalflaviusfrasincarmalissabalfranciskadejonguzaykaymak}. Todas usando a língua portuguesa ou um linguajar universal, no caso dos emoticons e já estarem polarizadas. Essas bases têm em comum é serem feitas apenas de palavras, então ficou-se a dúvida de como a classificação funcionaria posteriormente quando aplicadas a um texto que as palavras podem não estar no mesmo contexto. Ex: "O flamengo jogou muito mal, mas fico feliz pela vitória", onde tem a palavra mal que já dá um tom negativo a frase , porém ao terminar de ler a frase encontrasse as palavras feliz e vitória que tem um contexto positivo.
+Com essas bases já citadas foi compreendida a necessidade de uma base mais específica para o linguajar utilizado na internet, constituído de  
+gírias, abreviação e até erros de português, para isso foi criada uma base utilizando dados pegos do twitter a partir da marcação hashtagoscar2016.
+
+
+\subsection{Massa de treino}
+
+\subsection{Massa de teste}
+
+\subsection{Algoritmo}
+
+
+\section{Plataforma de análise}
