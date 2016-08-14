@@ -1,6 +1,7 @@
 \chapter{Resultados e análises}\label{cap:resultados}
 
-Nesta seção será apresentada os resultados obtidos e os processos necessários para a obtenção dos mesmos. Como visto no Capitulo 4 uma das fases necessárias para a Análise de Sentimento é a classificação de polaridade dos \textit{tweets}. Durante a classificação, que era o resultado da execução do Naive Bayes, foram utilizadas diversas formas de execução que serão apresentadas abaixo
+Neste capítulo serão apresentados resultados obtidos e os processos necessários para a obtenção dos mesmos. Como visto anteriormente no Capitulo 2,  uma das etapas
+necessárias para a Análise de Sentimento é a classificação de polaridade dos \textit{tweets}. Durante a classificação, que gera o resultado da execução do Naive Bayes, foram utilizadas diversas formas de execução que serão apresentadas durante este capítulo.'
 
 \section{Cenários e parâmetros de teste}\label{sec:cenarios}
 Durante a execução dos testes para a análise de resultados o ambiente utilizado foi:
@@ -36,9 +37,15 @@ O primeiro teste realizado para a classificação da base obteve o seguinte resu
 \end{table}
 
 Analisando a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, Reli , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141798 \textit{tweets}, 17350 foram positivos, 15517 negativos e 108931 neutros, levando 311.673 segundos para executar o teste.
-\todo{Adicionar imagem}
+\todo{Adicionar imagem grafico 1}
+\begin{figure}[!h]
+	\centering\epsfig{file=figuras/teste-1.eps, width=20cm}
+	\caption{Quantidade de tweets separados por polaridade do teste 1. Fonte: Própria}
+	\label{uni}
+\end{figure}
 
-Observando os resultados, é visto que a quantidade de \textit{tweets} neutros é maior que a dos outros, com isso foi que havia a necessidade de diminuir a quantidade de neutros. Mudanças no cenário de testes para conseguir essa diminuição. 
+Nota-se que a quantidade de \textit{tweets} neutros é muito alta, evidenciando que o modelo ainda tem dificuldade de definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de "neutros".
+ 
 \todo{Tabela 2 aqui}
 
 \begin{table}[]
@@ -63,7 +70,11 @@ Observando os resultados, é visto que a quantidade de \textit{tweets} neutros �
 
 No 2º teste visto na tabela \ref{teste-2} é visto que a quantidade de neutro diminuiu consideravelmente, apenas aplicando a técnica de \textit{stemming} nas bases de palavras
 \todo{grafico 2}
-
+\begin{figure}[!h]
+	\centering\epsfig{file=figuras/teste-2.eps, width=20cm}
+	\caption{Quantidade de tweets separados por polaridade do teste 2. Fonte: Própria}
+	\label{uni}
+\end{figure}
 
 Ainda buscando a diminuição de neutros foi criada uma base de palavras mas próxima do domínio que esse trabalho propõe que é o Oscar2016, essa base contem palavras relevantes a esse evento, gerando o seguinte resultado.
 \todo{colocar tabela 3 aqui}
@@ -88,7 +99,11 @@ Ainda buscando a diminuição de neutros foi criada uma base de palavras mas pr�
 
 Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializada no domínio não consegue diminuir a quantidade de neutros e ainda aumenta o tempo para a execução dos testes.
 \todo{grafico 3}
-
+\begin{figure}[!h]
+	\centering\epsfig{file=figuras/teste-3.eps, width=20cm}
+	\caption{Quantidade de tweets separados por polaridade do teste 3. Fonte: Própria}
+	\label{uni}
+\end{figure}
 
 No 4º teste foi adicionada o base criada, Oscar2016, com as bases genéricas, gerando o seguinte resultado:
 \begin{table}[]
@@ -114,7 +129,11 @@ No 4º teste foi adicionada o base criada, Oscar2016, com as bases genéricas, g
 
 Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtida a maior diminuição de neutros, mas com um tempo de processamento um pouco maior.
 \todo{Adicionar grafico 4}
-
+\begin{figure}[!h]
+	\centering\epsfig{file=figuras/teste-4.eps, width=20cm}
+	\caption{Quantidade de tweets separados por polaridade do teste 4. Fonte: Própria}
+	\label{uni}
+\end{figure}
 Segue abaixo um comparativo dos testes.
 
 \begin{table}[]
