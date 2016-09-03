@@ -2,7 +2,7 @@
 
 \section{Mineração de opinião}\label{sec:mineracao_dados}
 
-É de conhecimento comum que há um acúmulo de dados por toda a internet. Artigos, informações de usuários, comportamento de usuários, essas são alguns tipos de informação que podem ser encontrados hoje na internet. Esse grande acumulo não garante informações confiáveis ou uma análise correta sobre os dados, por isso hoje há uma grande urgência para novas teorias computacionais e ferramentas que ajudem a analisar essa quantidade de dados que só aumenta \cite{fayyad1996data}. E dentro dessa enorme gama de dados, existem as informações adicionadas por usuários através de texto que remetem a suas reações a determinadas situações ou objetos.
+É de conhecimento comum que há um acúmulo de dados por toda a internet. Artigos, informações de usuários, comportamento de usuários, são alguns tipos de informação que podem ser encontrados hoje na internet. Esse grande acumulo não garante informações confiáveis ou uma análise correta sobre os dados, por isso há uma grande urgência para novas teorias computacionais e ferramentas que ajudem a analisar essa quantidade de dados gerados \cite{fayyad1996data}. E dentro dessa enorme gama de dados, existem as informações adicionadas por usuários através de texto que remetem a suas reações a determinadas situações ou objetos.
 
 \begin{figure}[ht]
 	\centering\epsfig{file=figuras/venn.eps, width=5cm}
@@ -20,7 +20,7 @@ De acordo com psicólogo Klaus R. Scherer, sentimento é um breve episódio da r
 	\item Faculdade de compreender, intuição e percepção;
 \end{itemize}
 
-A mineração de opinião, também conhecida como mineração de sentimento, análise de sentimento ou extração de opinião, é um campo dentro da mineração de dados \cite{santos2014mineraccao} que tem como objetivo extrair o sentimento do texto escrito por uma pessoa, sem a interferência humana durante o processo. Porém, existe dificuldade em afirmar categoricamente o que é sentimento. 
+A mineração de opinião, também conhecida como mineração de sentimento, análise de sentimento ou extração de opinião, é um campo dentro da mineração de dados \cite{santos2014mineraccao} que tem como objetivo extrair o sentimento do texto escrito por uma pessoa, sem a interferência humana durante o processo.
 
 \subsection{Desafios}
 
@@ -47,11 +47,11 @@ O processo de mineração de opinião consiste em 3 etapas: \cite{mineracaoopini
 
 Nesta etapa é conduzida uma busca por opiniões nas mais diversas fontes que podem ser úteis: artigos, sites, comentários, anúncios dentre outras. Como explicado anteriormente, deve-se visar identificar se a informação coletada é uma opinião ou fato. Fatos podem ser descartados imediatamente, porém opiniões apresentadas através de fatos, podem ser úteis.
 
-Existem diversas maneiras de coletar sistematicamente fontes para extrair e armazenar os dados que serão utilizados, dentre elas as mais famosas estão o desenvolvimento \textit{crawlers} e a utilização de APIs.
+Existem diversas maneiras de coletar sistematicamente fontes para extrair e armazenar os dados que serão utilizados, dentre elas as mais famosas estão o desenvolvimento \textit{crawlers} - uma rotina sistemática capaz de varrer sites em busca de informações - e a utilização de APIs.
 
 \subsubsection{Classificação}
 
-A classificação é a alma do processo de mineração de opinião. Nesta etapa é determinada a polaridade do objeto de estudo, pretendendo determinar se o mesmo é positiva, negativa ou neutra.
+A classificação é a alma do processo de mineração de opinião. Nesta etapa é determinada a polaridade do objeto de estudo em positivo, negativo e neutro.
 
 Essa etapa é a principal responsável pela acurácia da análise. Por ser a etapa mais delicada do processo é onde ocorrem a maior parte dos erros. Existem diversas técnicas e ferramentas que ajudam a mitigar tais problemas que serão abordadas mais adiante, no Capítulo~\ref{cap:proposta}.
 
@@ -65,7 +65,7 @@ Um algoritmo capaz de extrair opiniões de um texto pode ser aplicado em diverso
 
 \subsubsection{Pesquisa de opinião sobre um produto}
 
-Mineração de opinião pode ser usada por uma companhia para determinar se um certo produto lançado ao mercado atingiu a aceitação prevista, como forma de entender a percepção do público e guiar estrategicamente ações de marketing e relações públicas. Ainda é possível prospectar o sentimento associado a um produto antes mesmo do seu lançamento, visando antecipar \textit{insights} que podem ser valiosos durante o seu desenvolvimento.
+Mineração de opinião pode ser usada por uma empresa para determinar se um certo produto lançado ao mercado atingiu a aceitação prevista, como forma de entender a percepção do público e guiar estrategicamente ações de marketing e relações públicas. Ainda é possível prospectar o sentimento associado a um produto antes mesmo do seu lançamento, visando antecipar \textit{insights} que podem ser valiosos durante o seu desenvolvimento.
 
 \subsubsection{Análise sobre pessoas públicas}
 
@@ -93,9 +93,9 @@ Para este trabalho, o Twitter foi escolhido como base para a coleta de dados, po
 
 \section{Twitter}\label{sec:twitter}
 
-Contando com uma base ativa de usuários que ultrapassa 300 milhões\cite{twittercompany2016}, o Twitter é conhecido como um \emph{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Após 10 anos de mercado, a empresa acumula números impressionantes: 300 bilhões de mensagens já foram compartilhadas por seus usuários, que em média enviam 500 milhões de \emph{tweets}\cite{twitterstats2016} - nome pelo qual as mensagens compartilhadas no microblog ficaram conhecidas na Internet - por dia. Os usuários trocam mensagens de até 140 caracteres\cite{twittercharlimit2016} em um ambiente de rede social, que tem como objetivo dar à todos o poder de criar e compartilhar ideias e informações instantaneamente \cite{twittercompany2016}. 
+Contando com uma base ativa de usuários que ultrapassa 300 milhões \cite{twittercompany2016}, o Twitter é conhecido como um \emph{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Os usuários trocam mensagens de até 140 caracteres \cite{twittercharlimit2016} em um ambiente de rede social, que tem como objetivo dar à todos o poder de compartilhar ideias e informações instantaneamente \cite{twittercompany2016}. Após 10 anos de mercado, a empresa acumula números impressionantes: 300 bilhões de mensagens já foram compartilhadas por seus usuários, que em média enviam 500 milhões de \emph{tweets} \cite{twitterstats2016} - nome pelo qual as mensagens compartilhadas no microblog ficaram conhecidas na Internet - por dia.
 
-Dentro do Twitter, O usuário pode fazer uso de marcadores conhecidos como \emph{hashtags}\cite{waite2012paperback}, para vincular sua mensagem à um tópico específico. Apesar de simples, as \emph{hashtags} pode ser usadas das mais diversas maneiras:
+Dentro do Twitter, O usuário pode fazer uso de \emph{hashtags} - marcadores conhecidos do público de rede social, que servem como uma indexação para um tópico específico \cite{waite2012paperback}. Apesar de simples, as \emph{hashtags} pode ser usadas das mais diversas maneiras:
 \begin{itemize}
 \item Agrupar comentários e pensamentos acerca de um tema
 \item Estabelecer uma conexão entre dois tópicos
@@ -103,7 +103,7 @@ Dentro do Twitter, O usuário pode fazer uso de marcadores conhecidos como \emph
 \end{itemize}
 
 \subsection{Primavera Árabe}
-Um dos exemplos mais recentes e impressionantes de como as redes sociais desempenharam o papel de aproximar ideologias semelhantes e encorajar debates sociais profundos foi a Primavera Árabe - onda de manifestações e protestos que tiveram início em dezembro de 2010, tendo como cenário o Norte da África e Oriente Médio. Os principais alvos foram os regimes ditatoriais e patriarcais que há muito tempo estavam no poder.\cite{howard2011opening}. Redes sociais foram amplamente utilizadas para marcar encontros, debates e manifestações, além de mostrar para o mundo o que acontecia em tempo real, através do Twitter e outras redes sociais, como o YouTube.
+Um dos exemplos mais recentes e impressionantes de como as redes sociais desempenharam o papel de aproximar ideologias semelhantes e encorajar debates sociais profundos foi a Primavera Árabe - onda de manifestações e protestos que tiveram início em dezembro de 2010, tendo como cenário o Norte da África e Oriente Médio. Os principais alvos foram os regimes ditatoriais e patriarcais que há muito tempo estavam no poder \cite{howard2011opening}. Redes sociais foram amplamente utilizadas para marcar encontros, debates e manifestações, além de mostrar para o mundo o que acontecia em tempo real, através do Twitter e outras redes sociais, como o YouTube.
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/primavera_arabe_redes_sociais.eps, width=10cm}
@@ -112,16 +112,16 @@ Um dos exemplos mais recentes e impressionantes de como as redes sociais desempe
 \end{figure}
 
 \subsection{Análises de redes sociais}
-Este novo cenário possibilitou que a análise de redes sociais ganhasse incrível relevância nos campos de pesquisa social e comportamental\cite{wasserman1994advances}. Ao invés de analisar comportamentos individuais, atitudes e crenças, a análise de redes sociais foca sua atenção em entidades sociais ou atores interagindo entre si e como essas interações constituem uma estrutura que pode ser estudada e analisada.
+A análise de redes sociais ganhou incrível relevância nos campos de pesquisa social e comportamental\cite{wasserman1994advances} com o aumento de compartilhamento de informações dentro destes ambientes. Ao invés de analisar comportamentos individuais, atitudes e crenças, a análise de redes sociais foca sua atenção em entidades sociais ou atores interagindo entre si e como essas interações constituem uma estrutura que pode ser estudada e analisada.
 
-Outro ponto levantado recorrentemente quando o assunto é análise de redes sociais é o como ela pode ser útil para estudos de ordem micro ou macro. No nível \textit{micro}, as análises destinam-se a examinar díades, tríades ou outros pequenos sub-grupos. No nível \textit{macro}, o objeto de estudo são grandes redes de atores sociais.
-Todos os dados obtidos durante a coleta permitem segmentar os atores sociais de diversas formas - gênero, idade, religião, posição demográfica, entre outros - possibilitando análises \textit{micro} - a nível de apenas um usuário - ou \textit{macro} - quando analisamos um conjunto de usuários. Por exemplo, os dados extraídos a partir da API do Twitter, que será abordada no Capítulo 3, nos permite entender como um usuário específico reagiu a uma \textit{hashtag}. Da mesma forma, podemos olhar um cenário mais amplo, como por exemplo, todos usuários de uma região do país. As possibilidades de análise crescem e se tornam mais ricas conforme obtemos mais informações sobre os atores no momento de suas interações sociais.
+Outro ponto levantado recorrentemente quando o assunto é análise de redes sociais é como ela pode ser útil para estudos de ordem micro ou macro. No nível \textit{micro}, as análises destinam-se a examinar díades, tríades ou outros pequenos sub-grupos - conjuntos de duas, três ou mais atores sociais. No nível \textit{macro}, o objeto de estudo são grandes redes de atores sociais.
+Todos os dados obtidos durante a coleta permitem segmentar os atores sociais de diversas formas - gênero, idade, religião, posição demográfica, entre outros. Por exemplo, os dados extraídos a partir da API do Twitter, tema abordada no Capítulo 3, nos permite entender como um usuário específico reagiu a uma \textit{hashtag}. Da mesma forma, podemos olhar um cenário mais amplo, como por exemplo, todos usuários de uma região do país. As possibilidades de análise crescem e se tornam mais ricas conforme obtemos mais informações sobre os atores no momento de suas interações sociais.
 
 \section{API}\label{sec:api}
 
-Por definição formal, uma API é um conjunto de rotinas estabelecidos por um software para a utilização de suas funcionalidades e acessos à seus dados por outro software que não pretende entender sobre a sua implementação, apenas seus serviços. Através dessa interface, capaz de fazer uma abstração dos dados e funcionalidades de um software, conectar-se a estes serviços se torna muito mais fácil, para ambos os lados.
+Uma API é um conjunto de rotinas estabelecidos por um software para a utilização de suas funcionalidades e acessos aos seus dados por outro software que não pretende fazer uso de sua implementação, apenas de seus serviços. Através dessa interface, capaz de fazer uma abstração dos dados e funcionalidades de um software, conectar-se a estes serviços se torna muito mais simples.
 
-Outro ponto que demonstra a importância das APIs durante o desenvolvimento de software é a interoperabilidade. Atualmente, temos o mesmo serviço sendo oferecido em diferentes plataformas, como por exemplo \textit{web}, \textit{desktop}, \textit{mobile}, entre outras. Cada plataforma possui características e implementações diferentes, porém é possível que todas as plataformas utilizem as APIs como meio único de acesso a dados e serviços, promovendo uma padronização de protocolos e funcionalidades e serviços, além de alta reusabilidade de código.
+Outro ponto que demonstra a importância das APIs durante o desenvolvimento de software é a interoperabilidade. Atualmente, temos o mesmo serviço sendo oferecido em diferentes plataformas, como por exemplo \textit{web}, \textit{desktop} e \textit{mobile}. Cada plataforma possui características e implementações diferentes, porém é possível que todas as plataformas utilizem as APIs como meio único de acesso a dados e serviços, promovendo uma padronização de protocolos e funcionalidades e serviços, além de alta reusabilidade de código.
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/interoperabilidade_api.eps, width=10cm}
@@ -129,7 +129,7 @@ Outro ponto que demonstra a importância das APIs durante o desenvolvimento de s
 	\label{uni}
 \end{figure}
 
-O Twitter, nossa fonte de dados durante este trabalho, possui uma API pública que pode ser utilizada por qualquer usuário da rede social \cite{twitterapidocs}. Atualmente, é a API mais utilizada no mundo, com mais de 15 bilhões de requisições por dia, 3 vezes mais acionada do que as APIs do Google, segundo colocado no ranking.
+O Twitter, nossa fonte de dados durante este trabalho, possui uma API pública que pode ser utilizada por qualquer usuário da rede social \cite{twitterapidocs}. 
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/api_mais_usada.eps, width=10cm}
@@ -137,31 +137,31 @@ O Twitter, nossa fonte de dados durante este trabalho, possui uma API pública q
 	\label{uni}
 \end{figure}
 
-Para efetuar uma comunicação eficiente com quem acessa à API, é necessário implementar um protocolo de acesso aos dados. Entre eles, os mais utilizados são os protocolos REST e SOAP.
+Para efetuar uma comunicação eficiente com quem acessa à API, é necessário implementar um protocolo de acesso aos dados. Os protocolos REST e SOAP são os mais utilizados.
 
 \subsection{REST}
-O protocolo REST foi criado em 2000 por Roy Fielding \cite{fieldingrest} durante sua dissertação de doutourado na \textit{University of California Irvine}. Por ter sido criado dentro de um ambiente universitário, o objetivo do protocolo abraça a filosofia \textit{open source}. Suas principais vantagens são:
+O protocolo REST foi criado em 2000 por Roy Fielding \cite{fieldingrest} como parte de sua dissertação de doutourado na \textit{University of California Irvine}. Suas principais vantagens são:
 
 \begin{itemize}
-\item Segue a filosofia \textit{open source};
+\item Por ter sido criado dentro de um ambiente acadêmico, o objetivo do protocolo abraça a filosofia \textit{open source} - que preza por projetos onde o código é aberto a todos para manutenção e colaboração \cite{weber2004success};
 \item Fácil implementação e manutenção;
 \item Separa claramente a implementação do cliente e do servidor;
 \item A comunicação não é controlada por uma entidade única;
-\item A informação pode ser armazenada pelo cliente previnindo múltiplas chamadas;
-\item Pode retornar a informação em múltiplos formatos (JSON, XML, entre outros);
+\item A informação pode ser armazenada pelo cliente prevenindo múltiplas chamadas;
+\item Pode retornar a informação em múltiplos formatos - JSON, XML, entre outros.
 \end{itemize}
 
 Por outro lado, o protocolo REST possui algumas limitações. Entre elas, podemos destacar:
 
 \begin{itemize}
 	\item Só funciona em cima do protocolo HTTP;
-	\item Autorização e recursos de segurança devem ser implementados à parte;
+	\item Autorização e recursos de segurança devem ser implementados à parte.
 \end{itemize}
 
-Baseado nessas características, o protocolo REST é comumente utilizado para APIs de aplicações \textit{Web} e \textit{Mobile}, como por exemplo, a API do Twitter, LinkedIn e Slack.
+Baseado nessas características, o protocolo REST é comumente utilizado para APIs de aplicações \textit{Web} e \textit{Mobile}, como por exemplo, as APIs do Twitter, LinkedIn e Slack.
 
 \subsection{SOAP}
-Criado em 1998 por Dave Winer et al com colaboração da Microsoft, o protocolo SOAP foca-se em endereçar necessidades do mercado corporativo. Como vantagem, o protocolo apresenta os seguintes aspectos:
+Criado em 1998 por Dave Winer et al com colaboração da Microsoft, o protocolo SOAP concentra-se em endereçar necessidades do mercado corporativo. Como vantagem, o protocolo apresenta os seguintes aspectos:
 
 \begin{itemize}
 	\item Segue uma abordagem mais formal, corporativa;
@@ -187,7 +187,7 @@ Geralmente, o protocolo SOAP é mais utilizado em serviços financeiros, \textit
 
 \ac{PNL} baseia-se em modelos computacionais capazes de executar tarefas envolvem processar informações expresas em língua natural, como por exemplo, interpretação e tradução de textos. \cite{covington1994natural}.
 
-A pesquisa na área está voltada a três aspectos da comunicação essenciais:
+A pesquisa na área está voltada a quatro aspectos da comunicação essenciais:
 
 \begin{itemize}
 	\item fonologia: estudo dos sons;
@@ -196,9 +196,9 @@ A pesquisa na área está voltada a três aspectos da comunicação essenciais:
 	\item pragmática: estudo do significado aplicado a um contexto;
 \end{itemize}
 
-Neste trabalho, focaremos apenas no PNL aplicado à area da semântica e pragmática, responsável por estudar os elementos usados durante uma comunicação para se expressar através da língua (semântica) e a diversidade que pode surgir a partir de um contexto (pragmática). É também um estudo sobre como usuários de uma língua adquirem conhecimento sobre a mesma, através da comunicação oral ou escrita e como essa língua se altera ao longo do tempo.
+Neste trabalho, o PNL será aplicado à area da semântica e pragmática, responsável por estudar os elementos usados durante uma comunicação para se expressar através da língua (semântica) e a diversidade que pode surgir a partir de um contexto (pragmática). É também um estudo sobre como usuários de uma língua adquirem conhecimento sobre a mesma, através da comunicação oral ou escrita e como essa língua se altera ao longo do tempo.
 
-Um dos grandes desafios da área é modelar o processamento de uma máquina para compreender uma estrutura tão complexa como uma linguagem. Existe um teste famoso na área de computação, o Teste de Turing, que levanta a questão "As máquinas podem pensar?". O artigo fundamenta conceitos chave sobre a \ac{IA}, que serve como base para o PNL.
+Um dos grandes desafios da área é modelar o processamento de uma máquina para compreender uma estrutura tão complexa como uma linguagem. Existe um teste famoso na área de computação, o Teste de Turing, que levanta a questão "As máquinas podem pensar?". O teste fundamenta conceitos chave sobre a Inteligência Artificial, que serve como base para o PNL.
 
 \subsection{Teste de Turing}
 
@@ -206,7 +206,7 @@ Introduzido pelo matemático britânico Alan Turing em seu artigo de 1950 "\text
 
 O teste é composto por três elementos: dois seres humanos, sendo um participante e um juiz e um computador.
 
-O juiz conversa em linguagem natural com um outro ser humano e uma máquina através de um canal de texto, composto por um teclado e uma tela que renderiza a conversa. Todos os participantes estão em ambientes separados. O juiz deve ser capaz de distinguir a máquina do ser humano, caso contrário, a máquina é considerada bem sucedida no teste. O objetivo não é analisar se a máquina é capaz de responder corretamente e sim dizer quão próximas as respostas da máquina foram das do ser humano.  
+O juiz conversa em linguagem natural com um outro ser humano e uma máquina através de um canal de texto, composto por um teclado e uma tela que apresenta a conversa. Todos os participantes estão em ambientes separados. O juiz deve ser capaz de distinguir a máquina do ser humano, caso contrário, a máquina é considerada bem sucedida no teste. O objetivo não é analisar se a máquina é capaz de responder corretamente e sim dizer quão próximas as respostas da máquina foram das do ser humano.  
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/teste_turing.eps, width=10cm}
@@ -220,36 +220,32 @@ O juiz conversa em linguagem natural com um outro ser humano e uma máquina atra
 * Uso dele em analise de sentimento/classificação
 
 
-O classificador conhecido como \textit{Naive Bayes} é algoritmos probabilístico baseado no Teorema de Bayes que não considera dependências que possam existir. Por este motivo, suas suposições são nomeadas "ingênuas", o que lhe confere uma maior simplicidade e um desempenho maior, em relação a outros algoritmos de classificação \cite{rennie2003tackling}. É um método popular para categorização de textos, como por exemplo a classificação de \textit{e-mails} em legítimos os \textit{spam} \cite{androutsopoulos2000evaluation}
+O classificador conhecido como \textit{Naive Bayes} é um algoritmo probabilístico baseado no Teorema de Bayes que não considera que eventuais dependências possam existir. Por este motivo, suas suposições são nomeadas "ingênuas" - de onde surge o nome \textit{naive} - o que lhe confere uma maior simplicidade e um desempenho maior, em relação a outros algoritmos de classificação \cite{rennie2003tackling}. É um método popular para categorização de textos, como por exemplo a classificação de \textit{e-mails} em legítimos ou \textit{spam} - e-mails inúteis que são enviados na esperança que o receptor compre algum produto ou serviço. \cite{androutsopoulos2000evaluation}
 
 \subsection{O Teorema de Bayes}
 
-onde se infere qual é a probabilidade de um evento A dado um evento B e pode ser expressado pela seguinte equação:
+O Teorema de Bayes permite inferir qual é a probabilidade de um evento A dado um evento B e pode ser expressado pela seguinte equação:
 
 $$ P(A \mid B) = \frac{P(B \mid A) \ P(A)}{P(B)}, $$
-onde A e B são eventos e P(B) != 0.
+onde A e B são eventos.
 
 \begin{itemize}
 	\item P(A) e P(B) são probabilidades de A e B sem considerar a relação entre ambos;
-	\item P(A|B), uma probabilidade condicional, é a probabilidade de observar o evento A, dado que B ocorreu.
-	\item P(B|A) é a probabilidade de observar o evento B, dado que A ocorreu.
+	\item P(A|B), uma probabilidade condicional, é a probabilidade de observar o evento A, dado que o evento B ocorreu.
+	\item P(B|A) é a probabilidade de observar o evento B, dado que o evento A ocorreu.
 \end{itemize}
 
-Podemos também expressar a equação em puro português, como a seguir:
+Suponha que queremos saber a probabilidade de um indivíduo possuir câncer, sem saber nada sobre o indivíduo. Porém, sabemos que a chance de um indivíduo estar infectado com tal câncer é de 1\%, ou seja, P(A).
+Em seguida, suponha que esta pessoa tenha 70 anos de idade e que essa probabilidade é de 0,2\% e que 0,5\% das pessoas doente possuem 70 anos de idade ou P(B). Se assumirmos que a incidência de câncer e a idade estão relacionadas, podemos utilizar esta informação para melhor medir as chances desta pessoa estar doente. Logo, queremos saber a probabilidade de uma pessoa estar doente quando a mesma possui 70 anos de idade, ou P(A|B).
 
-$$ posterpriori = \frac{priori \times  possibilidade}{evid\hat{e}ncia} $$
+$$ (\frac{0,5}{100} \times \frac{1}{100}) \div \frac{0,2}{100} = \frac{2,5}{100} $$
 
-Suponha que queremos saber a probabilidade de um indivíduo possuir uma câncer, sem saber nada sobre o indivíduo. Porém, sabemos que a chance de um indivíduo estar infectado com tal câncer é de 1\%, ou seja, uma probabilidade a priori.
-Em seguida, suponha que esta pessoa tenha 70 anos de idade e que essa probabilidade é de 0,2\% e que 0,5\% das pessoas doente possuem 70 anos de idade. Se assumirmos que a incidência de câncer e a idade estão relacionadas, podemos utilizar esta informação para melhor medir as chances desta pessoa estar doente. Logo, queremos saber a probabilidade de uma pessoa estar doente quando a mesma possui 70 anos de idade, ou probabilidade a posteriori.
+Portanto, o resultado do teorema demonstra que possuir 70 anos de idade aumenta a chance de uma pessoa ser portadora de câncer, apesar desta probabilidade ainda ser baixa.
 
-$$ (0,5\% \times 1\%) \div 0,2\% = 2,5\% $$
+\subsection{Aplicação no trabalho}
 
-Portanto, o resultado do teorema demonstra que possuir 70 anos de idade aumenta a chance de uma pessoa possuir câncer, apesar desta probabilidade ainda ser baixa.
+Nese trabalho o \emph{Naive Bayes} é utilizado  para categorizar \textit{tweets} extraídos do Twitter em positivos, neutros ou negativos. A diferença deste algoritmo para o Teorema de Bayes é assumir que a posição das palavras - eventos da probabilidade - que aparecem no texto não importa para determinar o resultado final.
 
-\subsection{Aplicação neste trabalho}
-
-Nesse trabalho é utilizado o \emph{Naive Bayes} para categorizar \textit{tweets} extraídos do Twitter em positivos, neutros ou negativos. A diferença deste algoritmo para o Teorema de Bayes é assumir que a posição das palavras - eventos da probabilidade - que aparecem no texto não importa para determinar o resultado final.
-
-Como visto em \cite{lucca2013implementaccao} o algoritmo computa qual a probabilidade de uma frase, denominada de documento pertencer a uma determinada classe(polaridade) \emph{P(c/d)}, a partir da probabilidade a priori de \emph{P(c)} do documento pertencer a esta classe e da probabilidades condicionais de cada termo \emph{tk} ocorrer em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a posteriori conforme a equação abaixo, onde $ n_{d} $ é o número de termos no documento \emph{d}. 
+Como visto em \cite{lucca2013implementaccao} o algoritmo calcula qual a probabilidade de uma frase, denominada documento pertencer a uma determinada classe(polaridade) \emph{P(C/D)}, a partir da probabilidade de \emph{P(C)} do documento pertencer a esta classe e das probabilidades condicionais de cada termo $t_{k}$ ocorrer em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade conforme a equação abaixo, onde $ n_{d} $ é o número de termos no documento \emph{d}. 
 
 $$ C_{map}= argmax_{c \epsilon C}P(c|d)=argmax_{c \epsilon C}P(c)\prod 1sksn_{d}P(t_{k}/d) $$
