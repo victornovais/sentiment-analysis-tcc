@@ -1,15 +1,15 @@
 \chapter{Resultados e análises}\label{cap:resultados}
 
 Neste capítulo serão apresentados resultados obtidos e os processos necessários para a obtenção dos mesmos. Como visto anteriormente no Capitulo 2,  uma das etapas
-necessárias para a Análise de Sentimento é a classificação de polaridade dos \textit{tweets}. Durante a classificação, que gera o resultado da execução do Naive Bayes, foram utilizadas diversas formas de execução que serão apresentadas durante este capítulo.'
+necessárias para a Análise de Sentimento é a classificação de polaridade dos \textit{tweets}. Durante a classificação, que gera o resultado da execução do Naive Bayes, foram utilizadas diversas formas de execução que serão apresentadas durante este capítulo.
 
 \section{Cenários e parâmetros de teste}\label{sec:cenarios}
 Durante a execução dos testes para a análise de resultados o ambiente utilizado foi:
 \begin{itemize}
-	\item Sistema operacional: Linux Ubuntu
+	\item Sistema operacional: Linux Ubuntu 15.04
 	\item Processador: Core i7
 	\item Memória: 8GB
-	\item Quantidade de \textit{tweets}: 141798
+	\item Quantidade de \textit{tweets}: 141.798
 \end{itemize}
 
 
@@ -36,7 +36,7 @@ O primeiro teste realizado para a classificação da base obteve o seguinte resu
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, Reli , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141798 \textit{tweets}, 17350 foram positivos, 15517 negativos e 108931 neutros, levando 311.673 segundos para executar o teste.
+Analisando a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, Reli , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141.798 \textit{tweets}, 17.350 foram positivos, 15.517 negativos e 108.931 neutros, levando 311,673 segundos para executar o teste.
 \todo{Adicionar imagem grafico 1}
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/teste-1.eps, width=20cm}
@@ -189,6 +189,6 @@ Sendo o que mais se destacou foi a premiação de melhor ator e a vitória de Le
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/mapa.eps, width=15cm}
-	\caption{Mapa de calor referente a polaridade no Brasil. Fonte:Própria}
+	\caption{Mapa de calor referente a polaridade de sentimento no Brasil. Fonte:Própria}
 	\label{mapa}
 \end{figure}
