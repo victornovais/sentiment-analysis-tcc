@@ -1,7 +1,7 @@
 \chapter{Resultados e análises}\label{cap:resultados}
 
-Neste capítulo serão apresentados resultados obtidos e os processos necessários para a obtenção dos mesmos. Como visto anteriormente no Capitulo 2,  uma das etapas
-necessárias para a Análise de Sentimento é a classificação de polaridade dos \textit{tweets}. Durante a classificação, que gera o resultado da execução do Naive Bayes, foram utilizadas diversas formas de execução que serão apresentadas durante este capítulo.
+Neste capítulo serão apresentados os processos e os resultados obtidos nesse trabalho. Como visto anteriormente no Capitulo 3,  uma das etapas
+necessárias para a Análise de Sentimento é a classificação de polaridade dos \textit{tweets}. Durante a classificação, resultado da execução do Naive Bayes, foram utilizados diferentes parâmetros que serão apresentados e discutidos durante este capítulo.
 
 \section{Cenários e parâmetros de teste}\label{sec:cenarios}
 Durante a execução dos testes para a análise de resultados o ambiente utilizado foi:
@@ -36,7 +36,7 @@ O primeiro teste realizado para a classificação da base obteve o seguinte resu
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, Reli , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141.798 \textit{tweets}, 17.350 foram positivos, 15.517 negativos e 108.931 neutros, levando 311,673 segundos para executar o teste.
+Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, Reli , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141.798 \textit{tweets}, 17.350 foram positivos, 15.517 negativos e 108.931 neutros, levando 311,673 segundos para executar o teste.
 \todo{Adicionar imagem grafico 1}
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/teste-1.eps, width=20cm}
@@ -44,10 +44,10 @@ Analisando a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso
 	\label{teste-graf-1}
 \end{figure}
 
-Nota-se que a quantidade de \textit{tweets} neutros é muito alta, evidenciando que o modelo ainda tem dificuldade de definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de "neutros".
+Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que o modelo ainda tem dificuldade de definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de dados neutros.
  
 \todo{Tabela 2 aqui}
-
+Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém em algumas bases foram aplicadas a técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros, levando 397,48 segundos para executar o teste.
 \begin{table}[]
 	\caption{2º teste}
 	\label{teste-2}
@@ -68,7 +68,7 @@ Nota-se que a quantidade de \textit{tweets} neutros é muito alta, evidenciando 
 	}
 \end{table}
 
-No 2º teste visto na tabela \ref{teste-2} é visto que a quantidade de neutro diminuiu consideravelmente, apenas aplicando a técnica de \textit{stemming} nas bases de palavras
+Analisando o 2º teste é visto que a quantidade de neutro diminuiu consideravelmente, apenas aplicando a técnica de \textit{stemming} em algumas bases de palavras e em \textit{stopwords}
 \todo{grafico 2}
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/teste-2.eps, width=20cm}
@@ -76,7 +76,7 @@ No 2º teste visto na tabela \ref{teste-2} é visto que a quantidade de neutro d
 	\label{teste-graf-2}
 \end{figure}
 
-Ainda buscando a diminuição de neutros foi criada uma base de palavras mas próxima do domínio que esse trabalho propõe que é o Oscar2016, essa base contem palavras relevantes a esse evento, gerando o seguinte resultado.
+Ainda buscando a diminuição de dados neutros foi criada uma base de palavras mais próxima do domínio que esse trabalho propõe com a base chamada Oscar2016, essa base contém palavras relevantes ao evento, gerando o seguinte resultado.
 \todo{colocar tabela 3 aqui}
 
 \begin{table}[]
@@ -105,7 +105,7 @@ Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializad
 	\label{teste-graf-3}
 \end{figure}
 
-No 4º teste foi adicionada o base criada, Oscar2016, com as bases genéricas, gerando o seguinte resultado:
+O 4º teste foi adicionada a base criada, Oscar2016, e as bases genéricas, Sentilex, PUC e  Reli  gerando o seguinte resultado:
 \begin{table}[]
 	\caption{4º teste}
 	\label{teste-4}
@@ -127,7 +127,7 @@ No 4º teste foi adicionada o base criada, Oscar2016, com as bases genéricas, g
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior diminuição de neutros, mas com um tempo de processamento um pouco maior.
+Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior taxa de diminuição de dados neutros, com um tempo de processamento prolongado.
 \todo{Adicionar grafico 4}
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/teste-4.eps, width=20cm}
@@ -136,7 +136,7 @@ Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior di
 \end{figure}
 Segue abaixo um comparativo dos testes.
 
-\begin{table}[]
+\begin{table}[]		
 	\caption{Comparando testes}
 	\label{teste-comp}
 	\resizebox{\textwidth}{!}{%
@@ -168,7 +168,7 @@ Para a análise dos resultados é necessário o conhecimento de algumas premissa
 	\caption{Quantidade de tweets por tempo e polaridade. Fonte:Própria}
 	\label{qtd}
 \end{figure}
-O gráfico \ref{qtd} mostra como ficou a curva da quantidade de \textit{tweets} em relação ao tempo  dividido pela polaridade. Nele é visto um pico  no começo do evento, durante o tapete vermelho, nesse período foi visto que é onde ocorrem as maiores especulações sobre os ganhadores e indicados além das reações dos internautas com a entradas de seus artistas favoritos.
+O gráfico \ref{qtd} mostra como ficou a curva da quantidade de \textit{tweets} em relação ao tempo  dividido pela polaridade. Nele é visto um pico  no começo do evento, durante o tapete vermelho, nesse período foi visto as ocorrências  especulações sobre os ganhadores e indicados além das reações dos internautas com a entradas de seus artistas favoritos.
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/qtd_neg_pos.eps, width=15cm}
