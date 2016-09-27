@@ -5,7 +5,6 @@ solução de problemas que envolvem pesquisas de opinião de forma geral.
 Neste trabalho propõem-se um \textit{framework} que torna possível fazer pesquisas de opiniões em língua portuguesa sobre qualquer tema que seja rastreável a partir de uma \textit{hashtag} no Twitter.
 Para tal é necessário que o framework criado seja capaz de:
 
-% TODO: Colocar Lista ordenada
 \begin{enumerate}
 	\item Coletar \textit{tweets} escritos em língua portuguesa que contenham uma determinada {hashtag};
 	\item Armazenar as mensagens em uma base de dados;
@@ -14,19 +13,11 @@ Para tal é necessário que o framework criado seja capaz de:
 \end{enumerate}
 
 \section{Coleta de dados}
-* Como Twitter expõe seus dados
-* Começando na API, Como podemos usá-la (autenticação como dev)
-* Quantidade de requests por "janela"
-* Resource Search
-* Filtros hashtag, linguagem(falar sobre problema), posição geográfica, etc
-* Exemplo do retorno
-*
+A plataforma do Twitter conecta aplicações e sites com seus dados através de diversos serviços. Para este trabalho, a principal fonte de dados será sua API REST, que possui uma excelente documentação disponível em \cite{twitterapidocs}. Através dela é possível acessar informações de usuários e \textit{tweets}, assim como escrever novas mensagens. Além disso, a API conta com um mecanismo de busca poderoso, que será fundamental para a coleta de dados. Os dados são entregues no formato \ac{JSON}.
 
-A plataforma do Twitter conecta aplicações e sites com seus dados através de diversos serviços. Para este trabalho, nossa principal fonte de dados será sua API REST, que possui uma excelente documentação disponível em \cite{twitterapidocs}. Através dela é possível acessar informações de usuários e \textit{tweets}, assim como escrever novas mensagens. Além disso, a API conta com um mecanismo de busca poderoso, que será fundamental para a coleta de dados. Os dados são entregues no formato \ac{JSON}.
+\subsection{Autenticação}
 
-\subsection{Autenticando na API}
-
-Para que ter acesso à API antes é necessário possuir uma conta no Twitter e utilizar o protocolo de autenticação OAuth\cite{oauth}, cujo principal objetivo é permitir que uma aplicação se autentique em outra "em nome de um usuário". A aplicação pede permissão de acesso ao usuário, que possui a escolha de conceder permissão ou não. Um ponto importante: o usuário não precisa informar a sua senha para se autenticar, portanto a permissão continua vigente caso a senha do usuário se altere, o que permite que a aplicação não precise de manutenção caso isso aconteça, tornando-a mais resiliente. A autenticação por meio do OAuth necessita de três passos:
+Para que ter acesso à API antes é necessário possuir uma conta no Twitter e criar uma \textit{app} - através do próprio site \cite{twitterapp} - que utilizará o protocolo de autenticação OAuth\cite{oauth} para acessar os dados do Twitter se passando pelo usuário em questão. O objetivo do protocolo OAuth é permitir que uma aplicação se autentique em outra "em nome de um usuário". A aplicação pede permissão de acesso ao usuário, que possui a escolha de conceder permissão ou não. Um ponto importante: o usuário não precisa informar a sua senha para se autenticar, portanto a permissão continua vigente caso a senha do usuário se altere, o que permite que a aplicação não precise de manutenção neste caso, tornando-a mais resiliente. A autenticação por meio do OAuth necessita de três passos:
 
 \begin{enumerate}
 	\item Aplicação cliente obtém chave de autenticação;
@@ -34,8 +25,70 @@ Para que ter acesso à API antes é necessário possuir uma conta no Twitter e u
 	\item Aplicação cliente troca a chave de autenticação pela chave de acesso;
 \end{enumerate}
 
+Após o processo de criação da app, é criado um token de acesso que deve ser utilizado pelo sistema que deseja se autenticar no Twitter em nome de um usuário. Este token deve ser incorporado em cada requisição à API do Twitter para autenticar a mesma e dizer ao Twitter qual é a fonte do acesso.
+
+\subsection{Limite de requisições}
+A fim de evitar grande concentração de requisições em seus serviços, o Twitter implementa um limitador em sua API \cite{twitterrequestlimit2016}. São permitidas até 180 requisições por janela, que dura 15 minutos. Caso o limite seja ultrapassado, o serviço passa a retornar um erro na resposta, até que a "janela" de 15 minutos se renove.
+A partir da versão 1.1 da API, novos cabeçalhos HTTP são retornados provendo feedback sobre os limites para requisição. Este recurso permite que o código consiga entender em que momento da janela se encontra, quantos requisições ainda podem ser feitas neste período de tempo e quanto é necessário esperar para poder fazer novas requisições. Os cabeçalhos em questão são:
+
+\begin{itemize}
+	\item X-Rate-Limit-Limit: A faixa limite para o requisição em questão;
+	\item X-Rate-Limit-Remaining: O número de requisições que ainda restam para a janela de 15 minutos;
+	\item X-Rate-Limit-Reset: O tempo restante dentro da janela de requisições atual, dado em segundos.
+\end{itemize}
+
+\subsection{Arquitetura}
+
+Neste trabalho, como o objetivo é coletar \textit{tweets} postados sobre uma \textit{hashtag} em tempo real para utilizá-los como matéria-prima para análise de sentimento, é muito importante aproveitar ao máximo cada janela de requisições. Por este motivo, o sistema que coleta os dados da API do Twitter foi inspirado no modelo produtor-consumidor\cite{jeffay1993real} visando minimizar as perdas que podem acontecer em momentos de pico - como o começo ou clímax do evento, onde o volume de mensagens é maior, como veremos a frente no Capítulo 4 - e se necessário, escalar de forma simples durante os mesmos. 
+
+\subsubsection{Produtor-consumidor}
+
+O problema descreve dois processos, o produtor e o consumidor, que compartilham um recurso em comum usado como uma fila - um tipo particular de coleção de dados onde a primeira a entidade a entrar é a primeira a sair ou \textit{First-In-First-Out} (FIFO). A função do produtor é gerar trabalho a ser executado pelo consumidor. O volume de trabalho gerado e executado pelo sistema é controlado pela fila, que armazena as entidades ou "tarefas" a serem executadas. Essa abordagem permite que o sistema escale apenas até a sua capacidade, visto que a fila possui um tamanho fixo que caso seja ultrapassado, pode simplesmente descartar as mensagens adicionadas após este momento. Outra característica importante é a escalabilidade. Conforme os processos produtor e consumidor evoluem, surge a necessidade de aumentar a quantidade de produtores ou consumidores de forma independente.
+
+Neste trabalho, para explorar o potencial máximo da janela de requisições foi criado um processo produtor que envia para a fila mensagens para que consumidor acesse à API do Twitter de forma que sejam feitos sempre as 180 requisições que são permitidas no intervalo de 15 minutos. Assim a responsabilidade de cada processo fica bem definida - o primeiro responde pelo volume de requisições e o segundo por realizar a requisição e entender a resposta. Para definir qual intervalo de tempo deveria ser usado para que o produtor envie mensagens à fila, foi feita uma conta simples:
+
+$$ \frac{180}{15} = 12 \textit{ requests}_{/minuto} $$
+
+Logo, o produtor precisa adicionar uma mensagem na fila a cada 5 segundos, para que o limite de 180 requisições seja respeitado.
+
+\todo{Fazer diagrama do produtor-consumidor para explicar melhor}
+
+\subsection{Busca}
+Dentre os principais serviços da API do Twitter está a busca. Com ela, é possível consultar de diversas formas os principais \textit{tweets} ou mais recentes. Dentro de sua documentação, existe um guia completo de como utilizar a API  para extrair os resultados desejados \cite{twittersearchapi} das mais diversas formas. 
+
+\subsubsection{Parâmetros adicionais}
+
+Como abordado acima, a API possui diversos parâmetros que podem ser usados para que o usuário chegue a um conjunto de dados mais próximo da sua necessidade:
+
+\begin{itemize}
+	\item \textit{\textbf{result\_type}}: permite escolher se o resultado da busca será representado pelos \textit{tweets} mais populares (\textit{popular}) ou mais recentes (\textit{recent});
+	\item \textit{\textbf{geocode}}: permite buscar por uma determinada latitude, longitude e raio, respectivamente, separando-os por vírgula. ex: geocode=-22.912214,-43.230182,1km;
+	\item \textit{\textbf{lang}}: restringe os \textit{tweets} buscados a um idioma específico. ex: lang=pt;
+	\item \textit{\textbf{since\_id }},  \textit{\textbf{max\_id }}, \textit{\textbf{count}} e \textit{\textbf{until}}: possibilita iterar através dos resultados quando existe um grande números de \textit{tweets} a percorrer. De acordo com a concorrência e o volume, esta tarefa pode ficar mais complicada. Uma leitura recomendada se encontra em \cite{workingwithtimelimes}.
+\end{itemize}
+
+Como o objetivo deste trabalho é coletar novos \textit{tweets} conforme eles vão sendo postados, foi necessário utilizar apenas dois parâmetros da API de busca: \textit{count} e \textit{since id}. O primeiro tem o objetivo de garantir o número máximo de registros retornados pela API e o segundo define de onde se pretende partir para buscar novos \textit{tweets}, evitando que mensagens repetidas sejam coletadas.
+
+\url{https://api.twitter.com/1.1/search/tweets.json?q=#oscars2016&count=100&since_id=123456789}
+
+Neste caso, a API retornará os 100 \textit{tweets} publicados desde o \textit{tweet} com identificador (\textit{id}) "123456789".
+
+\subsubsection{O problema com a detecção automática de idioma do Twitter}
+
+O escopo deste trabalho determina que o objeto de estudo são apenas mensagens escritas em língua portuguesa. Como forma de obter somente \textit{tweets} escritos em língua portuguesa é preciso utilizar o parâmetro \textit{lang}, por exemplo:
+
+\url{https://api.twitter.com/1.1/search/tweets.json?q=#oscars2016&lang=pt&result_type=recent}
+
+Porém, realizando alguns testes na API do Twitter, foi detectado que ao submeter algum \textit{tweet}, alguma rotina dentro do próprio Twitter atribui um idioma à mensagem automaticamente. Nos testes conduzidos durante este trabalho foi identificado que em mensagens curtas - algo recorrente no Twitter - o algoritmo apresenta resultados aquém do esperado na identificação do idioma, visto que as poucas palavras contidas na mensagem podem ser comuns a mais de um idioma. Por conta disso foi decidido que o filtro de idioma não seria utilizado. Esta decisão pode mudar de acordo com o evento monitorado ou com o escopo do estudo.
+
+\subsubsection{Escalando de forma horizontal}
+
+Por uma questão de desenho da API de busca, cada requisição é capaz de trazer no máximo 100 \textit{tweets}, o que nos dá ao total uma carga máxima de até 1200 novos \textit{tweets} por minuto. Para as análises feitas durante este trabalho este número se mostrou mais do que suficiente. Como dito anteriormente, se fosse necessário escalar este sistema para monitorar um evento maior, seria necessário apenas obter um saldo maior de requisições junto a API do Twitter - adicionando mais tokens de usuário e criando uma espécie de "rodízio" de autenticações, por exemplo - e escalar o número de consumidores do processo de acordo com a demanda. Uma boa maneira de detectar se isso seria necessário é acompanhar quantos \textit{tweets} novos são coletados a cada requisição. Como utilizamos o \textit{id} do último \textit{tweet} capturado como referência para os novos, se a cada requisição o número de novos \textit{tweets} com grande frequência coincidir com o limite da API, temos um indício de que o volume de novas mensagens no Twitter está excedendo a capacidade do sistema de coletá-las e que o excedente está sendo perdido.
 
 \section{Armazenamento}
+* Como os dados retornam da API
+* Criando a coleção
+* Salvando os dados
 
 
 \section{Classificação}
