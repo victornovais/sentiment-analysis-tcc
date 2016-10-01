@@ -13,8 +13,26 @@ Durante a execução dos testes para a análise de resultados o ambiente utiliza
 \end{itemize}
 
 \section{Técnicas}
+Durante a realização do trabalho foram utilizados duas técnicas para maximizar a performance do modelo. As técnicas foram aplicadas nas bases utilizadas para a classificação e nos dados coletados de acordo com os testes discutidos ao longo do capítulo
 \subsection{Stemming}
+A técnica de \textit{stemming}, conhecido em português como stemização, consiste na redução de um termo ao seu radical, removendo as desinências, afixos, e vogais temáticas. Com sua utilização, os termos derivados de um mesmo radical serão contabilizados como um único termo \cite{989755}.
+\begin{table}[]
+	\centering
+	\caption{Exemplo de stemização}
+	\label{my-label}
+	\begin{tabular}{|l|l|}
+		\hline
+		\multicolumn{1}{|c|}{Palavra} & \multicolumn{1}{c|}{Stemização} \\ \hline
+		boate                         & boat                            \\ \hline
+		boates                        & boat                            \\ \hline
+		boca                          & boc                             \\ \hline
+		bocados                       & boc                             \\ \hline
+	\end{tabular}
+\end{table}
+
 \subsection{Stopwords}
+A técnica de \textit{stopwords}, consiste na remoção de palavras "vazias", como artigos, preposições e interjeições, que não agregam valor a análise realizada. Além disso, essas palavras podem ser configuráveis dependendo do domínio do seu estudo  \cite{Rajaraman_Ullman_2011}.
+
 \section{Desenvolvimento do modelo de análise}\label{sec:desenv-moda}
 O primeiro teste realizado para a classificação da base obteve o seguinte resultado:
 \todo{Trazer tabela  1 pra ca}
@@ -49,7 +67,7 @@ Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse cas
 Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que o modelo ainda tem dificuldade de definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de dados neutros.
  
 \todo{Tabela 2 aqui}
-Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém em algumas bases foram aplicadas a técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros, levando 397,48 segundos para executar o teste.
+Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém com a aplicação da técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros, levando 397,48 segundos para executar o teste.
 \begin{table}[]
 	\caption{2º teste}
 	\label{teste-2}
@@ -161,7 +179,7 @@ Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as confi
 
 \section{Resultados}\label{result}
 
-Para a análise dos resultados é necessário estabelecer premissas. O evento Oscar 2016 foi a  88.ª cerimônia de entrega dos \textit{Academy Awards} em \textit{Los Angeles}, Estados Unidos. O evento teve duração de aproximadamente 4 horas com seu início na noite do dia 28 de fevereiro, as 20:00 horário de Brasília no tapete vermelho com a entrada dos artistas e convidados. Seu encerramento as 2:00 do horário de Brasília do dia 29 de Fevereiro com a premiação do melhor filme. Os marcos do evento são listados de acordo com a imagem \ref{time}
+Para a análise dos resultados é necessário estabelecer premissas. O evento Oscar 2016 foi a  88.ª cerimônia de entrega dos \textit{Academy Awards} em \textit{Los Angeles}, Estados Unidos. O evento teve duração de aproximadamente 4 horas com seu início na noite do dia 28 de fevereiro, as 20:00 horário de Brasília no tapete vermelho com a entrada dos artistas e convidados. Seu encerramento as 2:00 do horário de Brasília do dia 29 de Fevereiro com a premiação do melhor filme. Os marcos do evento foram considerados: as entregas dos prêmios de cada categoria, o homenagem em memória póstuma e a apresentação da Lady Gaga e o discurso do Vice Presidente Americano. Esses eventos  são listados em ordem cronológica de acordo com a imagem \ref{time}
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/oscar_timeline.eps, width=15cm}
@@ -190,7 +208,7 @@ O gráfico \ref{qtdnegpos} foi gerado a apartir da diminuição dos \textit{twee
  	\item Melhor filme
  \end{itemize}
 
-Sendo o que mais se destacou foi a premiação de melhor ator e a vitória de Leonardo DiCaprio, que com seus 41 anos de idade e 26 de carreira, nunca havia levado um prêmio de melhor ator da Academia. Essa vitória reflete nos gráficos de picos de positivos as 2:00 da manhã onde a repercussão da sua vitória é espelhada pelo twitter chegando aos \textit{trending topics} mundias na rede social.
+O maior destaque foi a premiação de melhor ator e a vitória de Leonardo DiCaprio, que com seus 41 anos de idade e 26 de carreira, nunca havia levado um prêmio de melhor ator da Academia. Essa vitória reflete nos gráficos de picos de positivos as 2:00 da manhã onde a repercussão da sua vitória é espelhada pelo twitter chegando aos \textit{trending topics} mundias na rede social.
 
 
 \begin{figure}[!h]
