@@ -12,6 +12,26 @@ Durante a execução dos testes para a análise de resultados o ambiente utiliza
 	\item Quantidade de \textit{tweets}: 141.798
 \end{itemize}
 
+\section{Técnicas}
+Durante a realização do trabalho foram utilizados duas técnicas para maximizar a performance do modelo. As técnicas foram aplicadas nas bases utilizadas para a classificação e nos dados coletados de acordo com os testes discutidos ao longo do capítulo
+\subsection{Stemming}
+A técnica de \textit{stemming}, conhecido em português como stemização, consiste na redução de um termo ao seu radical, removendo as desinências, afixos, e vogais temáticas. Com sua utilização, os termos derivados de um mesmo radical serão contabilizados como um único termo \cite{989755}.
+\begin{table}[]
+	\centering
+	\caption{Exemplo de stemização}
+	\label{my-label}
+	\begin{tabular}{|l|l|}
+		\hline
+		\multicolumn{1}{|c|}{Palavra} & \multicolumn{1}{c|}{Stemização} \\ \hline
+		boate                         & boat                            \\ \hline
+		boates                        & boat                            \\ \hline
+		boca                          & boc                             \\ \hline
+		bocados                       & boc                             \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsection{Stopwords}
+A técnica de \textit{stopwords}, consiste na remoção de palavras "vazias", como artigos, preposições e interjeições, que não agregam valor a análise realizada. Além disso, essas palavras podem ser configuráveis dependendo do domínio do seu estudo  \cite{Rajaraman_Ullman_2011}.
 
 \section{Desenvolvimento do modelo de análise}\label{sec:desenv-moda}
 O primeiro teste realizado para a classificação da base obteve o seguinte resultado:
@@ -47,7 +67,7 @@ Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse cas
 Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que o modelo ainda tem dificuldade de definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de dados neutros.
  
 \todo{Tabela 2 aqui}
-Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém em algumas bases foram aplicadas a técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros, levando 397,48 segundos para executar o teste.
+Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém com a aplicação da técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros, levando 397,48 segundos para executar o teste.
 \begin{table}[]
 	\caption{2º teste}
 	\label{teste-2}
@@ -97,7 +117,8 @@ Ainda buscando a diminuição de dados neutros foi criada uma base de palavras m
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializada no domínio não consegue diminuir a quantidade de neutros e ainda aumenta o tempo para a execução dos testes.
+Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializada no domínio não consegue diminuir a quantidade de neutros e ainda aumenta o tempo para a execução dos testes. O resultado de 141.798 \textit{tweets}, 47.450 foram positivos, 7.210 negativos e 87.138 neutros, levando 709,126 segundos para executar o teste.
+
 \todo{grafico 3}
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/teste-3.eps, width=20cm}
@@ -105,7 +126,7 @@ Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializad
 	\label{teste-graf-3}
 \end{figure}
 
-O 4º teste foi adicionada a base criada, Oscar2016, e as bases genéricas, Sentilex, PUC e  Reli  gerando o seguinte resultado:
+No 4º teste foi adicionada a base criada, Oscar2016 com as bases genéricas, Sentilex, PUC e  Reli  gerando o seguinte resultado:
 \begin{table}[]
 	\caption{4º teste}
 	\label{teste-4}
@@ -127,7 +148,8 @@ O 4º teste foi adicionada a base criada, Oscar2016, e as bases genéricas, Sent
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior taxa de diminuição de dados neutros, com um tempo de processamento prolongado.
+Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior taxa de diminuição de dados neutros, com o segundo maior tempo de processamento entre os testes realizados. O resultado de 141.798 \textit{tweets}, 69.070 foram positivos, 33.461 negativos e 39.267 neutros, levando 650,97 segundos para executar o teste.
+
 \todo{Adicionar grafico 4}
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/teste-4.eps, width=20cm}
@@ -151,24 +173,26 @@ Segue abaixo um comparativo dos testes.
 	}
 \end{table}
 
-Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as configurações utilizadas no teste 4 para a realização da análise na base capturada.
+\todo{grafico de comparação}
+
+Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as configurações utilizadas no teste 4 para a realização da análise na base capturada, devido a menor presença de dados neutros classificados na base comprovando que as técnicas de \textit{stemming} e \textit{stopwords} foram válidas e relevantes para a sustentação modelo.
 
 \section{Resultados}\label{result}
 
-Para a análise dos resultados é necessário o conhecimento de algumas premissas. O evento do Oscar 2016 foi a  88.ª cerimônia de entrega dos \textit{Academy Awards} em \textit{Los Angeles}, Estados Unidos. O evento teve duração de aproximadamente 4 horas com seu início na noite do dia 28 de fevereiro, as 20:00 horário de Brasília no tapete vermelho com a entrada dos artistas e convidados e  com seu encerramento as 2:00 do dia 29. OS marcos do evento são listados de acordo com a imagem \ref{time}
+Para a análise dos resultados é necessário estabelecer premissas. O evento Oscar 2016 foi a  88.ª cerimônia de entrega dos \textit{Academy Awards} em \textit{Los Angeles}, Estados Unidos. O evento teve duração de aproximadamente 4 horas com seu início na noite do dia 28 de fevereiro, as 20:00 horário de Brasília no tapete vermelho com a entrada dos artistas e convidados. Seu encerramento as 2:00 do horário de Brasília do dia 29 de Fevereiro com a premiação do melhor filme. Os marcos do evento foram considerados: as entregas dos prêmios de cada categoria, o homenagem em memória póstuma e a apresentação da Lady Gaga e o discurso do Vice Presidente Americano. Esses eventos  são listados em ordem cronológica de acordo com a imagem \ref{time}
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/oscar_timeline.eps, width=15cm}
-	\caption{Linha do tempo com os marcos do oscar 2016. Fonte:Folha de São Paulo}
+	\caption{Linha do tempo com os marcos do Oscar 2016. Fonte:Folha de São Paulo}
 	\label{time}
 \end{figure}
+O gráfico \ref{qtd} mostra a curva da quantidade de \textit{tweets} em relação ao tempo  dividido pela polaridade. Nele é visto um pico  no começo do evento, durante o tapete vermelho, nesse período foi visto as maiores ocorrências de especulações sobre os ganhadores e indicados além das reações dos internautas com as entradas de seus artistas favoritos.
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/qtd_tweets_by_date.eps, width=15cm}
 	\caption{Quantidade de tweets por tempo e polaridade. Fonte:Própria}
 	\label{qtd}
 \end{figure}
-O gráfico \ref{qtd} mostra como ficou a curva da quantidade de \textit{tweets} em relação ao tempo  dividido pela polaridade. Nele é visto um pico  no começo do evento, durante o tapete vermelho, nesse período foi visto as ocorrências  especulações sobre os ganhadores e indicados além das reações dos internautas com a entradas de seus artistas favoritos.
 
 \begin{figure}[!h]
 	\centering\epsfig{file=figuras/qtd_neg_pos.eps, width=15cm}
@@ -176,7 +200,7 @@ O gráfico \ref{qtd} mostra como ficou a curva da quantidade de \textit{tweets} 
 	\label{qtdnegpos}
 \end{figure}
 
-Analisando o gráfico \ref{qtd}, que possui uma visão mais macro, junto com o gráfico \ref{qtdnegpos}, com a visão mais micro, é notado que em dois momentos a quantidade de \textit{tweets} negativos sobrepõem a quantidade de positivos no primeiro momento é durante o \textit{show} do Dave Grohl onde é feita uma homenagem ao mortos no mundo do cinema em 2015 onde a sensação de luto ficou evidente durante a apresentação, e de acordo com \cite{freud1908conferencias}, é a reação à perda de objeto ou pessoa. Como afeto, o luto aproxima-se do humor depressivo. Com isso foi corroborado o aumento do sentimento negativo nessa parte do evento. Outro momento onde ocorre o mesmo efeito é Durante a apresentação da Lady Gaga onde o tema do filme que a  música faz parte da trilha é sobre os estupros em faculdades americanas e mais uma vez esse aumento negativo é faz entender o tema pesado e sensível para as pessoas que sofreram e sofrem disso. Excluindo o pico no começo dos gráficos os maiores picos de positivos são presenciados as 2:00, vindo de uma crescente no final das 1:00 da manhã do dia 29 isso se deve a categorias mais aguardadas do evento que são:
+O gráfico \ref{qtdnegpos} foi gerado a partir da diminuição dos \textit{tweets} negativos pelos \textit{tweets} positivos vistos no gráfico \ref{qtd} produzindo uma visão micro do dados coletados do evento. Analisando o gráfico \ref{qtd}, que possui uma visão macro, junto com o gráfico \ref{qtdnegpos}, com a visão micro, é notado que em dois momentos a quantidade de \textit{tweets} negativos sobrepõem a quantidade de positivos. No primeiro momento, é durante o \textit{show} do Dave Grohl onde é feita uma homenagem aos falecidos no mundo do cinema em 2015 onde a sensação de luto ficou evidente durante a apresentação, e de acordo com \cite{freud1908conferencias}, é a reação à perda de objeto ou pessoa. Como afeto, o luto aproxima-se do humor depressivo. Com isso foi corroborado o aumento do sentimento negativo nessa parte do evento. Outro momento onde ocorre o mesmo efeito é durante a apresentação da Lady Gaga onde o tema do filme que a  música faz parte da trilha é sobre os estupros em faculdades americanas, e mais uma vez esse aumento negativo faz entender o tema pesado e sensível para as pessoas que sofreram e sofrem disso. Excluindo o pico no começo dos gráficos os maiores picos de positivos são presenciados as 2:00, vindo de uma crescente no final das 1:00 da manhã do dia 29 isso se deve as categorias mais aguardadas do evento que são:
 
  \begin{itemize}
  	\item Melhor atriz
@@ -184,7 +208,7 @@ Analisando o gráfico \ref{qtd}, que possui uma visão mais macro, junto com o g
  	\item Melhor filme
  \end{itemize}
 
-Sendo o que mais se destacou foi a premiação de melhor ator e a vitória de Leonardo DiCaprio que com seus 41 anos de idade e 26 de carreira nunca havia levado um prêmio de melhor ator da Academia. Essa vitória reflete nos gráficos de picos de positivos as 2:00 da manhã onde a repercussão da sua vitória é espelhada pelo twitter chegando aos \textit{trending topics} mundias na rede social.
+O maior destaque foi a premiação de melhor ator e a vitória de Leonardo DiCaprio, que com seus 41 anos de idade e 26 de carreira, nunca havia levado um prêmio de melhor ator da Academia. Essa vitória reflete nos gráficos de picos de positivos as 2:00 da manhã onde a repercussão da sua vitória é espelhada pelo twitter chegando aos \textit{trending topics} mundias na rede social.
 
 
 \begin{figure}[!h]
