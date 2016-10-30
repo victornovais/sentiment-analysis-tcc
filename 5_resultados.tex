@@ -51,15 +51,14 @@ O primeiro teste realizado para a classificação da base obteve o seguinte resu
 			\multicolumn{2}{|l|}{Positivo} & \multicolumn{1}{r|}{17.350} \\ \hline
 			\multicolumn{2}{|l|}{Negativo} & \multicolumn{1}{r|}{15.517} \\ \hline
 			\multicolumn{2}{|l|}{Neutro} & \multicolumn{1}{r|}{108.931} \\ \hline
-			\multicolumn{2}{|l|}{Tempo} & \multicolumn{1}{r|}{311,673 segundos} \\ \hline
 		\end{tabular}%
 	}
 \end{table}
 
-Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, Reli , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141.798 \textit{tweets}, 17.350 foram positivos, 15.517 negativos e 108.931 neutros, levando 311,673 segundos para executar o teste.
+Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, Reli , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141.798 \textit{tweets}, 17.350 foram positivos, 15.517 negativos e 108.931 neutros.
 \todo{Adicionar imagem grafico 1}
 \begin{figure}[!h]
-	\centering\epsfig{file=figuras/teste-1.eps, width=20cm}
+	\centering\epsfig{file=figuras/teste-1.eps, width=10cm}
 	\caption{Quantidade de tweets separados por polaridade do teste 1. Fonte: Própria}
 	\label{teste-graf-1}
 \end{figure}
@@ -67,7 +66,9 @@ Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse cas
 Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que o modelo ainda tem dificuldade de definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de dados neutros.
  
 \todo{Tabela 2 aqui}
-Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém com a aplicação da técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros, levando 397,48 segundos para executar o teste.
+
+Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém com a aplicação da técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros.
+
 \begin{table}[]
 	\caption{2º teste}
 	\label{teste-2}
@@ -76,22 +77,22 @@ Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém com 
 			\hline
 			\multicolumn{3}{|c|}{2º Teste} \\ \hline
 			\multicolumn{2}{|l|}{Bases usadas} & \multicolumn{1}{r|}{Tecnicas usadas} \\ \hline
-			\multicolumn{2}{|c|}{Sentilex-Stem} & \multicolumn{1}{c|}{Stopwords-Stem} \\
+			\multicolumn{2}{|c|}{Sentilex-Stem} & \multicolumn{1}{c|}{Stopwords} \\
 			\multicolumn{2}{|c|}{PUC-Stem} & \multicolumn{1}{c|}{Stemming} \\ \cline{3-3} 
-			\multicolumn{2}{|c|}{ReLi} &  \\ \hline
+			\multicolumn{2}{|c|}{ReLi-Stem} &  \\ \hline
 			\multicolumn{3}{|c|}{Resultado} \\ \hline
 			\multicolumn{2}{|l|}{Positivo} & \multicolumn{1}{r|}{49.263} \\ \hline
 			\multicolumn{2}{|l|}{Negativo} & \multicolumn{1}{r|}{35.079} \\ \hline
 			\multicolumn{2}{|l|}{Neutro} & \multicolumn{1}{r|}{57.456} \\ \hline
-			\multicolumn{2}{|l|}{Tempo} & \multicolumn{1}{r|}{397,48 segundos} \\ \hline
+			
 		\end{tabular}%
 	}
 \end{table}
 
-Analisando o 2º teste é visto que a quantidade de neutro diminuiu consideravelmente, apenas aplicando a técnica de \textit{stemming} em algumas bases de palavras e em \textit{stopwords}
+Analisando o 2º teste é visto que a quantidade de neutro diminuiu consideravelmente, apenas aplicando a técnica de \textit{stemming} nas bases de palavras.
 \todo{grafico 2}
 \begin{figure}[!h]
-	\centering\epsfig{file=figuras/teste-2.eps, width=20cm}
+	\centering\epsfig{file=figuras/teste-2.eps, width=10cm}
 	\caption{Quantidade de tweets separados por polaridade do teste 2. Fonte: Própria}
 	\label{teste-graf-2}
 \end{figure}
@@ -112,16 +113,17 @@ Ainda buscando a diminuição de dados neutros foi criada uma base de palavras m
 			\multicolumn{2}{|l|}{Positivo} & 47.450 \\ \hline
 			\multicolumn{2}{|l|}{Negativo} & 7.210 \\ \hline
 			\multicolumn{2}{|l|}{Neutro} & 87.138 \\ \hline
-			\multicolumn{2}{|l|}{Tempo} & 709,126 segundos \\ \hline
 		\end{tabular}%
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializada no domínio não consegue diminuir a quantidade de neutros e ainda aumenta o tempo para a execução dos testes. O resultado de 141.798 \textit{tweets}, 47.450 foram positivos, 7.210 negativos e 87.138 neutros, levando 709,126 segundos para executar o teste.
+
+Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializada no domínio não consegue diminuir a quantidade de neutros. O resultado de 141.798 \textit{tweets}, 47.450 foram positivos, 7.210 negativos e 87.138 neutros.
+
 
 \todo{grafico 3}
 \begin{figure}[!h]
-	\centering\epsfig{file=figuras/teste-3.eps, width=20cm}
+	\centering\epsfig{file=figuras/teste-3.eps, width=10cm}
 	\caption{Quantidade de tweets separados por polaridade do teste 3. Fonte: Própria}
 	\label{teste-graf-3}
 \end{figure}
@@ -143,16 +145,18 @@ No 4º teste foi adicionada a base criada, Oscar2016 com as bases genéricas, Se
 			\multicolumn{2}{|l|}{Positivo} & \multicolumn{1}{r|}{69.070} \\ \hline
 			\multicolumn{2}{|l|}{Negativo} & \multicolumn{1}{r|}{33.461} \\ \hline
 			\multicolumn{2}{|l|}{Neutro} & \multicolumn{1}{r|}{39.267} \\ \hline
-			\multicolumn{2}{|l|}{Tempo} & \multicolumn{1}{r|}{650,97 segundos} \\ \hline
 		\end{tabular}%
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior taxa de diminuição de dados neutros, com o segundo maior tempo de processamento entre os testes realizados. O resultado de 141.798 \textit{tweets}, 69.070 foram positivos, 33.461 negativos e 39.267 neutros, levando 650,97 segundos para executar o teste.
+
+Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior taxa de diminuição de dados neutros. O resultado de 141.798 \textit{tweets}, 69.070 foram positivos, 33.461 negativos e 39.267 neutros.
+
+
 
 \todo{Adicionar grafico 4}
 \begin{figure}[!h]
-	\centering\epsfig{file=figuras/teste-4.eps, width=20cm}
+	\centering\epsfig{file=figuras/teste-4.eps, width=10cm}
 	\caption{Quantidade de tweets separados por polaridade do teste 4. Fonte: Própria}
 	\label{teste-graf-4}
 \end{figure}
@@ -168,12 +172,17 @@ Segue abaixo um comparativo dos testes.
 			\multicolumn{1}{|l|}{Positivo} & 15.517 & \multicolumn{1}{r|}{49.263} & 47.450 & 69.070 \\ \hline
 			\multicolumn{1}{|l|}{Negativo} & 17.350 & 35.079 & 7210 & 33.461 \\ \hline
 			\multicolumn{1}{|l|}{Neutro} & 108.931 & \multicolumn{1}{l|}{57.456} & 87.138 & 39.267 \\ \hline
-			\multicolumn{1}{|l|}{Tempo (s)} & \multicolumn{1}{c|}{311,673} & 397,48 & 709,129 & 650,97 \\ \hline
+		
 		\end{tabular}%
 	}
 \end{table}
 
-\todo{grafico de comparação}
+\begin{figure}[!h]
+	\centering\epsfig{file=figuras/Pasta1.eps, width=15cm}
+	\caption{Gráfico de comparação dos testes}
+	\label{teste-graf-comp}
+\end{figure}
+
 
 Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as configurações utilizadas no teste 4 para a realização da análise na base capturada, devido a menor presença de dados neutros classificados na base comprovando que as técnicas de \textit{stemming} e \textit{stopwords} foram válidas e relevantes para a sustentação modelo.
 
