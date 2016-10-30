@@ -66,7 +66,9 @@ Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse cas
 Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que o modelo ainda tem dificuldade de definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de dados neutros.
  
 \todo{Tabela 2 aqui}
+
 Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém com a aplicação da técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros.
+
 \begin{table}[]
 	\caption{2º teste}
 	\label{teste-2}
@@ -115,7 +117,9 @@ Ainda buscando a diminuição de dados neutros foi criada uma base de palavras m
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializada no domínio não consegue diminuir a quantidade de neutros e ainda aumenta o tempo para a execução dos testes. O resultado de 141.798 \textit{tweets}, 47.450 foram positivos, 7.210 negativos e 87.138 neutros.
+
+Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializada no domínio não consegue diminuir a quantidade de neutros. O resultado de 141.798 \textit{tweets}, 47.450 foram positivos, 7.210 negativos e 87.138 neutros.
+
 
 \todo{grafico 3}
 \begin{figure}[!h]
@@ -145,7 +149,10 @@ No 4º teste foi adicionada a base criada, Oscar2016 com as bases genéricas, Se
 	}
 \end{table}
 
-Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior taxa de diminuição de dados neutros, com o segundo maior tempo de processamento entre os testes realizados. O resultado de 141.798 \textit{tweets}, 69.070 foram positivos, 33.461 negativos e 39.267 neutros.
+
+Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior taxa de diminuição de dados neutros. O resultado de 141.798 \textit{tweets}, 69.070 foram positivos, 33.461 negativos e 39.267 neutros.
+
+
 
 \todo{Adicionar grafico 4}
 \begin{figure}[!h]
@@ -175,7 +182,7 @@ Segue abaixo um comparativo dos testes.
 	\caption{Gráfico de comparação dos testes}
 	\label{teste-graf-comp}
 \end{figure}
-\todo{grafico de comparação}
+
 
 Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as configurações utilizadas no teste 4 para a realização da análise na base capturada, devido a menor presença de dados neutros classificados na base comprovando que as técnicas de \textit{stemming} e \textit{stopwords} foram válidas e relevantes para a sustentação modelo.
 
