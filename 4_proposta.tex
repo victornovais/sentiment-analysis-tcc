@@ -73,6 +73,8 @@ Como o objetivo deste trabalho é coletar novos \textit{tweets} conforme eles v�
 
 Neste caso, a API retornará os 100 \textit{tweets} publicados desde o \textit{tweet} com identificador (\textit{id}) "123456789".
 
+\todo{Diagrama de sequência ou atividades sobre como esta parte do código funciona}
+
 \subsubsection{O problema com a detecção automática de idioma do Twitter}
 
 O escopo deste trabalho determina que o objeto de estudo são apenas mensagens escritas em língua portuguesa. Como forma de obter somente \textit{tweets} escritos em língua portuguesa é preciso utilizar o parâmetro \textit{lang}, por exemplo:
@@ -86,19 +88,138 @@ Porém, realizando alguns testes na API do Twitter, foi detectado que ao submete
 Por uma questão de desenho da API de busca, cada requisição é capaz de trazer no máximo 100 \textit{tweets}, o que nos dá ao total uma carga máxima de até 1200 novos \textit{tweets} por minuto. Para as análises feitas durante este trabalho este número se mostrou mais do que suficiente. Como dito anteriormente, se fosse necessário escalar este sistema para monitorar um evento maior, seria necessário apenas obter um saldo maior de requisições junto a API do Twitter - adicionando mais tokens de usuário e criando uma espécie de "rodízio" de autenticações, por exemplo - e escalar o número de consumidores do processo de acordo com a demanda. Uma boa maneira de detectar se isso seria necessário é acompanhar quantos \textit{tweets} novos são coletados a cada requisição. Como utilizamos o \textit{id} do último \textit{tweet} capturado como referência para os novos, se a cada requisição o número de novos \textit{tweets} com grande frequência coincidir com o limite da API, temos um indício de que o volume de novas mensagens no Twitter está excedendo a capacidade do sistema de coletá-las e que o excedente está sendo perdido.
 
 \section{Armazenamento}
-* Como os dados retornam da API
-* Criando a coleção
-* Salvando os dados
+A resposta da API de Busca é dada no formato JSON e cada objeto - que corresponde a cada \textit{tweet} - segue o seguinte formato e conta com diversas informações sobre o mesmo: 
 
+\begin{lstlisting}[style=json, frame=single]
+{
+	"_id" : "56d388096861353c1b061fe2",
+	"contributors" : null,
+	"truncated" : false,
+	"text" : "Leonardo DiCaprio com o #oscars eh igual a Katy Perry com o Grammy #OscarsNaTNT",
+	"is_quote_status" : false,
+	"in_reply_to_status_id" : null,
+	"id" : 704091511902834688,
+	"favorite_count" : 0,
+	"source" : "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+	"created_at_datetime" : ISODate("2016-02-28T20:51:12.000Z"),
+	"retweeted" : false,
+	"coordinates" : null,
+	"created_at_timestamp" : 1456714272.0000000000000000,
+	"entities" : {
+		"symbols" : [],
+		"user_mentions" : [],
+		"hashtags" : [{
+			"indices" : [ 24, 31 ],
+			"text" : "oscars"
+		}, 
+		{
+			"indices" : [ 66, 78],
+			"text" : "OscarsNaTNT"
+		}],
+		"urls" : []
+	},
+	"in_reply_to_screen_name" : null,
+	"id_str" : "704091511902834688",
+	"retweet_count" : 0,
+	"in_reply_to_user_id" : null,
+	"favorited" : false,
+	"user" : {
+		"follow_request_sent" : false,
+		"has_extended_profile" : true,
+		"profile_use_background_image" : false,
+		"id" : 2786117482,
+		"verified" : false,
+		"profile_text_color" : "000000",
+		"profile_image_url_https" : "https://pbs.twimg.com/profile_images/700450356141158404/xA-mRqp7_normal.jpg",
+		"profile_sidebar_fill_color" : "000000",
+		"is_translator" : false,
+		"entities" : {
+			"description" : {
+			"urls" : []
+			}
+		},
+		"followers_count" : 156,
+		"protected" : false,
+		"location" : "Um lugarzinho no fim do mundo",
+		"default_profile_image" : false,
+		"id_str" : "2786117482",
+		"lang" : "pt",
+		"utc_offset" : -28800,
+		"statuses_count" : 6171,
+		"description" : "Uuuumm ta estilosa!",
+		"friends_count" : 192,
+		"profile_background_image_url_https" : "https://abs.twimg.com/images/themes/theme1/bg.png",
+		"profile_link_color" : "9266CC",
+		"profile_image_url" : "http://pbs.twimg.com/profile_images/700450356141158404/xA-mRqp7_normal.jpg",
+		"notifications" : false,
+		"geo_enabled" : false,
+		"profile_background_color" : "000000",
+		"profile_banner_url" : "https://pbs.twimg.com/profile_banners/2786117482/1456444936",
+		"profile_background_image_url" : "http://abs.twimg.com/images/themes/theme1/bg.png",
+		"name" : "Padeira Estilosa",
+		"is_translation_enabled" : false,
+		"profile_background_tile" : false,
+		"favourites_count" : 6095,
+		"screen_name" : "naycordeir",
+		"url" : null,
+		"created_at" : "Fri Sep 26 18:43:47 +0000 2014",
+		"contributors_enabled" : false,
+		"time_zone" : "Pacific Time (US & Canada)",
+		"profile_sidebar_border_color" : "000000",
+		"default_profile" : false,
+		"following" : false,
+		"listed_count" : 1
+	},
+	"geo" : null,
+	"in_reply_to_user_id_str" : null,
+	"lang" : "pt",
+	"created_at" : "Sun Feb 28 23:51:12 +0000 2016",
+	"metadata" : {
+		"iso_language_code" : "pt",
+		"result_type" : "recent"
+	},
+	"in_reply_to_status_id_str" : null,
+	"place" : null
+}
+\end{lstlisting}
+
+Dentro desta resposta, existem diversos dados que podem ser úteis para análises em cima dos \textit{tweets} e armazená-los é extremamente valioso.
+
+\subsection{Banco de dados orientado a documento}
+
+Existem diversas soluções de banco de dados disponíveis no mercado. Nos últimos anos, uma delas se tornou especialmente popular\cite{bhuvan2015technical}: os bancos de dados orientado a documento. Tais bancos de dado são uma das principais categorias de bancos conhecidos NoSQL (\textit{Non Structure Query Language}) que consiste em organizar os dados de forma "não-relacional", através de documentos, gráficos, chave-valores e colunas. Bancos NoSQL são conhecidos pela facilidade de modelagem e desenvolvimento, alto desempenho de leitura e escrita, alta disponibilidade e resiliência. Isso não significa que bancos SQL são obsoletos ou piores, porém existem aplicações claras onde cada um desempenha um melhor papel. Podemos apontar algumas comparações, como por exemplo:
+
+\begin{table}[H]
+	\label{tabela-sql-nosql}
+	\begin{tabular}{|m{2.5cm}|m{6cm}|m{6cm}|}
+		 \hline	
+		& Banco de dados relacional                                                                                                                                                                                                                            & Banco de dados NoSQL                                                                                                                                                                                                                                                                                                                \\ \hline 
+		Modelagem   & O modelo relacional normaliza dados em estruturas tabulares conhecidas como tabelas, que consistem em linhas e colunas. Um schema define estritamente as tabelas, colunas, índices, relações entre tabelas e outros elementos do banco de dados.     & Bancos de dados não relacionais (NoSQL) normalmente não aplicam um schema. Geralmente, uma chave de partição é usada para recuperar valores, conjuntos de colunas ou documentos semiestruturados JSON, XML ou outros que contenham atributos de itens relacionados.                                                                  \\ \hline 
+		Desempenho  & O desempenho normalmente depende do subsistema do disco. A otimização de consultas, índices e estrutura de tabela é necessária para alcançar máximo desempenho.                                                                                      & Desempenho geralmente é uma função do tamanho do cluster do hardware subjacente, da latência de rede e da aplicação que faz a chamada.  \\ \hline 
+		Escala      & Mais fácil de aumentar a escala "verticalmente" com hardware mais rápido.,Outros investimentos são necessários para tabelas relacionais para abranger um sistema distribuído.                                                                        & Projetado para aumentar a escala "horizontalmente" usando clusters distribuídos de hardware de baixo custo para aumentar a transferência sem aumentar a latência.                                \\ \hline 
+		APIs & As solicitações para armazenar e recuperar dados são comunicadas usando consultas compatíveis com structured query language (SQL). Essas consultas são analisadas e executadas por sistemas de gerenciamento de bancos de dados relacionais (RDBMS). & APIs baseadas em objetos permitem que desenvolvedores de aplicações armazenem e restaurem facilmente estruturas de dados na memória. As chaves de partição permitem que os aplicativos procurem pares de chave-valor, conjuntos de colunas ou documentos semiestruturados contendo objetos e atributos de aplicativos serializados. \\ \hline 
+	\end{tabular}
+		\caption{Comparação entre bancos SQL e NoSQL}
+\end{table}
+
+\subsection{Opções disponíveis}
+O movimento de adoção de bancos \textit{NoSQL} está bastante enraizada no mundo \textit{open source}. Alguns projetos como Voldemort\cite{voldemortproject}, MongoDB\cite{mongodb}, Tokyo Cabinet\cite{tokyocabinet} e CouchDB\cite{couchdb}. Apesar de uma grande quantidade de opções \textit{open source}, o movimento ganhou muita força com a publicação de duas publicações sobre implementações proprietárias: o Google BigTable\cite{chang2008bigtable} e o Amazon Dynamo\cite{decandia2007dynamo}. Para este trabalho, a opção escolhida foi o MongoDB, altamente popular na comunidade \textit{open source} e com bastante material disponível com melhores práticas de criação, manutenção e configuração.
+
+\subsection{Armazenando \textit{tweets}}
+O objetivo deste trabalho é monitorar eventos através das \textit{hashtags}. E para cada uma delas é criada uma coleção - nome dado a um conjunto de documentos - dentro do banco de dados. O nome da coleção é dado pela \textit{hashtag} monitorada.
+
+No momento onde o processo consumidor - responsável por fazer requisições na API e lidar com o retorno - é ligado ocorre a criação da coleção, caso a mesma não exista, e dentro dela começam a ser armazenados os \textit{tweets} retornados pela API, obedecendo ao mesmo formato enviado pelo Twitter. A flexibilidade dAntes do armazenamento no banco alguns campos a mais são adicionados, mas vamos entrar neste detalhe apenas na seção sobre Classificação.
 
 \section{Classificação}
 \begin{itemize}
 	\item Aplicar técnicas de normalização no texto. As mesmas devem ser específicas para a língua portuguesa;
 	\item Construir base de palavras e termos classificados utilizadas como insumo para o modelo matemático;
 	\item Preparar uma massa de treino para validar o modelo matemático antes da execução;
+	\item Calibragem do algoritmo
+	\item Salvar infos sobre a classificação dentro do documento
 \end{itemize}
 
-\section{Normalização do texto}
+\subsection{Normalização do texto}
 
 A composição de um \textit{tweet} escrito por muitas vezes possui elementos que serão inúteis ou nocivos para o nosso algoritmo de classificação. Por conta disso, um dos primeiros desafios para tal é conduzir uma normalização nas mensagens, que serão nosso objeto de estudo.
 
@@ -116,4 +237,3 @@ gírias, abreviação e até erros de português, para isso foi criada uma base 
 \subsection{Algoritmo}
 
 
-\section{Plataforma de análise}
