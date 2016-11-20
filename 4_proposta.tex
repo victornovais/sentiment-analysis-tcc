@@ -51,7 +51,12 @@ $$ \frac{180}{15} = 12 \textit{ requests}_{/minuto} $$
 
 Logo, o produtor precisa adicionar uma mensagem na fila a cada 5 segundos, para que o limite de 180 requisições seja respeitado.
 
-\todo{Fazer diagrama do produtor-consumidor para explicar melhor}
+\begin{figure}[H]
+	\centering\epsfig{file=figuras/competing-consumers.eps, width=15cm}
+	\caption{Exemplo de arquitetura produtor-consumidor. Fonte: Apache ActiveMQ( http://activemq.apache.org/clustering.html)}
+	\label{time}
+\end{figure}
+
 
 \subsection{Busca}
 Dentre os principais serviços da API do Twitter está a busca. Com ela, é possível consultar de diversas formas os principais \textit{tweets} ou mais recentes. Dentro de sua documentação, existe um guia completo de como utilizar a API  para extrair os resultados desejados \cite{twittersearchapi} das mais diversas formas. 
@@ -206,9 +211,9 @@ Existem diversas soluções de banco de dados disponíveis no mercado. Nos últi
 O movimento de adoção de bancos \textit{NoSQL} está bastante enraizada no mundo \textit{open source}. Alguns projetos como Voldemort\cite{voldemortproject}, MongoDB\cite{mongodb}, Tokyo Cabinet\cite{tokyocabinet} e CouchDB\cite{couchdb}. Apesar de uma grande quantidade de opções \textit{open source}, o movimento ganhou muita força com a publicação de duas publicações sobre implementações proprietárias: o Google BigTable\cite{chang2008bigtable} e o Amazon Dynamo\cite{decandia2007dynamo}. Para este trabalho, a opção escolhida foi o MongoDB, altamente popular na comunidade \textit{open source} e com bastante material disponível com melhores práticas de criação, manutenção e configuração.
 
 \subsection{Armazenando \textit{tweets}}
-O objetivo deste trabalho é monitorar eventos através das \textit{hashtags}. E para cada uma delas é criada uma coleção - nome dado a um conjunto de documentos - dentro do banco de dados. O nome da coleção é dado pela \textit{hashtag} monitorada.
+O objetivo deste trabalho é monitorar eventos através das \textit{hashtags}. E para cada uma delas é criada uma coleção - nome dado a um conjunto de documentos - dentro do banco de dados. O nome da coleção é dado pela \textit{hashtag} monitorada, como por exemplo \mbox{\#Oscars2016}.
 
-No momento onde o processo consumidor - responsável por fazer requisições na API e lidar com o retorno - é ligado ocorre a criação da coleção, caso a mesma não exista, e dentro dela começam a ser armazenados os \textit{tweets} retornados pela API, obedecendo ao mesmo formato enviado pelo Twitter. A flexibilidade dAntes do armazenamento no banco alguns campos a mais são adicionados, mas vamos entrar neste detalhe apenas na seção sobre Classificação.
+No momento onde o processo consumidor - responsável por fazer requisições na API e lidar com o retorno - é ligado ocorre a criação da coleção, caso a mesma não exista, e dentro dela começam a ser armazenados os \textit{tweets} retornados pela API, obedecendo ao mesmo formato enviado pelo Twitter. Antes do armazenamento no banco alguns campos a mais são adicionados, mas vamos entrar neste detalhe apenas na seção sobre Classificação.
 
 \section{Classificação}
 \begin{itemize}
@@ -219,21 +224,72 @@ No momento onde o processo consumidor - responsável por fazer requisições na 
 	\item Salvar infos sobre a classificação dentro do documento
 \end{itemize}
 
-\subsection{Normalização do texto}
+Durante o estudo foram utilizadas algumas ferramentas que auxiliaram o processo de classificação. A principal delas foi o NLTK\cite{nltk_docs}, uma biblioteca em Python construída como suíte de soluções para trabalhar com linguagem natural. O NLTK conta com mais de 50 corpus linguísticos - conjunto de registros orais de uma determinada língua que servem como base para análises - além de diversas ferramentas para classificação, tokenização, marcação e análise de texto. Seguindo uma documentação específica para aplicação em língua portuguesa\cite{nltk_portuguese}, foram utilizados os seguintes corpus do NLTK durante este trabalho:
 
-A composição de um \textit{tweet} escrito por muitas vezes possui elementos que serão inúteis ou nocivos para o nosso algoritmo de classificação. Por conta disso, um dos primeiros desafios para tal é conduzir uma normalização nas mensagens, que serão nosso objeto de estudo.
+\begin{itemize}
+	\item Floresta Sintá(c)tica Corpus versão 7.4: uma colaboração entre a Linguateca\cite{linguateca} e o projecto VISL\cite{visl}. Contém textos em português (do Brasil e de Portugal) analisados automaticamente pelo analisador sintáctico PALAVRAS (Bick 2000) e revistos por linguistas.
+	\item Mac Morpho: Palavras extraídas a partir de textos do jornal Folha de São Paulo 
+	\item Machado: Obra completa do escritor Machado de Assis
+\end{itemize}
 
+O processo de classificação é a alma deste projeto. É ele que determina qual sentimento será possível extrair de um \textit{tweet} através conteúdo altamente resumido do mesmo. Durante o estudo e aperfeiçoamento deste processo foram utilizadas algumas técnicas que visam:
+
+\begin{itemize}
+	\item Excluir do texto termos que são inúteis semanticamente, como por exemplo conjunções, preposições e marcações de usuários, conhecidas como \textit{mentions};
+	\item Diminuir a variabilidade de aplicações para uma palavra dentro da língua portuguesa. ex: aplicação de gênero, plurais e singulares, conjugações verbais, entre outras;
+	\item Treinar o algoritmo de classificação com uma base de palavras pertences ao mesmo universo e temática do estudo, permitindo que o algoritmo previamente conheça o contexto e força que alguns termos vão exercer sobre o texto.
+\end{itemize}
+
+\subsection{\textit{Stopwords}}
+
+A composição de um \textit{tweet} por muitas vezes possui palavras que são semanticamente nulas ou até mesmo nocivas para o nosso algoritmo de classificação. Por conta disso, uma das primeiras técnicas aplicadas em um texto antes da classificação consiste em conduzir uma normalização nos elementos contidos em uma sentença.
+
+Palavras que não possuem valor semântico para uma sentença são conhecidas como "palavras vazias" ou \textit{stopwords}. o NLTK possui um vasto dicionário de palavras vazias graças aos corpus de língua portuguesas adicionados à ele anteriormente. Com base neste dicionários, é possível excluir palavras vazias da seguinte forma:
+
+\begin{lstlisting}[style=python, frame=single]
+In[1]: text = "Veja a lista completa dos vencedores do Oscar 2016"
+In[2]: [i for i in text.split() if i not in stopwords.words("portuguese")]
+
+Out[1]:["Veja", "lista", "completa", "vencedores", "Oscar", "2016"]
+\end{lstlisting}
+
+Além disso, foi necessário adicionar inteligência ao nosso normalizador para também excluir palavras vazias específicas para \textit{tweets}, como por exemplo as \textit{hashtags}, menções a outros usuários - as \textit{mentions} - e \textit{links} para outras páginas, vídeos ou imagens.
+
+\begin{lstlisting}[style=python, frame=single]
+In[1]: TWITTER_STOPWORDS = ["@","RT","http"]
+In[2]: def clean_stopwords(self, text):
+  # Cleaning portuguese stopwords
+  splitted = [i for i in text.split() if i not in stopwords.words("portuguese")]
+  cleaned_splitted = []
+
+  # Cleaning twitter stopwords
+  for word in splitted:
+    cleaned_splitted.append(word)
+
+    for twitter_stopword in TWITTER_STOPWORDS:
+      if word.startswith(twitter_stopword):
+        cleaned_splitted.remove(word)
+
+  return " ".join(cleaned_splitted)
+
+In[2]: text = "@tntbr esta comecando agora a transmissao ao vivo do #Oscars2016 http://bit.ly/oscarstnt"
+In[3]: clean_stopwords(text)
+
+Out[1]: "esta comecando agora transmissao vivo"
+
+\end{lstlisting}
+
+\subsection{\textit{Stemming}}
 
 \subsection{Construção da base de palavras e termos}
 A construção da base de dados foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, para a utilização do algoritmo. Para isso a base foi dividida em dois arquivos, positivos e negativos. Além dessa divisão foi utilizada outas bases criadas como: Re-li(referencia), SentiLex-PT \cite{marioj.silvapaulacarvalholuissarmento2012}, base da puc \cite{freitas2013construccao}, emoticons \cite{alexanderhogenboomdaniellabalflaviusfrasincarmalissabalfranciskadejonguzaykaymak}. Todas usando a língua portuguesa ou um linguajar universal, no caso dos emoticons e já estarem polarizadas. Essas bases têm em comum é serem feitas apenas de palavras, então ficou-se a dúvida de como a classificação funcionaria posteriormente quando aplicadas a um texto que as palavras podem não estar no mesmo contexto. Ex: "O flamengo jogou muito mal, mas fico feliz pela vitória", onde tem a palavra mal que já dá um tom negativo a frase , porém ao terminar de ler a frase encontrasse as palavras feliz e vitória que tem um contexto positivo.
 Com essas bases já citadas foi compreendida a necessidade de uma base mais específica para o linguajar utilizado na internet, constituído de  
 gírias, abreviação e até erros de português, para isso foi criada uma base utilizando dados pegos do twitter a partir da marcação hashtagoscar2016.
 
+\subsection{Massa de Treino}
 
-\subsection{Massa de treino}
-
-\subsection{Massa de teste}
+\subsection{Classificação}
 
 \subsection{Algoritmo}
 
-
+\subsection{Análises e \textit{insights}}
