@@ -176,13 +176,17 @@ Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as confi
 
 \section{Resultados}\label{result}
 
-Para a análise dos resultados é necessário estabelecer premissas. O evento Oscar 2016 foi a  88.ª cerimônia de entrega dos \textit{Academy Awards} em \textit{Los Angeles}, Estados Unidos. O evento teve duração de aproximadamente 4 horas com seu início na noite do dia 28 de fevereiro, as 20:00 horário de Brasília no tapete vermelho com a entrada dos artistas e convidados. Seu encerramento as 2:00 do horário de Brasília do dia 29 de Fevereiro com a premiação do melhor filme. Os marcos do evento foram considerados: as entregas dos prêmios de cada categoria, o homenagem em memória póstuma e a apresentação da Lady Gaga e o discurso do Vice Presidente Americano. Esses eventos  são listados em ordem cronológica de acordo com a figura \ref{time}
+Para a análise dos resultados é necessário estabelecer premissas. O evento Oscar 2016 foi a  88.ª cerimônia de entrega dos \textit{Academy Awards} em \textit{Los Angeles}, Estados Unidos. O evento teve duração de aproximadamente 4 horas com seu início na noite do dia 28 de fevereiro, às 20:00 horário de Brasília no tapete vermelho com a entrada dos artistas e convidados. Seu encerramento às 2:00 do horário de Brasília do dia 29 de Fevereiro com a premiação do melhor filme. Os marcos do evento relevantes para o estudo: 
+\begin{itemize}
+	\item Apresentação do David Grohe em memória póstuma
+	\item Apresentação da Lady Gaga 
+	\item Discurso do Vice Presidente Americano
+	\item Melhor atriz
+	\item Melhor ator
+	\item Melhor filme
+\end{itemize}
+Todos os eventos ocorridos no Oscar 2016 são listados em ordem cronológica no apêndice \todo{add apendice}
 
-\begin{figure}[H]
-	\centering\epsfig{file=figuras/oscar_timeline.eps, width=15cm}
-	\caption{Linha do tempo com os marcos do Oscar 2016. Fonte:Folha de São Paulo}
-	\label{time}
-\end{figure}
 O gráfico \ref{qtd} mostra a curva da quantidade de \textit{tweets} em relação ao tempo  dividido pela polaridade. Nele é visto um pico  no começo do evento, durante o tapete vermelho, nesse período foi visto as maiores ocorrências de especulações sobre os ganhadores e indicados além das reações dos internautas com as entradas de seus artistas favoritos.
 
 \begin{figure}[H]
@@ -215,26 +219,30 @@ O maior destaque foi a premiação de melhor ator e a vitória de Leonardo DiCap
 \end{figure}
 
 \begin{figure}[H]
-	\centering\epsfig{file=figuras/pos.eps, width=15cm}
+	\centering\epsfig{file=figuras/pos4.eps, width=15cm}
 	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 00:50 e 01:20 de probabilidade positiva}
 	\label{pos1}
 \end{figure}
 
 \begin{figure}[H]
-	\centering\epsfig{file=figuras/neg.eps, width=15cm}
+	\centering\epsfig{file=figuras/neg4.eps, width=15cm}
 	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 00:50 e 01:20 de probabilidade negativa}
 	\label{neg1}
 \end{figure}
 
+Mediante os resultados encontrados nos gráficos \ref{pos1} e \ref{neg1}, o algoritmo utilizado mostra que na faixa de 65\% a 90\% , foi a região onde sua classificação obteve a maior quantidade de resultados tanto para \textit{tweets} positivos quanto para negativos. É visto que próximo ao marco de 1:12 a quantidade de \textit{tweets} negativos é maior , confirmando a análise feita na figura \ref{qtdnegpos}
+
 
 \begin{figure}[H]
-	\centering\epsfig{file=figuras/neg2.eps, width=15cm}
-	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 02:50 e 02:20 de probabilidade positiva}
-	\label{pos1}
+	\centering\epsfig{file=figuras/neg3.eps, width=15cm}
+	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 01:50 e 02:20 de probabilidade positiva}
+	\label{pos2}
 \end{figure}
 
 \begin{figure}[H]
-	\centering\epsfig{file=figuras/pos2.eps, width=15cm}
+	\centering\epsfig{file=figuras/pos3.eps, width=15cm}
 	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 01:50 e 02:20 de probabilidade negativa}
-	\label{neg1}
+	\label{neg2}
 \end{figure}
+
+Já analisando os gráficos \ref{pos2} e \ref{neg2}, percebe-se que houve mudanças na faixa de probabilidade. Uma delas foi nos \textit{tweets} classificados como negativos onde a faixa ficou entre 70\% e 80\%  e a quantidade, o tamanho das bolhas, consideravelmente menor. Já a outra mudança ocorre no marco de 2:09 na probabilidade de positivos, onde a faixa ultrapassa os 90\% corroborando a análise feita na figura \ref{qtdnegpos} onde é visto os picos de \textit{tweets} positivos.  
