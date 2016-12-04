@@ -43,7 +43,7 @@ Neste trabalho, como o objetivo é coletar \textit{tweets} postados sobre uma \t
 
 \subsubsection{Produtor-consumidor}
 
-O problema descreve dois processos, o produtor e o consumidor, que compartilham um recurso em comum usado como uma fila - um tipo particular de coleção de dados onde a primeira a entidade a entrar é a primeira a sair ou \textit{First-In-First-Out} (FIFO). A função do produtor é gerar trabalho a ser executado pelo consumidor. O volume de trabalho gerado e executado pelo sistema é controlado pela fila, que armazena as entidades ou "tarefas" a serem executadas. Essa abordagem permite que o sistema escale apenas até a sua capacidade, visto que a fila possui um tamanho fixo que caso seja ultrapassado, pode simplesmente descartar as mensagens adicionadas após este momento. Outra característica importante é a escalabilidade. Conforme os processos produtor e consumidor evoluem, surge a necessidade de aumentar a quantidade de produtores ou consumidores de forma independente.
+O problema descreve dois processos, o produtor e o consumidor, que compartilham um recurso em comum usado como uma fila - um tipo particular de coleção de dados onde a primeira a entidade a entrar é a primeira a sair ou \ac{FIFO} . A função do produtor é gerar trabalho a ser executado pelo consumidor. O volume de trabalho gerado e executado pelo sistema é controlado pela fila, que armazena as entidades ou "tarefas" a serem executadas. Essa abordagem permite que o sistema escale apenas até a sua capacidade, visto que a fila possui um tamanho fixo que caso seja ultrapassado, pode simplesmente descartar as mensagens adicionadas após este momento. Outra característica importante é a escalabilidade. Conforme os processos produtor e consumidor evoluem, surge a necessidade de aumentar a quantidade de produtores ou consumidores de forma independente.
 
 Neste trabalho, para explorar o potencial máximo da janela de requisições foi criado um processo produtor que envia para a fila mensagens para que consumidor acesse à API do Twitter de forma que sejam feitos sempre as 180 requisições que são permitidas no intervalo de 15 minutos. Assim a responsabilidade de cada processo fica bem definida - o primeiro responde pelo volume de requisições e o segundo por realizar a requisição e entender a resposta. Para definir qual intervalo de tempo deveria ser usado para que o produtor envie mensagens à fila, foi feita uma conta simples:
 
@@ -224,7 +224,7 @@ No momento onde o processo consumidor - responsável por fazer requisições na 
 	\item Salvar infos sobre a classificação dentro do documento
 \end{itemize}
 
-Durante o estudo foram utilizadas algumas ferramentas que auxiliaram o processo de classificação. A principal delas foi o NLTK\cite{nltk_docs}, uma biblioteca em Python construída como suíte de soluções para trabalhar com linguagem natural. O NLTK conta com mais de 50 corpus linguísticos - conjunto de registros orais de uma determinada língua que servem como base para análises - além de diversas ferramentas para classificação, tokenização, marcação e análise de texto. Seguindo uma documentação específica para aplicação em língua portuguesa\cite{nltk_portuguese}, foram utilizados os seguintes corpus do NLTK durante este trabalho:
+Durante o estudo foram utilizadas algumas ferramentas que auxiliaram o processo de classificação. A principal delas foi a \ac{NLTK} \cite{nltk_docs}, uma biblioteca em Python construída como suíte de soluções para trabalhar com linguagem natural. O NLTK conta com mais de 50 corpus linguísticos - conjunto de registros orais de uma determinada língua que servem como base para análises - além de diversas ferramentas para classificação, tokenização, marcação e análise de texto. Seguindo uma documentação específica para aplicação em língua portuguesa\cite{nltk_portuguese}, foram utilizados os seguintes corpus do NLTK durante este trabalho:
 
 \begin{itemize}
 	\item Floresta Sintá(c)tica Corpus versão 7.4: uma colaboração entre a Linguateca\cite{linguateca} e o projecto VISL\cite{visl}. Contém textos em português (do Brasil e de Portugal) analisados automaticamente pelo analisador sintáctico PALAVRAS (Bick 2000) e revistos por linguistas.
@@ -239,6 +239,9 @@ O processo de classificação é a alma deste projeto. É ele que determina qual
 	\item Diminuir a variabilidade de aplicações para uma palavra dentro da língua portuguesa. ex: aplicação de gênero, plurais e singulares, conjugações verbais, entre outras;
 	\item Treinar o algoritmo de classificação com uma base de palavras pertences ao mesmo universo e temática do estudo, permitindo que o algoritmo previamente conheça o contexto e força que alguns termos vão exercer sobre o texto.
 \end{itemize}
+
+\subsection{\textit{Stemming}}
+\todo{Falar sobre Stemming}
 
 \subsection{\textit{Stopwords}}
 
@@ -279,7 +282,7 @@ Out[1]: "esta comecando agora transmissao vivo"
 
 \end{lstlisting}
 
-\subsection{\textit{Stemming}}
+
 
 \subsection{Construção da base de palavras e termos}
 A construção da base de dados foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, para a utilização do algoritmo. Para isso a base foi dividida em dois arquivos, positivos e negativos. Além dessa divisão foi utilizada outas bases criadas como: Re-li(referencia), SentiLex-PT \cite{marioj.silvapaulacarvalholuissarmento2012}, base da puc \cite{freitas2013construccao}, emoticons \cite{alexanderhogenboomdaniellabalflaviusfrasincarmalissabalfranciskadejonguzaykaymak}. Todas usando a língua portuguesa ou um linguajar universal, no caso dos emoticons e já estarem polarizadas. Essas bases têm em comum é serem feitas apenas de palavras, então ficou-se a dúvida de como a classificação funcionaria posteriormente quando aplicadas a um texto que as palavras podem não estar no mesmo contexto. Ex: "O flamengo jogou muito mal, mas fico feliz pela vitória", onde tem a palavra mal que já dá um tom negativo a frase , porém ao terminar de ler a frase encontrasse as palavras feliz e vitória que tem um contexto positivo.
