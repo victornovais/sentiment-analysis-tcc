@@ -1,40 +1,20 @@
 \chapter{Conclusão} \label{cap:conclusao}
-%Um paragrágo relembrando a importancia do cenário
-%Esse trabalho identificou e abordou alguns desses problemas, assim como propôs, desenvolveu e avaliou um serviço de gerenciamento eXXXXX
-%Relembrar o que o trabalho fez.
-%A proposta, XXX,  se destacou pelo XXXX que apresentou quando comparada XXXX. 
-%A proposta atingiu os seguintes objetivos, exemplo:
-%\begin{itemize}
-%\item permitiu que sejam usados IEDs mais simples pois a solução não precisa ser implementada nesses dispositivos;
-%\item reduziu o tempo de convergência dos algoritmos, o atraso na entrega de dados e o tráfego na rede;
-%\item atendeu aos requisitos da Norma IEC 61850;
-%\item implementou e testou um encaminhamento \textit{multicast} independente de camadas e transparente aos dispositivos finais;
-%\item permitiu uma configuração da rede facilitada;
-%\item usou o arquivo SCD da norma para autoconfiguração da rede de Telecomunicações;
-%\item tornou a rede menos sujeita à erros por ser automático;
-%\item permitiu o uso mais inteligente de recuperação de falhas;
-%\item permitiu o alcance de tempos de resposta menores por possuir uma característica proativa.
-%\end{itemize}
-%Os experimentos e as análises realizadas mostraramXXXXXX
-%Falar de todos os resultados encontrados de forma sumarzada, máximo de uma folha.
-%Os testes mostraram, também, que 
-%Outro ganho relacionado ao uso da técnica....
-%A análise realizada mostra que ...
+Este trabalho identificou e abordou a importância que a mineração de opinião possui nos dias atuais, além das oportunidades que este novo campo de estudo abre com a sua descoberta: tanto na área acadêmica quanto para exploração comercial e estratégica e assim como propôs, desenvolveu uma solução capaz de extrair mensagens escritas em língua portuguesa de uma \textit{hashtag} do Twitter e classificá-las em positivas, neutras ou negativas, tornando possível fazer análises de mineração de opinião que são capazes de interpretar como um universo de usuários se sente em relação a temática estudada. Sem dúvida, o grande desafio foi mostrar que é viável aplicar uma solução de mineração de opinião em língua portuguesa.
+Com base no que foi apresentado, a proposta cumpriu os seguintes objetivos levantados:
 
-- Importância da mineração de opinião e oportunidades academicas e comerciais
-- Desafio de implementação em língua portuguesa
-- Solução aplicada para comprovar a viabilidade da mineração de opinião em língua portuguesa
-- Relembrando:
--- Utilização do Twitter como plataforma de estudo
--- Criação de uma estrutura de coleta e armazenamento de messagens (tweets) sobre um determinado tema
--- Utilização de bases genéricas
--- Aplicação de técnicas de normalização de texto visando um maior desempenho ao classificar
--- Adaptação de um algoritmo de classificação conhecido (Naive Bayes)
--- Escolha do evento de premiação dos Oscars 2016 como estudo de caso inicial
--- Demonstração dos cenários de teste e seus impactos no resultado final
--- Análise do resultados obtidos através de gráficos 
+\begin{itemize}
+	\item Utilização do Twitter como plataforma de dados;
+	\item Construção um processo escalável capaz de extrair mensagens de uma \textit{hashtag} do Twitter;
+	\item Utilização bases de palavras classificadas disponíveis na literatura sobre o tema;
+	\item Aplicação de técnicas de normalização de texto visando um maior desempenho ao classificar;
+	\item Implementação do algoritmo de \textit{Naive Bayes} para classificar as mensagens em positivas, neutras ou negativas;
+	\item Conduzir a classificação em mensagens que foram escritas em língua portuguesa;
+	\item Aplicação do conhecimento adquirido durante este trabalho em um estudo de caso utilizando a cerimônia do Oscars 2016;
+	\item Demonstração dos cenários de teste e seus impactos no resultado final;
+	\item Análise dos resultados obtidos atraves de gráficos que permitem interpretar os sentimentos dos usuários antes, durante e depois do evento, sob diversas perspectivas.
+\end{itemize}
 
-
+A análise dos resultados mostrou que por existir uma ansiedade muito grande vinculada aos instantes que antecedem o evento existe uma grande concentração de sentimentos positivos atrelados a este momento. Outro fato que ficou evidente é que os momentos mais populares do evento, como o anúncio das categorias mais aguardadas como: melhor ator, melhor atriz e melhor filme são as mais esperadas e com a confirmação da vitória dos favoritos, houve um pico de mensagens positivas por volta do horário do anúncio dos vencedores destas categorias. Outros dois momentos chamaram atenção pela carga de sentimentos negativos: o show de David Grohl em homenagem aos falecidos no mundo do cinema em 2015 onde a sensação de luto ficou evidente e a apresentação de Lady Gaga, onde o tema do filme que a música  faz parte da trilha sonora aborda estupros em faculdades americanas, tema que desperta bastante tristeza nas pessoas que sofreram este tipo de trauma ou que empatizam de alguma forma com as vítimas deste crime.
 
 
 \section{Trabalhos Futuros}\label{sec:8_trabfut}
