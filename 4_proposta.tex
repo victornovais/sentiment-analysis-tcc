@@ -78,8 +78,6 @@ Como o objetivo deste trabalho é coletar novos \textit{tweets} conforme eles v�
 
 Neste caso, a API retornará os 100 \textit{tweets} publicados desde o \textit{tweet} com identificador (\textit{id}) "123456789".
 
-\todo{Diagrama de sequência ou atividades sobre como esta parte do código funciona}
-
 \subsubsection{O problema com a detecção automática de idioma do Twitter}
 
 O escopo deste trabalho determina que o objeto de estudo são apenas mensagens escritas em língua portuguesa. Como forma de obter somente \textit{tweets} escritos em língua portuguesa é preciso utilizar o parâmetro \textit{lang}, por exemplo:
@@ -235,19 +233,42 @@ Durante o estudo foram utilizadas algumas ferramentas que auxiliaram o processo 
 O processo de classificação é a alma deste projeto. É ele que determina qual sentimento será possível extrair de um \textit{tweet} através conteúdo altamente resumido do mesmo. Durante o estudo e aperfeiçoamento deste processo foram utilizadas algumas técnicas que visam:
 
 \begin{itemize}
-	\item Excluir do texto termos que são inúteis semanticamente, como por exemplo conjunções, preposições e marcações de usuários, conhecidas como \textit{mentions};
 	\item Diminuir a variabilidade de aplicações para uma palavra dentro da língua portuguesa. ex: aplicação de gênero, plurais e singulares, conjugações verbais, entre outras;
+	\item Excluir do texto termos que são inúteis semanticamente, como por exemplo conjunções, preposições e marcações de usuários, conhecidas como \textit{mentions};
 	\item Treinar o algoritmo de classificação com uma base de palavras pertences ao mesmo universo e temática do estudo, permitindo que o algoritmo previamente conheça o contexto e força que alguns termos vão exercer sobre o texto.
 \end{itemize}
 
 \subsection{\textit{Stemming}}
-\todo{Falar sobre Stemming}
+
+Dentro da língua portuguesa, uma mesma palavra pode variar de diversas formas de acordo com a sua aplicação. Para citar um exemplo: uma substantivo pode variar em gênero - masculino ou feminino - número - singular ou plural - e grau - aumentativo ou diminutivo. Seguindo a mesma vertente, verbos podem variar de acordo com a conjugação dos tempos verbais que variam entre aplicações no pretérito, presente ou futuro.
+Porém, toda palavra da língua portuguesa possui um "núcleo" que não muda independente da variação aplicada. Essa porção da palavra é conhecida como radical - que significa relativo ou pertencente à raiz ou à origem. 
+
+O NLTK possui duas implementação de \textit{stemmers} em sua biblioteca: a primeira é o \textit{Poter Stemmer} - algoritmo escrito por Martin Porter e publicado em 1980. O algoritmo se tornou extremamente popular e com isso se tornou o algoritmo padrão para processos de \textit{stemming} em língua inglesa. Para abranger outras línguas, outros algoritmos foram escritos, porém muitos deles possuíam falhas que dificultaram sua adesão. Por conta disso, durante os anos 2000 Porter expandiu seu trabalho criando o Snowball\cite{snowball}, um framework para desenvolvimento de algoritmos de \textit{stemming}, um dos quais será utilizado neste trabalho para realizar o processo em língua portuguesa. 
+
+\begin{lstlisting}[style=python, frame=single]
+In[1]: from nltk.stem.snowball import SnowballStemmer
+In[2]: print(" ".join(SnowballStemmer.languages))
+
+Out[1]: danish dutch english finnish french german hungarian italian
+norwegian porter portuguese romanian russian spanish swedish
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=python, frame=single]
+In[1]: from nltk.stem.snowball import SnowballStemmer
+In[2]: SnowballStemmer("portuguese", ignore_stopwords=True)
+In[3]: print(stemmer.stem(u"mineração de opinião"))
+
+Out[1]: u"miner opin"
+\end{lstlisting}
+
+Durante uma etapa avançada dos testes com a classificação ficou evidente que a grande variabilidade de usos para uma mesma palavra atrapalhava o resultado final da classificação, dado que muito CONTINUAR
 
 \subsection{\textit{Stopwords}}
 
 A composição de um \textit{tweet} por muitas vezes possui palavras que são semanticamente nulas ou até mesmo nocivas para o nosso algoritmo de classificação. Por conta disso, uma das primeiras técnicas aplicadas em um texto antes da classificação consiste em conduzir uma normalização nos elementos contidos em uma sentença.
 
-Palavras que não possuem valor semântico para uma sentença são conhecidas como "palavras vazias" ou \textit{stopwords}. o NLTK possui um vasto dicionário de palavras vazias graças aos corpus de língua portuguesas adicionados à ele anteriormente. Com base neste dicionários, é possível excluir palavras vazias da seguinte forma:
+Palavras que não possuem valor semântico para uma sentença são conhecidas como "palavras vazias" ou \textit{stopwords}. O NLTK possui um vasto dicionário de palavras vazias graças aos corpus de língua portuguesas adicionados à ele anteriormente. Com base neste dicionários, é possível excluir palavras vazias da seguinte forma:
 
 \begin{lstlisting}[style=python, frame=single]
 In[1]: text = "Veja a lista completa dos vencedores do Oscar 2016"
