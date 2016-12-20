@@ -301,8 +301,8 @@ In[2]: def clean_stopwords(self, text):
 
   return " ".join(cleaned_splitted)
 
-In[2]: text = "@tntbr esta comecando agora a transmissao ao vivo do #Oscars2016 http://bit.ly/oscarstnt"
-In[3]: clean_stopwords(text)
+In[3]: text = "@tntbr esta comecando agora a transmissao ao vivo do #Oscars2016 http://bit.ly/oscarstnt"
+In[4]: clean_stopwords(text)
 
 Out[1]: "esta comecando agora transmissao vivo"
 
@@ -310,15 +310,52 @@ Out[1]: "esta comecando agora transmissao vivo"
 
 
 
-\subsection{Construção da base de palavras e termos}
-A construção da base de dados foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, para a utilização do algoritmo. Para isso a base foi dividida em dois arquivos, positivos e negativos. Além dessa divisão foi utilizada outas bases criadas como: Re-li(referencia), SentiLex-PT \cite{marioj.silvapaulacarvalholuissarmento2012}, base da puc \cite{freitas2013construccao}, emoticons \cite{alexanderhogenboomdaniellabalflaviusfrasincarmalissabalfranciskadejonguzaykaymak}. Todas usando a língua portuguesa ou um linguajar universal, no caso dos emoticons e já estarem polarizadas. Essas bases têm em comum é serem feitas apenas de palavras, então ficou-se a dúvida de como a classificação funcionaria posteriormente quando aplicadas a um texto que as palavras podem não estar no mesmo contexto. Ex: "O flamengo jogou muito mal, mas fico feliz pela vitória", onde tem a palavra mal que já dá um tom negativo a frase , porém ao terminar de ler a frase encontrasse as palavras feliz e vitória que tem um contexto positivo.
-Com essas bases já citadas foi compreendida a necessidade de uma base mais específica para o linguajar utilizado na internet, constituído de  
-gírias, abreviação e até erros de português, para isso foi criada uma base utilizando dados pegos do twitter a partir da marcação hashtagoscar2016.
+\subsection{Construção da massa treino}
+Durante o processo de pesquisa de bases de termos classificadas previamente em positivos e negativos, foram encontradas algumas fontes interessantes a se utilizar como bases de dados confiáveis para a mineração de opinião em língua portuguesa.
+A primeira delas veio de um artigo escrito por Cláudia Freitas, estudante da Pontifícia Universidade Católica do Rio de Janeiro \cite{freitas2013construccao}. A temática do artigo gira em torno da construção de um léxico da afetividade para processamento computacional do português, que possui alta sinergia com a proposta deste trabalho. Esta base de dados foi apelidada durante o trabalho de "PUC".
+Outra base de dados utilizada durante este trabalho - apelidada de Sent-Lex-PT - foi encontrada durante a leitura de um artigo entitulado "Building a sentiment lexicon for social \textit{judgement mining}"\cite{marioj.silvapaulacarvalholuissarmento2012}, escrito em 2012 por Mário J. Silva, pesquisador Sênior do Instituto de Engenharia de Sistemas e Computadores, Investigação e Desenvolvimento em Lisboa e sua equipe. 
+Fechando as bases de dados encontradas, o ReLi (REsenha de LIvros) foi criado no âmbito do projeto Anotadores Semânticos baseados em Aprendizado Ativo, do LEARN, coordenado por Ruy Milidiú (Departamento de Informática - PUC-Rio). Consiste em 1600 resenhas de livros anotadas manualmente quanto à presença de opinião sobre o livro resenhado e sua polaridade\cite{reli-resenha-livros}.
+Todas as bases, já normalizadas, podem ser encontradas no Apêndice A deste trabalho. 
 
-\subsection{Massa de Treino}
+A construção da massa de treino foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, unindo a perspectiva de diversas bases de dados utilizadas, visando o melhor desempenho do algoritmo. Cada base de palavra possui um formato diferente e para utilizá-las de uma forma única foi necessário normalizá-las. Para isso, cada base foi dividida em dois arquivos: um contento apenas termos positivos - pos.txt - e outro apenas termos negativos - neg.txt . Segue um exemplo de como uma das normalizações foi feita:
+
+\todo{Colocar a foto das bases originais}
+\begin{lstlisting}[style=shared, frame=single, caption=Base de palavras original]
+SUBSTANTIVOS [+]
+alegria, atemporalidade, beleza, bem-estar, best-seller, brilho, carisma, companheirismo, deleite, densidade, diferencial, empatia, entusiasmo, envolvente, facilidade, favorito, fluidez, genialidade, gostinho, grandeza, ironia, magnetismo, obra-prima, originalidade, prazer, predileto, preferido, primor, sensibilidade, sufocamento, talento, taquicardia, ternura, top, virtude
+
+SUBSTANTIVOS [-]
+besteira, bobagem, bosta, chatice, defeito, demorar, desastre, desconforto, desprazer, droga, engano, erro, exagero, excesso, falhar, falho, falta, furo, imaturidade, inexperiente, lixar, meleca, melodrama, meloso, mundo,  nojo, passividade, pena, pieguice, porca, porcaria, problema, sentimentalismo, superficialidade, vergonha
+
+ADJETIVOS [-]
+.....
+\end{lstlisting}
+
+E após a divisão dos termos positivos e negativos em arquivos distintos, o resultado foi o seguinte:
+
+\todo{Colocar a foto das bases normalizadas}
+
+Por último, durante os testes com a classificação surgiu a ideia de produzir uma base de dados customizada para o evento Oscars 2016. A base de dados foi elaborada seguindo o padrão estabelecido anteriormente e preenchida com palavras relevantes ao contexto do evento e polarizadas pelo idealizadores deste projeto. \todo{Achar a porra da base}
 
 \subsection{Classificação}
+O primeiro passo para a classificação de um \textit{tweet} é calibrar o algoritmo escolhido para efetuar a classificação - para este trabalho foi utilizado o algoritmo \textit{Naive Bayes}. Com posse das bases de palavras e termos já polarizadas citadas acima foi necessário treinar o algoritmo para que ele conseguisse classificar automaticamente qualquer texto, frase ou sentença. 
+Como já foi abordado anteriormente, para este projeto foi utilizada a biblioteca NLTK, construída como suíte de soluções para trabalhar com linguagem natural em Python. O NLTK possui diversos algoritmos de classificação disponíveis para uso, sendo o \textit{Naive Bayes} um deles. 
+Por padrão, para treinar o algoritmo, o NLTK utiliza como base de dados alguns bancos de palavras genéricos disponíveis dentro da própria biblioteca. Para utilizar as bases de dados mencionadas acima como insumo para o treino do algoritmo foi necessário sobrescrever os métodos de treino do classificador contidos dentro do NLTK. Após esta customização, o algoritmo passou a classificar textos utilizando as bases descritas acima como massa de treino.
+Como resultado da classificação, o \textit{Naive Bayes} retorna dois valores como resultado: o primeiro sendo a probabilidade entre zero e um do texto classificado ser positivo e outro sendo a probabilidade do mesmo ser negativo. A soma entre as duas probabilidades sempre resultam em um. Exemplo:
 
-\subsection{Algoritmo}
+\begin{lstlisting}[style=python, frame=single]
+In[1]: from classifier import SentmentClassifier
+In[2]: 
+In[3]: text = "@tntbr esta comecando agora a transmissao ao vivo do #Oscars2016 http://bit.ly/oscarstnt"
+In[3]: clean_stopwords(text)
 
-\subsection{Análises e \textit{insights}}
+Out[1]: "esta comecando agora transmissao vivo"
+
+\end{lstlisting}
+
+
+- Utilização da massa de dados para treino do algoritmo \textit{Naive Bayes} OK
+- Utilização do algoritmo \textit{Naive Bayes} contido dentro do NLTK para classificar o texto OK
+- Como o algoritmo retorno percentual negativo e positivo
+- Criação do status virtual "Neutro"
+- Objeto salvo junto ao documento extraído do Twitter contendo informações relevantes para análises e log da classificação
