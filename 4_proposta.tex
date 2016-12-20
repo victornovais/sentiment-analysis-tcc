@@ -17,7 +17,7 @@ A plataforma do Twitter conecta aplicações e sites com seus dados através de 
 
 \subsection{Autenticação}
 
-Para que ter acesso à API antes é necessário possuir uma conta no Twitter e criar uma \textit{app} - através do próprio site \cite{twitterapp} - que utilizará o protocolo de autenticação OAuth\cite{oauth} para acessar os dados do Twitter se passando pelo usuário em questão. O objetivo do protocolo OAuth é permitir que uma aplicação se autentique em outra "em nome de um usuário". A aplicação pede permissão de acesso ao usuário, que possui a escolha de conceder permissão ou não. Um ponto importante: o usuário não precisa informar a sua senha para se autenticar, portanto a permissão continua vigente caso a senha do usuário se altere, o que permite que a aplicação não precise de manutenção neste caso, tornando-a mais resiliente. A autenticação por meio do OAuth necessita de três passos:
+Para que ter acesso à API antes é necessário possuir uma conta no Twitter e criar uma aplicação - através do próprio site \cite{twitterapp} - que utilizará o protocolo de autenticação OAuth\cite{oauth} para acessar os dados do Twitter se passando pelo usuário em questão. O objetivo do protocolo OAuth é permitir que uma aplicação se autentique em outra "em nome de um usuário". A aplicação pede permissão de acesso ao usuário, que possui a escolha de conceder permissão ou não. Um ponto importante: o usuário não precisa informar a sua senha para se autenticar, portanto a permissão continua vigente caso a senha do usuário se altere, o que permite que a aplicação não precise de manutenção neste caso, tornando-a mais resiliente. A autenticação por meio do OAuth necessita de três passos:
 
 \begin{enumerate}
 	\item Aplicação cliente obtém chave de autenticação;
@@ -25,7 +25,7 @@ Para que ter acesso à API antes é necessário possuir uma conta no Twitter e c
 	\item Aplicação cliente troca a chave de autenticação pela chave de acesso;
 \end{enumerate}
 
-Após o processo de criação da \textit{app}, é criado um \textit{token} de acesso que deve ser utilizado pelo sistema que deseja se autenticar no Twitter em nome de um usuário. Este \textit{token} deve ser incorporado em cada requisição à API do Twitter para autenticar a mesma e dizer ao Twitter qual é a fonte do acesso.
+Após o processo de criação da aplicação, é criado um \textit{token} de acesso que deve ser utilizado pelo sistema que deseja se autenticar no Twitter em nome de um usuário. Este \textit{token} deve ser incorporado em cada requisição à API do Twitter para autenticar a mesma e dizer ao Twitter qual é a fonte do acesso.
 
 \subsection{Limite de requisições}
 A fim de evitar grande concentração de requisições em seus serviços, o Twitter implementa um limitador em sua API \cite{twitterrequestlimit2016}. São permitidas até 180 requisições por janela, que dura 15 minutos. Caso o limite seja ultrapassado, o serviço passa a retornar um erro na resposta, até que a "janela" de 15 minutos se renove.
