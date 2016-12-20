@@ -313,29 +313,43 @@ Out[1]: "esta comecando agora transmissao vivo"
 \subsection{Construção da massa treino}
 Durante o processo de pesquisa de bases de termos classificadas previamente em positivos e negativos, foram encontradas algumas fontes interessantes a se utilizar como bases de dados confiáveis para a mineração de opinião em língua portuguesa.
 A primeira delas veio de um artigo escrito por Cláudia Freitas, estudante da Pontifícia Universidade Católica do Rio de Janeiro \cite{freitas2013construccao}. A temática do artigo gira em torno da construção de um léxico da afetividade para processamento computacional do português, que possui alta sinergia com a proposta deste trabalho. Esta base de dados foi apelidada durante o trabalho de "PUC".
-Outra base de dados utilizada durante este trabalho - apelidada de Sent-Lex-PT - foi encontrada durante a leitura de um artigo entitulado "Building a sentiment lexicon for social \textit{judgement mining}"\cite{marioj.silvapaulacarvalholuissarmento2012}, escrito em 2012 por Mário J. Silva, pesquisador Sênior do Instituto de Engenharia de Sistemas e Computadores, Investigação e Desenvolvimento em Lisboa e sua equipe. 
+Outra base de dados utilizada durante este trabalho - apelidada de SentiLex-PT - foi encontrada durante a leitura de um artigo entitulado "Building a sentiment lexicon for social \textit{judgement mining}"\cite{marioj.silvapaulacarvalholuissarmento2012}, escrito em 2012 por Mário J. Silva, pesquisador Sênior do Instituto de Engenharia de Sistemas e Computadores, Investigação e Desenvolvimento em Lisboa e sua equipe. 
 Fechando as bases de dados encontradas, o ReLi (REsenha de LIvros) foi criado no âmbito do projeto Anotadores Semânticos baseados em Aprendizado Ativo, do LEARN, coordenado por Ruy Milidiú (Departamento de Informática - PUC-Rio). Consiste em 1600 resenhas de livros anotadas manualmente quanto à presença de opinião sobre o livro resenhado e sua polaridade\cite{reli-resenha-livros}.
-Todas as bases, já normalizadas, podem ser encontradas no Apêndice A deste trabalho. 
+Todas as bases, já normalizadas, podem ser encontradas no apêndice \ref{bases-palavras} deste trabalho. 
 
 A construção da massa de treino foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, unindo a perspectiva de diversas bases de dados utilizadas, visando o melhor desempenho do algoritmo. Cada base de palavra possui um formato diferente e para utilizá-las de uma forma única foi necessário normalizá-las. Para isso, cada base foi dividida em dois arquivos: um contento apenas termos positivos - pos.txt - e outro apenas termos negativos - neg.txt . Segue um exemplo de como uma das normalizações foi feita:
 
-\todo{Colocar a foto das bases originais}
-\begin{lstlisting}[style=shared, frame=single, caption=Base de palavras original]
-SUBSTANTIVOS [+]
-alegria, atemporalidade, beleza, bem-estar, best-seller, brilho, carisma, companheirismo, deleite, densidade, diferencial, empatia, entusiasmo, envolvente, facilidade, favorito, fluidez, genialidade, gostinho, grandeza, ironia, magnetismo, obra-prima, originalidade, prazer, predileto, preferido, primor, sensibilidade, sufocamento, talento, taquicardia, ternura, top, virtude
 
-SUBSTANTIVOS [-]
-besteira, bobagem, bosta, chatice, defeito, demorar, desastre, desconforto, desprazer, droga, engano, erro, exagero, excesso, falhar, falho, falta, furo, imaturidade, inexperiente, lixar, meleca, melodrama, meloso, mundo,  nojo, passividade, pena, pieguice, porca, porcaria, problema, sentimentalismo, superficialidade, vergonha
-
-ADJETIVOS [-]
-.....
-\end{lstlisting}
+\begin{figure}[H]
+	\centering\epsfig{file=figuras/sentilex.eps, width=15cm}
+	\caption{Base SentiLex-PT antes da normalização }
+	\label{sentilex}
+\end{figure}
 
 E após a divisão dos termos positivos e negativos em arquivos distintos, o resultado foi o seguinte:
 
-\todo{Colocar a foto das bases normalizadas}
 
-Por último, durante os testes com a classificação surgiu a ideia de produzir uma base de dados customizada para o evento Oscars 2016. A base de dados foi elaborada seguindo o padrão estabelecido anteriormente e preenchida com palavras relevantes ao contexto do evento e polarizadas pelo idealizadores deste projeto. \todo{Achar a porra da base}
+\begin{figure}[h]
+	
+	\center
+	\subfigure[sentilexpos][Lista de palavras positivas]{\includegraphics[width=5cm]{figuras/sentilexpos.eps}}
+	\qquad
+	\subfigure[sentilexneg][Lista de palavras negativas]{\includegraphics[width=5cm]{figuras/sentilexneg.eps}}
+	\caption{Base SentiLex-PT normalizada positiva e negativa}
+	
+\end{figure}
+
+Por último, durante os testes com a classificação surgiu a ideia de produzir uma base de dados customizada para o evento Oscars 2016. A base de dados foi elaborada seguindo o padrão estabelecido anteriormente e preenchida com palavras relevantes ao contexto do evento e polarizadas pelo idealizadores deste projeto.
+
+\begin{figure}[h]
+	
+	\center
+	\subfigure[oscar-pos][Lista de palavras positivas]{\includegraphics[width=5cm]{figuras/oscar-pos.eps}}
+	\qquad
+	\subfigure[oscar-neg][Lista de palavras negativas]{\includegraphics[width=5cm]{figuras/oscar-neg.eps}}
+	\caption{Base Oscar 2016 normalizada positiva e negativa}
+	
+\end{figure}
 
 \subsection{Classificação}
 O primeiro passo para a classificação de um \textit{tweet} é calibrar o algoritmo escolhido para efetuar a classificação - para este trabalho foi utilizado o algoritmo \textit{Naive Bayes}. Com posse das bases de palavras e termos já polarizadas citadas acima foi necessário treinar o algoritmo para que ele conseguisse classificar automaticamente qualquer texto, frase ou sentença. 
