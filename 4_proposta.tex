@@ -345,11 +345,10 @@ Como resultado da classificação, o \textit{Naive Bayes} retorna dois valores c
 
 \begin{lstlisting}[style=python, frame=single]
 In[1]: from classifier import SentmentClassifier
-In[2]: 
-In[3]: text = "@tntbr esta comecando agora a transmissao ao vivo do #Oscars2016 http://bit.ly/oscarstnt"
-In[3]: clean_stopwords(text)
+In[2]: sentiment = SentimentClassifier.classify("Spotlight foi sensacional! #oscars2016")
+In[3]: print sentiment
 
-Out[1]: "esta comecando agora transmissao vivo"
+Out[1]: Sentiment({p_pos: 0.91, p_neg: 0.09})
 
 \end{lstlisting}
 
