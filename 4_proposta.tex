@@ -2,6 +2,7 @@
 
 Como visto no Capítulo 2, existe uma corrente dentro da Mineração de Opinião que vem desenvolvendo maneiras de explorar o conteúdo digital gerado pela nossa sociedade todos os dias em redes sociais, através de técnicas utilizando Processamento de Linguagem Natural e \textit{Machine Learning}, principalmente. Com este fato surge a oportunidade de explorar novas ferramentas na
 solução de problemas que envolvem pesquisas de opinião de forma geral.
+
 Neste trabalho propõem-se um \textit{framework} que torna possível fazer pesquisas de opiniões em língua portuguesa sobre qualquer tema que seja rastreável a partir de uma \textit{hashtag} no Twitter.
 Para tal é necessário que o \textit{framework} criado seja capaz de:
 
@@ -29,6 +30,7 @@ Após o processo de criação da aplicação, é criado um \textit{token} de ace
 
 \subsection{Limite de requisições}
 A fim de evitar grande concentração de requisições em seus serviços, o Twitter implementa um limitador em sua API \cite{twitterrequestlimit2016}. São permitidas até 180 requisições por janela, que dura 15 minutos. Caso o limite seja ultrapassado, o serviço passa a retornar um erro na resposta, até que a "janela" de 15 minutos se renove.
+
 A partir da versão 1.1 da API, novos cabeçalhos \ac{HTTP} são retornados provendo \textit{feedback} sobre os limites para requisição. Este recurso permite que o código consiga entender em que momento da janela se encontra, quantos requisições ainda podem ser feitas neste período de tempo e quanto é necessário esperar para poder fazer novas requisições. Os cabeçalhos em questão são:
 
 \begin{itemize}
@@ -91,6 +93,7 @@ Porém, realizando alguns testes na API do Twitter, foi detectado que ao submete
 Por uma questão de desenho da API de busca, cada requisição é capaz de trazer no máximo 100 \textit{tweets}, o que nos dá ao total uma carga máxima de até 1200 novos \textit{tweets} por minuto. Para as análises feitas durante este trabalho este número se mostrou mais do que suficiente. Como dito anteriormente, se fosse necessário escalar este sistema para monitorar um evento maior, seria necessário apenas obter um saldo maior de requisições junto a API do Twitter - adicionando mais \textit{tokens} de usuário e criando uma espécie de "rodízio" de autenticações, por exemplo - e escalar o número de consumidores do processo de acordo com a demanda. Uma boa maneira de detectar se isso seria necessário é acompanhar quantos \textit{tweets} novos são coletados a cada requisição. Como utilizamos o \textit{id} do último \textit{tweet} capturado como referência para os novos, se a cada requisição o número de novos \textit{tweets} com grande frequência coincidir com o limite da API, temos um indício de que o volume de novas mensagens no Twitter está excedendo a capacidade do sistema de coletá-las e que o excedente está sendo perdido.
 
 \section{Armazenamento}
+\label{proposta:armazenamento}
 A resposta da API de Busca é dada no formato JSON e cada objeto - que corresponde a cada \textit{tweet} - segue o seguinte formato e conta com diversas informações sobre o mesmo: 
 
 \begin{lstlisting}[style=json, frame=single]
@@ -247,7 +250,7 @@ Porém, toda palavra da língua portuguesa possui um "núcleo" que não muda ind
 
 Para que a classificação seja eficiente em definir o sentimento contido nas mensagens extraídas a partir do Twitter é necessário que os termos existentes no mesmo sejam palavras já classificadas previamente em negativas ou positivas nas bases que foram escolhidas para treinar nosso algoritmo, como veremos mais a frente. Extrair os radicais tanto das palavras contidas no \textit{tweet} quanto das bases classificadas que utilizamos é uma técnica fundamental, dado que com ela se remove grande parte das variações linguísticas de um termo sem alterar o seu significado. A adição desta técnica no fluxo de normalização de texto foi feita num estágio tardio do projeto e gerou um cenário de teste que é apresentado no Capítulo 4, onde pode-se ver uma diminuição considerável no número de "falso neutros", ou seja, ocorrências onde o algoritmo falhava em classificar mensagens por falta de dados e por consequência as classificava como neutras.
 
-O NLTK possui duas implementação de \textit{stemmers} em sua biblioteca: a primeira é o \textit{Poter Stemmer} - algoritmo escrito por Martin Porter e publicado em 1980. O algoritmo se tornou extremamente popular e com isso se tornou o algoritmo padrão para processos de \textit{stemming} em língua inglesa. Para abranger outras línguas, outros algoritmos foram escritos, porém muitos deles possuíam falhas que dificultaram sua adesão. Por conta disso, durante os anos 2000 Porter expandiu seu trabalho criando o Snowball\cite{snowball}, um framework para desenvolvimento de algoritmos de \textit{stemming}, um dos quais será utilizado neste trabalho para realizar o processo em língua portuguesa. 
+O NLTK possui duas implementação de \textit{stemmers} em sua biblioteca: a primeira é o \textit{Poter Stemmer} - algoritmo escrito por Martin Porter e publicado em 1980. O algoritmo se tornou extremamente popular e com isso se tornou o algoritmo padrão para processos de \textit{stemming} em língua inglesa. Para abranger outras línguas, outros algoritmos foram escritos, porém muitos deles possuíam falhas que dificultaram sua adesão. Por conta disso, durante os anos 2000 Porter expandiu seu trabalho criando o Snowball\cite{snowball}, um \textit{framework} para desenvolvimento de algoritmos de \textit{stemming}, um dos quais será utilizado neste trabalho para realizar o processo em língua portuguesa. 
 
 
 \begin{lstlisting}[style=python, frame=single]
@@ -312,49 +315,51 @@ Out[1]: "esta comecando agora transmissao vivo"
 
 \subsection{Construção da massa treino}
 Durante o processo de pesquisa de bases de termos classificadas previamente em positivos e negativos, foram encontradas algumas fontes interessantes a se utilizar como bases de dados confiáveis para a mineração de opinião em língua portuguesa.
-A primeira delas veio de um artigo escrito por Cláudia Freitas, estudante da Pontifícia Universidade Católica do Rio de Janeiro \cite{freitas2013construccao}. A temática do artigo gira em torno da construção de um léxico da afetividade para processamento computacional do português, que possui alta sinergia com a proposta deste trabalho. Esta base de dados foi apelidada durante o trabalho de "PUC".
-Outra base de dados utilizada durante este trabalho - apelidada de SentiLex-PT - foi encontrada durante a leitura de um artigo entitulado "Building a sentiment lexicon for social \textit{judgement mining}"\cite{marioj.silvapaulacarvalholuissarmento2012}, escrito em 2012 por Mário J. Silva, pesquisador Sênior do Instituto de Engenharia de Sistemas e Computadores, Investigação e Desenvolvimento em Lisboa e sua equipe. 
-Fechando as bases de dados encontradas, o ReLi (REsenha de LIvros) foi criado no âmbito do projeto Anotadores Semânticos baseados em Aprendizado Ativo, do LEARN, coordenado por Ruy Milidiú (Departamento de Informática - PUC-Rio). Consiste em 1600 resenhas de livros anotadas manualmente quanto à presença de opinião sobre o livro resenhado e sua polaridade\cite{reli-resenha-livros}.
-Todas as bases, já normalizadas, podem ser encontradas no apêndice \ref{bases-palavras} deste trabalho. 
 
-A construção da massa de treino foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, unindo a perspectiva de diversas bases de dados utilizadas, visando o melhor desempenho do algoritmo. Cada base de palavra possui um formato diferente e para utilizá-las de uma forma única foi necessário normalizá-las. Para isso, cada base foi dividida em dois arquivos: um contento apenas termos positivos - pos.txt - e outro apenas termos negativos - neg.txt . Segue um exemplo de como uma das normalizações foi feita:
+A primeira delas veio de um artigo escrito por Cláudia Freitas, estudante da Pontifícia Universidade Católica do Rio de Janeiro \cite{freitas2013construccao}. A temática do artigo gira em torno da construção de um léxico da afetividade para processamento computacional do português, que possui alta sinergia com a proposta deste trabalho. Esta base de dados foi apelidada durante o trabalho de "PUC".
+Outra base de dados utilizada durante este trabalho - apelidada de SentiLex-PT - foi encontrada durante a leitura de um artigo entitulado \textit{Building a sentiment lexicon for social judgement mining}\cite{marioj.silvapaulacarvalholuissarmento2012}, escrito em 2012 por Mário J. Silva, pesquisador Sênior do Instituto de Engenharia de Sistemas e Computadores, Investigação e Desenvolvimento em Lisboa e sua equipe. 
+Concluindo as bases de dados encontradas, o ReLi (REsenha de LIvros) foi criado no âmbito do projeto Anotadores Semânticos baseados em Aprendizado Ativo, do LEARN, coordenado por Ruy Milidiú (Departamento de Informática - PUC-Rio). Consiste em 1600 resenhas de livros anotadas manualmente quanto à presença de opinião sobre o livro resenhado e sua polaridade\cite{reli-resenha-livros}.Todas as bases, já normalizadas, podem ser encontradas no apêndice \ref{bases-palavras} deste trabalho. 
+
+A construção da massa de treino foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, unindo a perspectiva de diversas bases de dados, visando o melhor desempenho do algoritmo quando utilizado para classificar textos em português. Outro ponto interessante é que cada base de palavras possui um formato diferente e para encorporá-las a massa de treino do algoritmo de uma forma única foi necessário normalizá-las. Para isso, cada base foi dividida em dois arquivos: um contento apenas termos positivos - pos.txt - e outro apenas termos negativos - neg.txt . Segue um exemplo de como uma das normalizações foi feita:
 
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/sentilex.eps, width=15cm}
-	\caption{Base SentiLex-PT antes da normalização }
+	\caption{Base SentiLex-PT antes da normalização}
 	\label{sentilex}
 \end{figure}
 
-E após a divisão dos termos positivos e negativos em arquivos distintos, o resultado foi o seguinte:
+E após a divisão dos termos positivos e negativos em arquivos distintos, o resultado segue abaixo:
 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	
 	\center
-	\subfigure[sentilexpos][Lista de palavras positivas]{\includegraphics[width=5cm]{figuras/sentilexpos.eps}}
+	\subfigure[sentilexpos][Lista de termos positivas]{\includegraphics[width=7cm]{figuras/sentilexpos.eps}}
 	\qquad
-	\subfigure[sentilexneg][Lista de palavras negativas]{\includegraphics[width=5cm]{figuras/sentilexneg.eps}}
-	\caption{Base SentiLex-PT normalizada positiva e negativa}
+	\subfigure[sentilexneg][Lista de termos negativas]{\includegraphics[width=7cm]{figuras/sentilexneg.eps}}
+	\caption{Base SentiLex-PT normalizada, dividindo em dois arquivos distintos os termos positivos e negativos}
 	
 \end{figure}
 
-Por último, durante os testes com a classificação surgiu a ideia de produzir uma base de dados customizada para o evento Oscars 2016. A base de dados foi elaborada seguindo o padrão estabelecido anteriormente e preenchida com palavras relevantes ao contexto do evento e polarizadas pelo idealizadores deste projeto.
+Por último, durante os testes com a classificação surgiu a ideia de produzir uma base de dados customizada para o evento Oscar 2016. A base de dados foi elaborada seguindo o padrão estabelecido anteriormente e preenchida com palavras relevantes ao contexto do evento e classificadas manualmente pelo idealizadores deste projeto.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	
 	\center
-	\subfigure[oscar-pos][Lista de palavras positivas]{\includegraphics[width=5cm]{figuras/oscar-pos.eps}}
+	\subfigure[oscar-pos][Lista de termos positivas]{\includegraphics[width=5cm]{figuras/oscar-pos.eps}}
 	\qquad
-	\subfigure[oscar-neg][Lista de palavras negativas]{\includegraphics[width=5cm]{figuras/oscar-neg.eps}}
-	\caption{Base Oscar 2016 normalizada positiva e negativa}
+	\subfigure[oscar-neg][Lista de termos negativas]{\includegraphics[width=5cm]{figuras/oscar-neg.eps}}
+	\caption{Amostragem da base de termos \textit{Oscar 2016} normalizada, dividindo em dois arquivos distintos os termos positivos e negativos}
 	
 \end{figure}
 
 \subsection{Classificação}
-O primeiro passo para a classificação de um \textit{tweet} é calibrar o algoritmo escolhido para efetuar a classificação - para este trabalho foi utilizado o algoritmo \textit{Naive Bayes}. Com posse das bases de palavras e termos já polarizadas citadas acima foi necessário treinar o algoritmo para que ele conseguisse classificar automaticamente qualquer texto, frase ou sentença. 
-Como já foi abordado anteriormente, para este projeto foi utilizada a biblioteca NLTK, construída como suíte de soluções para trabalhar com linguagem natural em Python. O NLTK possui diversos algoritmos de classificação disponíveis para uso, sendo o \textit{Naive Bayes} um deles. 
-Por padrão, para treinar o algoritmo, o NLTK utiliza como base de dados alguns bancos de palavras genéricos disponíveis dentro da própria biblioteca. Para utilizar as bases de dados mencionadas acima como insumo para o treino do algoritmo foi necessário sobrescrever os métodos de treino do classificador contidos dentro do NLTK. Após esta customização, o algoritmo passou a classificar textos utilizando as bases descritas acima como massa de treino.
+O primeiro passo para a classificação de um \textit{tweet} é calibrar o algoritmo escolhido para efetuar a classificação - lembrando que para este trabalho foi utilizado o algoritmo \textit{Naive Bayes}. Com posse das bases de palavras e termos já classificados anteriormente foi necessário treinar o algoritmo para que ele conseguisse se calibrar através das palavras e termos classificados contidos nas bases. 
+Como já foi abordado anteriormente, para este projeto foi utilizada a biblioteca NLTK, construída como suíte de soluções para trabalhar com linguagem natural em Python. O NLTK possui diversos algoritmos de classificação disponíveis para uso, sendo o \textit{Naive Bayes} um deles.
+
+Por padrão, para treinar o algoritmo, o NLTK utiliza como base de dados alguns bancos de palavras genéricas disponíveis dentro da própria biblioteca. Para utilizar as bases de dados mencionadas acima como massa de treino para o algoritmo foi necessário sobrescrever os métodos de treino do classificador contidos dentro do NLTK. Após esta customização, o algoritmo passou a classificar textos utilizando as bases descritas acima como massa de treino.
+
 Como resultado da classificação, o \textit{Naive Bayes} retorna dois valores como resultado: o primeiro sendo a probabilidade entre zero e um do texto classificado ser positivo e outro sendo a probabilidade do mesmo ser negativo. A soma entre as duas probabilidades sempre resultam em um. Exemplo:
 
 \begin{lstlisting}[style=python, frame=single]
@@ -362,13 +367,23 @@ In[1]: from classifier import SentmentClassifier
 In[2]: sentiment = SentimentClassifier.classify("Spotlight foi sensacional! #oscars2016")
 In[3]: print sentiment
 
-Out[1]: Sentiment({p_pos: 0.91, p_neg: 0.09})
+Out[1]: Sentiment({p_pos: 0.91, p_neg: 0.09, classification: "pos"})
 
 \end{lstlisting}
 
+Durante testes com o algoritmo de classificação \textit{Naive Bayes} foi observado que quando o mesmo não conseguia extrair nenhuma tendência positiva ou negativa do texto a ser classificado o resultado determinava uma probabilidade igual do texto ser positivo ou negativo. Por este motivo, para facilitar as consultas e análises posteriores foi feita uma ligeira modificação para salvar o sentimento nesses casos como \textit{"neu"} - uma alusão a palavra \textit{"neutro"}.
 
-- Utilização da massa de dados para treino do algoritmo \textit{Naive Bayes} OK
-- Utilização do algoritmo \textit{Naive Bayes} contido dentro do NLTK para classificar o texto OK
-- Como o algoritmo retorno percentual negativo e positivo
-- Criação do status virtual "Neutro"
-- Objeto salvo junto ao documento extraído do Twitter contendo informações relevantes para análises e log da classificação
+Como foi dito anteriormente em na seção \ref{proposta:armazenamento} (Armazenamento) antes de armazenar o documento extraído da API do Twitter são adicionadas algumas informações pertinentes ao processo de classificação. Entre elas podemos citar:
+
+\begin{itemize}
+	\item \textit{\textbf{normalized\_text}} texto normalizado sem \textit{stopwords} e apenas contendo o radical de cada palavra do \textit{tweet};
+	\item \textit{\textbf{classification}}: classificação semântica que pode variar em positiva, neutra ou negativa;
+	\item \textit{\textbf{p\_pos}}: probabilidade do texto classificado ser positivo segundo o algoritmo;
+	\item \textit{\textbf{p\_neg}}: probabilidade do texto classificado ser negativo segundo o algoritmo;
+	\item \textit{\textbf{databases}}: bancos de dados de palavras utilizados como masse de treino para a classificação;
+	\item \textit{\textbf{classified\_at}}: data e hora da classificação.
+\end{itemize}
+
+Estas informações foram incluídas por serem consideradas úteis durante o processo de análise dos resultados - tornando a consulta na base de dados mais simples - e durante o processo de análise do desempenho do algoritmo escolhido - mostrando por exemplo quais bases de palavras se mostraram mais eficientes para o estudo de caso conduzido durante o evento de entrega do Oscar 2016, entre outras métricas e análises que serão abordadas no Capítulo 4. 
+
+Por se tratar de algoritmo baixa complexidade matemática, o processo de classificação se mostrou surpreendentemente rápido e não se mostrou um gargalo para o processo de coleta de dados no Twitter, que apenas precisa buscar os últimos \textit{tweets} na API do Twitter. Por conta disso, foi possível extrair os \textit{tweets} e classificá-los imediatamente sem atrasar ou prejudicar a etapa de coleta.
