@@ -1,18 +1,18 @@
 \chapter{Introdução} \label{cap:1}
 
 Através do fenômeno da popularização da Internet vivemos hoje um período conhecido como "Era da conhecimento" \cite{lastres1999informaccao}.
-Nesse contexto, redes sociais mais conhecidas - como Facebook e Twitter - se tornaram bastante populares por permitirem a seus usuários acesso à um ambiente onde todos possuem voz e vez para se expressar e por consequência, para se informar sobre tudo que acontece no mundo.
-Através de \ac{API} disponibilizadas por essas redes sociais, possuímos fácil acesso a um grande volume de informação produzida pelos usuários e que podem ser utilizadas em pesquisas de opinião sobre um tema ou assunto específico. Tal cenário apresenta-se como uma grande oportunidade de pesquisa em áreas acadêmicas, sociais e comerciais.
+Nesse contexto, redes sociais - como Facebook e Twitter - se tornaram bastante populares por permitirem a seus usuários acesso à um ambiente onde todos possuem voz e vez para se expressar, se informar sobre tudo que acontece no mundo.
+Através de \ac{API} disponibilizadas por essas redes sociais, é possível ter fácil acesso a um grande volume de informação produzida pelos usuários e que podem ser utilizadas em pesquisas de opinião sobre um tema ou assunto específico. Tal cenário apresenta-se como uma grande oportunidade de pesquisa em áreas acadêmicas, sociais e comerciais.
 
 Em Gomes \cite{gomes2013text} a mineração de texto é aplicada em busca de notícias sobre economia em Portugal. O trabalho concentra-se em monitorar sites relevantes que abordam notícias sobre a economia do país para representar o sentimento expresso no texto, através dos títulos das reportagens.
 
 Em Pak e Paroubek \cite{pak2010twitter} o Twitter é utilizado como fonte dados para análises de sentimento. O idioma de estudo escolhido foi o inglês, mas grande parte das técnicas apresentadas podem ser aplicadas em outras línguas.
 
-Porém, quando o objeto de estudo é a língua portuguesa, nota-se que a mesma carece de trabalhos e implementações na área de mineração de opiniões e análise de sentimento. Alguns motivos explicam essa carência: poucos investimentos na área de ciência e engenharia da computação em nosso país e a grande dificuldade que a língua portuguesa apresenta ao ser interpretada através de processamento de linguagem natural. \cite{santos2000projecto}
+No caso específico da língua portuguesa, nota-se que a mesma carece de trabalhos e implementações na área de mineração de opiniões e análise de sentimento. Alguns motivos explicam essa carência: poucos investimentos na área de ciência e engenharia da computação em nosso país e a grande dificuldade que a língua portuguesa apresenta ao ser interpretada através de processamento de linguagem natural. \cite{santos2000projecto}
 
 Alguns trabalhos utilizam o português como objeto de estudo, como por exemplo Tortella e Coelho \cite{tortellaanalise}. Outros, se propõem a estudar um evento ou acontecimento, como por exemplo as eleições presidenciais brasileiras no ano de 2010 \cite{rodrigues2012characterizing}, os protestos populares contra a corrupção ocorridos em 2013 \cite{franca2014analise} e a Copa do Mundo da FIFA Brasil em 2014 \cite{carvalho2014mineraccao}. Nesses casos, \textit{tweets} postados por usuários contendo \textit{hashtags} referentes ao evento a ser estudado são monitorados e salvos numa base de dados ao longo do evento. Após o fim do mesmo, os dados são classificados utilizando um algoritmo previamente treinado e os resultados são analisados a fim de determinar a relevância, impacto e opiniões geral de acordo com a opinião dos usuários.
 
-Neste trabalho, será aplicado o processo de mineração de opinião e análise de sentimento de forma semelhante a Pak e Paroubek \cite{pak2010twitter}, porém utilizando português como idioma de estudo. O objetivo é demonstrar como a mineração de opinião e análise de sentimento podem ser abordadas de forma abrangente, com a aplicação de técnicas generalistas. Além disso, é proposto um estudo de caso sobre a cerimônia do Oscar no ano de 2016 para também mostrar como um evento ou acontecimento pode ser estudado, aplicando técnicas específicas que tem como objetivo tornar a classificação mais especializada e precisa para este contexto, similar ao que foi feito em \cite{rodrigues2012characterizing} \cite{franca2014analise} \cite{carvalho2014mineraccao}.
+Neste trabalho, será aplicado o processo de mineração de opinião e análise de sentimento de forma semelhante a Pak e Paroubek \cite{pak2010twitter}, porém utilizando português como idioma de estudo. O objetivo é demonstrar como a mineração de opinião e análise de sentimento podem ser abordadas de forma abrangente, com a aplicação de técnicas generalistas. Além disso, é proposto um estudo de caso sobre a cerimônia do Oscar no ano de 2016 para também mostrar como um evento ou acontecimento pode ser estudado, aplicando técnicas específicas que tem como objetivo tornar a classificação mais especializada e precisa para este contexto, similar ao que foi feito em \cite{rodrigues2012characterizing},  \cite{franca2014analise} e \cite{carvalho2014mineraccao}.
 
 
 \section{Motivação e Objetivos}\label{sec:1_inicio}
@@ -21,7 +21,7 @@ O objetivo, portanto, é desenvolver uma prova de conceito utilizando um grande 
 
 
 \section{Metodologia}
-Na pesquisa e análise dos dados apoia-se no método científico para alcançar conclusões. Para começar, foi necessário conhecer o tema - mineração de opinião - e familiarizar-se com o novo vocabulário. O estado da arte e artigos introdutórios ao tema serviram de alicerce.
+A pesquisa e análise dos dados apoia-se no método científico para alcançar conclusões. Para começar, foi necessário conhecer o tema - mineração de opinião - e familiarizar-se com o novo vocabulário. O estado da arte e artigos introdutórios ao tema serviram de alicerce.
 
 De posse deste conhecimento uma análise do problema a ser resolvido abriu caminho para o projeto, que é apresentado aqui e foi testado utilizando o evento de premiação dos Oscars 2016 e sua repercussão nas mídias sociais brasileiras como estudo de caso. As decisões de arquitetura e implementação são apresentadas através de comparações entre tecnologias e o seu impacto no produto final.
 
@@ -30,8 +30,8 @@ Por fim, foram coletados dados da classificação dos \textit{tweets} de usuári
 
 \section{Organização do trabalho}
 
-Este trabalho está estruturado em 5 capítulos da seguinte forma: no Capítulo~\ref{cap:referencial_teorico}, para embasamento teórico, são apresentados os conceitos de Mineração de opinião, Processamento de linguagem natural e classificação segundo Naive Bayes. 
+Este trabalho está estruturado em 5 capítulos da seguinte forma: no Capítulo~\ref{cap:referencial_teorico}, para embasamento teórico, são apresentados os conceitos de mineração de opinião, processamento de linguagem natural e classificação segundo o algoritmo Naive Bayes. 
 
-Em seguida, no Capítulo~\ref{cap:proposta}, são descritos os processos de coleto de dados, armazenamento e classificação, assim como suas respectivas arquiteturas, desafios e soluções. Em seguida, o Capítulo~\ref{cap:resultados} apresenta os principais resultados obtidos com a análise feita em cima do estudo de caso do eventos Oscars 2016, assim como a análise dos valores encontrados. 
+No Capítulo~\ref{cap:proposta}, são descritos os processos de coleto de dados, armazenamento e classificação, assim como suas respectivas arquiteturas, desafios e soluções encontradas. Em seguida, o Capítulo~\ref{cap:resultados} apresenta os principais resultados obtidos com a análise feita em cima do estudo de caso do eventos Oscars 2016, assim como a discussão dos resultados. 
 
-Por fim, o Capítulo~\ref{cap:conclusao} conclui este trabalho, ressaltando os objetivos alcançados com as propostas. As principais vantagens e desvantagens da proposta são discutidas, assim como alguns trabalhos futuros que podem ser desenvolvidos. 
+Por fim, o Capítulo~\ref{cap:conclusao} ressalta os objetivos alcançados, suas principais vantagens e desvantagens da proposta são discutidas, assim como alguns trabalhos futuros que podem ser desenvolvidos. 

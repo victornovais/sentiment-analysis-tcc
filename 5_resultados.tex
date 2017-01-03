@@ -13,10 +13,12 @@ Durante a execução dos testes para a análise de resultados o ambiente utiliza
 \end{itemize}
 
 \section{Técnicas}
-Durante a realização do trabalho foram utilizados duas técnicas para maximizar a performance do modelo. As técnicas foram aplicadas nas bases utilizadas para a classificação e nos dados coletados de acordo com os testes discutidos ao longo do capítulo
+Durante a realização do trabalho foram utilizados duas técnicas para maximizar a performance do modelo. As técnicas foram aplicadas nas bases utilizadas para a classificação e nos dados coletados de acordo com os testes discutidos ao longo do capítulo.
+
 \subsection{Stemming}
 A técnica de \textit{stemming}, conhecido em português como stemização, consiste na redução de um termo ao seu radical, removendo as desinências, afixos, e vogais temáticas. Com sua utilização, os termos derivados de um mesmo radical serão contabilizados como um único termo \cite{989755}.
-\begin{table}[]
+
+\begin{table}[H]
 	\centering
 	\caption{Exemplo de stemização}
 	\label{my-label}
@@ -34,7 +36,8 @@ A técnica de \textit{stemming}, conhecido em português como stemização, cons
 A técnica de \textit{stopwords}, como citado anteriormente, consiste na remoção de palavras "vazias", como artigos, preposições e interjeições, que não agregam valor a análise realizada. Além disso, essas palavras podem ser configuráveis dependendo do domínio do seu estudo  \cite{Rajaraman_Ullman_2011}.
 
 \section{Desenvolvimento do modelo de análise}\label{sec:desenv-moda}
-O primeiro teste realizado para a classificação da base obteve o seguinte resultado:
+O primeiro teste realizado para a classificação da base apresentou o seguinte resultado:
+
 \begin{table}[H]
 	\centering
 	\caption{1º teste}
@@ -53,14 +56,14 @@ O primeiro teste realizado para a classificação da base obteve o seguinte resu
 	\end{tabular}
 \end{table}
 
-Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, Reli , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141.798 \textit{tweets}, 17.350 foram positivos, 15.517 negativos e 108.931 neutros.
+Como mostra a tabela \ref{teste-1} é visto quais as bases utilizadas, nesse caso, ReLi , PUC e Sentilex, as técnicas utilizadas nesse teste, \textit{Stopwords} e \textit{Stemming}, e o resultado que de 141.798 \textit{tweets}, 17.350 foram positivos, 15.517 negativos e 108.931 neutros.
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/teste-1.eps, width=10cm}
-	\caption{Quantidade de tweets separados por polaridade do teste 1. Fonte: Própria}
+	\caption{Quantidade de tweets classificados por polaridade do 1º teste.}
 	\label{teste-graf-1}
 \end{figure}
 
-Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que o modelo ainda tem dificuldade de definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de dados neutros.
+Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que o modelo apresentou dificuldade para definir a polaridade do texto. Com base nos resultados apresentados foram realizadas as seguintes mudanças visando diminuir a ocorrência de dados neutros.
  
 \begin{table}[H]
 	\centering
@@ -69,7 +72,7 @@ Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que
 	\begin{tabular}{|l|l|r}
 		\hline
 		\multicolumn{3}{|c|}{2º Teste} \\ \hline
-		\multicolumn{2}{|l|}{Bases usadas} & \multicolumn{1}{r|}{Tecnicas usadas} \\ \hline
+		\multicolumn{2}{|l|}{Bases usadas} & \multicolumn{1}{r|}{Técnicas usadas} \\ \hline
 		\multicolumn{2}{|c|}{Sentilex-Stem} & \multicolumn{1}{c|}{Stopwords} \\
 		\multicolumn{2}{|c|}{PUC-Stem} & \multicolumn{1}{c|}{Stemming} \\ \cline{3-3} 
 		\multicolumn{2}{|c|}{ReLi-Stem} &  \\ \hline
@@ -84,14 +87,14 @@ Nota-se que a quantidade de \textit{tweets} neutros é elevada, evidenciando que
 Como mostra a tabela \ref{teste-2} as mesmas bases foram utilizadas, porém com a aplicação da técnica de \textit{stemming}, como  PUC-Stem e Sentilex-Stem. Além de utilizar a mesma técnica nas  \textit{stopwprds}. O resultado de 141.798 \textit{tweets}, 49.263 foram positivos, 35.079 negativos e 57.456 neutros.
 
 
-Analisando o 2º teste é visto que a quantidade de neutro diminuiu consideravelmente, apenas aplicando a técnica de \textit{stemming} nas bases de palavras.
+Analisando o 2º teste pode-se ver que a quantidade de tweets classificados como neutro diminuiu consideravelmente, apenas aplicando a técnica de \textit{stemming} nas bases de palavras.
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/teste-2.eps, width=10cm}
-	\caption{Quantidade de tweets separados por polaridade do teste 2. Fonte: Própria}
+	\caption{Quantidade de tweets separados por polaridade do 2º teste.}
 	\label{teste-graf-2}
 \end{figure}
 
-Ainda buscando a diminuição de dados neutros foi criada uma base de palavras mais próxima do domínio que esse trabalho propõe com a base chamada Oscar2016, essa base contém palavras relevantes ao evento, gerando o seguinte resultado.
+Ainda buscando a diminuição de dados neutros foi criada uma base de palavras mais próxima do domínio que esse trabalho propõe chamada Oscar2016, essa base contém palavras relevantes ao evento, gerando o seguinte resultado:
 
 \begin{table}[H]
 	\centering
@@ -114,7 +117,7 @@ Analisando a tabela \ref{teste-3} é visto que apenas uma base mais especializad
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/teste-3.eps, width=10cm}
-	\caption{Quantidade de tweets separados por polaridade do teste 3. Fonte: Própria}
+	\caption{Quantidade de tweets separados por polaridade do 3º teste.}
 	\label{teste-graf-3}
 \end{figure}
 
@@ -145,7 +148,7 @@ Analisando a tabela \ref{teste-4} é visto que nesse teste foi obtido a maior ta
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/teste-4.eps, width=10cm}
-	\caption{Quantidade de tweets separados por polaridade do teste 4. Fonte: Própria}
+	\caption{Quantidade de tweets separados por polaridade do 4º teste.}
 	\label{teste-graf-4}
 \end{figure}
 
@@ -153,7 +156,7 @@ Segue abaixo um comparativo dos testes.
 
 \begin{table}[H]		
 	\centering
-	\caption{Comparando testes}
+	\caption{Comparativo entre testes.}
 	\label{teste-comp}
 	\begin{tabular}{l|l|c|l|l|}
 		\cline{2-5}
@@ -167,82 +170,76 @@ Segue abaixo um comparativo dos testes.
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/Pasta1.eps, width=15cm}
-	\caption{Gráfico de comparação dos testes}
+	\caption{Gráfico comparativo entre os testes.}
 	\label{teste-graf-comp}
 \end{figure}
 
 
-Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as configurações utilizadas no teste 4 para a realização da análise na base capturada, devido a menor presença de dados neutros classificados na base comprovando que as técnicas de \textit{stemming} e \textit{stopwords} foram válidas e relevantes para a sustentação modelo.
+Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as configurações utilizadas no teste 4 para a realização da análise na base capturada, devido a menor presença de dados neutros classificados na base, comprovando que as técnicas de \textit{stemming} e \textit{stopwords} foram válidas e relevantes para a sustentação modelo.
 
 \section{Resultados}\label{result}
 
 Para a análise dos resultados é necessário estabelecer premissas. O evento Oscar 2016 foi a  88.ª cerimônia de entrega dos \textit{Academy Awards} em \textit{Los Angeles}, Estados Unidos. O evento teve duração de aproximadamente 4 horas com seu início na noite do dia 28 de fevereiro, às 20:00 horário de Brasília no tapete vermelho com a entrada dos artistas e convidados. Seu encerramento às 2:00 do horário de Brasília do dia 29 de Fevereiro com a premiação do melhor filme. Os marcos do evento relevantes para o estudo: 
 \begin{itemize}
-	\item Apresentação do David Grohe em memória póstuma
-	\item Apresentação da Lady Gaga 
-	\item Discurso do Vice Presidente Americano
-	\item Melhor atriz
-	\item Melhor ator
-	\item Melhor filme
+	\item Apresentação do David Grohe em memória póstuma;
+	\item Apresentação da Lady Gaga;
+	\item Discurso do Vice Presidente Americano;
+	\item Melhor atriz;
+	\item Melhor ator;
+	\item Melhor filme.
 \end{itemize}
-Todos os eventos ocorridos no Oscar 2016 são listados em ordem cronológica no apêndice \ref{oscar-timeline}
 
-O gráfico \ref{qtd} mostra a curva da quantidade de \textit{tweets} em relação ao tempo  dividido pela polaridade. Nele é visto um pico  no começo do evento, durante o tapete vermelho, nesse período foi visto as maiores ocorrências de especulações sobre os ganhadores e indicados além das reações dos internautas com as entradas de seus artistas favoritos.
+Todos os eventos ocorridos no Oscar 2016 são listados em ordem cronológica no apêndice \ref{oscar-timeline}.
+
+O gráfico \ref{qtd} mostra a curva da quantidade de \textit{tweets} em relação ao tempo  dividido pela polaridade. Nele é visto um pico  no começo do evento, durante o tapete vermelho, nesse período foi visto as maiores ocorrências de especulações sobre os ganhadores e indicados além das reações dos usuários com as entradas de seus artistas favoritos.
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/qtd_tweets_by_date.eps, width=15cm}
-	\caption{Quantidade de tweets por tempo e polaridade. Fonte:Própria}
+	\caption{Quantidade de tweets por tempo e polaridade.}
 	\label{qtd}
 \end{figure}
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/qtd_neg_pos.eps, width=15cm}
-	\caption{Quantidade de tweets positivos diminuído pelos negativos pelo tempo. Fonte:Própria}
+	\caption{Quantidade de tweets positivos diminuído pelos negativos pelo tempo.}
 	\label{qtdnegpos}
 \end{figure}
 
-O gráfico \ref{qtdnegpos} foi gerado a partir da diminuição dos \textit{tweets} negativos pelos \textit{tweets} positivos vistos no gráfico \ref{qtd} produzindo uma visão micro do dados coletados do evento. Analisando o gráfico \ref{qtd}, que possui uma visão macro, junto com o gráfico \ref{qtdnegpos}, com a visão micro, é notado que em dois momentos a quantidade de \textit{tweets} negativos sobrepõem a quantidade de positivos. No primeiro momento, é durante o \textit{show} do Dave Grohl onde é feita uma homenagem aos falecidos no mundo do cinema em 2015 onde a sensação de luto ficou evidente durante a apresentação, e de acordo com \cite{freud1908conferencias}, é a reação à perda de objeto ou pessoa. Como afeto, o luto aproxima-se do humor depressivo. Com isso foi corroborado o aumento do sentimento negativo nessa parte do evento. Outro momento onde ocorre o mesmo efeito é durante a apresentação da Lady Gaga onde o tema do filme que a  música faz parte da trilha é sobre os estupros em faculdades americanas, e mais uma vez esse aumento negativo faz entender o tema pesado e sensível para as pessoas que sofreram e sofrem disso. Excluindo o pico no começo dos gráficos os maiores picos de positivos são presenciados as 2:00, vindo de uma crescente no final das 1:00 da manhã do dia 29 isso se deve as categorias mais aguardadas do evento que são:
+O gráfico \ref{qtdnegpos} foi gerado a partir da diminuição dos \textit{tweets} negativos pelos \textit{tweets} positivos vistos no gráfico \ref{qtd} produzindo uma visão micro do dados coletados do evento. Analisando o gráfico \ref{qtd}, que possui uma visão macro, junto com o gráfico \ref{qtdnegpos}, com a visão micro, é notado que em dois momentos a quantidade de \textit{tweets} negativos sobrepõem a quantidade de positivos. O primeiro momento, é durante o \textit{show} do Dave Grohl onde é feita uma homenagem aos falecidos no mundo do cinema em 2015 onde a sensação de luto ficou evidente durante a apresentação, e de acordo com \cite{freud1908conferencias}, é a reação à perda de objeto ou pessoa. Como afeto, o luto aproxima-se do humor depressivo, com isso foi corroborado o aumento do sentimento negativo nessa parte do evento. Outro momento onde ocorre o mesmo efeito é durante a apresentação da Lady Gaga onde o tema do filme que a  música faz parte da trilha é sobre os estupros em faculdades americanas, e mais uma vez esse aumento negativo faz entender o tema pesado e sensível para as pessoas que sofreram e sofrem disso. Excluindo o pico no começo dos gráficos os maiores picos de positivos são presenciados as 2h, crescendo a partir das 1h da manhã do dia 29. Isso se deve as categorias mais aguardadas do evento, como por exemplo:
 
  \begin{itemize}
- 	\item Melhor atriz
- 	\item Melhor ator
- 	\item Melhor filme
+ 	\item Melhor atriz;
+ 	\item Melhor ator;
+ 	\item Melhor filme.
  \end{itemize}
 
-O maior destaque foi a premiação de melhor ator e a vitória de Leonardo DiCaprio, que com seus 41 anos de idade e 26 de carreira, nunca havia levado um prêmio de melhor ator da Academia. Essa vitória reflete nos gráficos de picos de positivos as 2:00 da manhã onde a repercussão da sua vitória é espelhada pelo twitter chegando aos \textit{trending topics} mundias na rede social.
-
-
-%\begin{figure}[H]
-%	\centering\epsfig{file=figuras/mapa.eps, width=15cm}
-%	\caption{Mapa de calor referente a polaridade de sentimento no Brasil. Fonte:Própria}
-%	\label{mapa}
-%\end{figure}
+O maior destaque foi a premiação de melhor ator e a vitória de Leonardo DiCaprio, que com seus 41 anos de idade e 26 de carreira, nunca havia levado um prêmio de melhor ator da Academia. Essa vitória se reflete nos gráficos de picos de positivos as 2h da manhã onde a repercussão da sua vitória é espelhada pelo Twitter chegando aos \textit{trending topics} mundias na rede social.
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/pos4.eps, width=15cm}
-	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 00:50 e 01:20 de probabilidade positiva}
+	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 0h50m e 01h20m de probabilidade positiva}
 	\label{pos1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/neg4.eps, width=15cm}
-	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 00:50 e 01:20 de probabilidade negativa}
+	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 0h50m e 01h20m de probabilidade negativa.}
 	\label{neg1}
 \end{figure}
 
-Mediante os resultados encontrados nos gráficos \ref{pos1} e \ref{neg1}, o algoritmo utilizado mostra que na faixa de 65\% a 90\% , foi a região onde sua classificação obteve a maior quantidade de resultados tanto para \textit{tweets} positivos quanto para negativos. É visto que próximo ao marco de 1:12 a quantidade de \textit{tweets} negativos é maior , confirmando a análise feita na figura \ref{qtdnegpos}
+Mediante os resultados encontrados nos gráficos \ref{pos1} e \ref{neg1}, o algoritmo utilizado mostra que na faixa de 65\% a 90\% , foi a região onde sua classificação obteve a maior quantidade de resultados tanto para \textit{tweets} positivos quanto para negativos. É visto que próximo ao marco de 1h12m a quantidade de \textit{tweets} negativos é maior, confirmando a análise feita na figura \ref{qtdnegpos}.
 
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/neg3.eps, width=15cm}
-	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 01:50 e 02:20 de probabilidade positiva}
+	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 01:50 e 02:20 de probabilidade positiva.}
 	\label{pos2}
 \end{figure}
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/pos3.eps, width=15cm}
-	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 01:50 e 02:20 de probabilidade negativa}
+	\caption{Gráfico de bolhas referente aos eventos ocorridos entre 01:50 e 02:20 de probabilidade negativa.}
 	\label{neg2}
 \end{figure}
 
-Já analisando os gráficos \ref{pos2} e \ref{neg2}, percebe-se que houve mudanças na faixa de probabilidade. Uma delas foi nos \textit{tweets} classificados como negativos onde a faixa ficou entre 70\% e 80\%  e a quantidade, o tamanho das bolhas, consideravelmente menor. Já a outra mudança ocorre no marco de 2:09 na probabilidade de positivos, onde a faixa ultrapassa os 90\% corroborando a análise feita na figura \ref{qtdnegpos} onde é visto os picos de \textit{tweets} positivos.  
+Já analisando os gráficos \ref{pos2} e \ref{neg2}, percebe-se que houve mudanças na faixa de probabilidade. Uma delas foi nos \textit{tweets} classificados como negativos onde a faixa ficou entre 70\% e 80\%  e a quantidade, o tamanho das bolhas, consideravelmente menor. Já a outra mudança ocorre no marco de 2:09 na probabilidade de positivos, onde a faixa ultrapassa os 90\% corroborando a análise feita na figura \ref{qtdnegpos} onde é visto os picos de \textit{tweets} positivos.

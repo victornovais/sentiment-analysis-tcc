@@ -2,7 +2,7 @@
 
 \section{Mineração de opinião}\label{sec:mineracao_dados}
 
-É de conhecimento comum que há um acúmulo de dados por toda a internet. Artigos, informações de usuários, comportamento de usuários, são alguns tipos de informação que podem ser encontrados hoje na internet. Esse grande acumulo não garante informações confiáveis ou uma análise correta sobre os dados, por isso há uma grande urgência para novas teorias computacionais e ferramentas que ajudem a analisar essa quantidade de dados gerados \cite{fayyad1996data}. E dentro dessa enorme gama de dados, existem as informações adicionadas por usuários através de texto que remetem a suas reações a determinadas situações ou objetos.
+É de conhecimento comum que há um acúmulo de dados por toda a internet. Artigos, informações de usuários, comportamento de usuários, são alguns tipos de informação que podem ser encontrados hoje na internet. Esse grande acúmulo não garante informações confiáveis ou uma análise correta sobre os dados, por isso há uma grande urgência para novas teorias computacionais e ferramentas que ajudem a avaliar essa quantidade de dados gerados \cite{fayyad1996data}. E dentro dessa enorme gama de dados, existem as informações adicionadas por usuários através de texto, que remetem a suas reações a determinadas situações ou objetos.
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/[venn-eps-converted-to_importada_.eps, width=15cm}
@@ -10,7 +10,7 @@
 	\label{venn}
 \end{figure}
 
-De acordo com a figura \ref{venn}, esse trabalho atua em uma área de interseção entre o processamento de linguagem natural, classificação de documento e extração de conceito.
+De acordo com a figura \ref{venn}, o presente trabalho atua em uma área de interseção entre o processamento de linguagem natural, classificação de documento e extração de conceito.
 
 \subsection{Sentimento}
 De acordo com psicólogo Klaus R. Scherer, sentimento é um breve episódio da resposta sincronizada de todos os ou grande parte dos subsistemas orgânicos em resposta a um evento interno ou externo de grande significância\cite{scherer2001emotional}. Algumas outras definições utilizadas são:
@@ -19,7 +19,7 @@ De acordo com psicólogo Klaus R. Scherer, sentimento é um breve episódio da r
 	\item Aptidão para receber as impressões;
 	\item Sensação, sensibilidade;
 	\item Consciência íntima;
-	\item Faculdade de compreender, intuição e percepção;
+	\item Faculdade de compreender, intuição e percepção.
 \end{itemize}
 
 A mineração de opinião, também conhecida como mineração de sentimento, análise de sentimento ou extração de opinião, é um campo dentro da mineração de dados \cite{santos2014mineraccao} que tem como objetivo extrair o sentimento do texto escrito por uma pessoa, sem a interferência humana durante o processo.
@@ -47,7 +47,7 @@ O processo de mineração de opinião consiste em 3 etapas: \cite{mineracaoopini
 
 \subsubsection{Coleta de dados}
 
-Nesta etapa é conduzida uma busca por opiniões nas mais diversas fontes que podem ser úteis: artigos, sites, comentários, anúncios dentre outras. Como explicado anteriormente, deve-se visar identificar se a informação coletada é uma opinião ou fato. Fatos podem ser descartados imediatamente, porém opiniões apresentadas através de fatos, podem ser úteis.
+Nesta etapa é conduzida uma busca por opiniões nas mais diversas fontes que podem ser úteis: artigos, sites, comentários, anúncios, dentre outras. Como explicado anteriormente, deve-se visar identificar se a informação coletada é uma opinião ou fato. Fatos podem ser descartados imediatamente, porém opiniões apresentadas através de fatos, podem ser úteis.
 
 Existem diversas maneiras de coletar sistematicamente fontes para extrair e armazenar os dados que serão utilizados, dentre elas as mais famosas estão o desenvolvimento \textit{crawlers} - uma rotina sistemática capaz de varrer sites em busca de informações - e a utilização de APIs.
 
@@ -73,9 +73,9 @@ Mineração de opinião pode ser usada por uma empresa para determinar se um cer
 
 Da mesma forma, é possível utilizar a mesma técnica e direcionar as análises para uma personalidade pública. Por exemplo, é possível determinar a aceitação ou rejeição de um político durante o mandato ou período de eleições, gerando dados que podem ser decisivos na definição de suas estratégias de campanha. 
 
-\subsubsection{Bolsa de valores}
+\subsubsection{Mercado financeiro}
 
-Os números do mercado financeiro são uma consequência direta do sentimento que pessoas(investidores) possuem sobre uma empresa \cite{villela2013financcas}. A opinião extraída de especialistas e sites de notícias podem ser usados como um dos fatores decisivos para compra e venda de ações.
+Os números do mercado financeiro são uma consequência direta do sentimento que pessoas(investidores) possuem sobre uma empresa \cite{villela2013financcas}. A opinião extraída de especialistas e sites de notícias podem ser usados como um dos fatores decisivos para compra e venda de ativos financeiros.
 
 \subsection{Fontes de dados}
 
@@ -92,6 +92,11 @@ Um exemplo da utilização de mecanismos de busca para mineração de opinião �
 O intenso compartilhamento de informações o opiniões que vemos hoje nas redes sociais serve como uma excelente fonte de dados para a mineração de opiniões por dois motivos: diversidade e abundância. Somando-se os usuários de Facebook e Twitter por exemplo, obtemos uma amostra considerável da população mundial à disposição para pesquisas.
 
 Para este trabalho, o Twitter foi escolhido como base para a coleta de dados, por ser uma rede social focada em opiniões de usuários e pela grande facilidade que existe em consumir os seus dados através da API pública disponibilizada pelo mesmo.
+
+A análise de redes sociais ganhou incrível relevância nos campos de pesquisa social e comportamental\cite{wasserman1994advances} com o aumento de compartilhamento de informações dentro destes ambientes. Ao invés de analisar comportamentos individuais, atitudes e crenças, a análise de redes sociais foca sua atenção em entidades sociais ou atores interagindo entre si e como essas interações constituem uma estrutura que pode ser estudada e analisada.
+
+Outro ponto levantado recorrentemente quando o assunto é análise de redes sociais é como ela pode ser útil para estudos de ordem micro ou macro. No nível \textit{micro}, as análises destinam-se a examinar díades, tríades ou outros pequenos sub-grupos - conjuntos de dois, três ou mais atores sociais. No nível \textit{macro}, o objeto de estudo são grandes redes de atores sociais.
+Todos os dados obtidos durante a coleta permitem segmentar os atores sociais de diversas formas - gênero, idade, religião, posição demográfica, entre outros. Por exemplo, os dados extraídos a partir da API do Twitter, tema abordada no Capítulo 3, nos permite entender como um usuário específico reagiu a uma \textit{hashtag}. Da mesma forma, podemos olhar um cenário mais amplo, como por exemplo, todos usuários de uma região do país. As possibilidades de análise crescem e se tornam mais ricas conforme obtemos mais informações sobre os atores no momento de suas interações sociais.
 
 \section{Twitter}\label{sec:twitter}
 
@@ -113,12 +118,6 @@ Um dos exemplos mais recentes e impressionantes de como as redes sociais desempe
 	\label{uni}
 \end{figure}
 
-\subsection{Análises de redes sociais}
-A análise de redes sociais ganhou incrível relevância nos campos de pesquisa social e comportamental\cite{wasserman1994advances} com o aumento de compartilhamento de informações dentro destes ambientes. Ao invés de analisar comportamentos individuais, atitudes e crenças, a análise de redes sociais foca sua atenção em entidades sociais ou atores interagindo entre si e como essas interações constituem uma estrutura que pode ser estudada e analisada.
-
-Outro ponto levantado recorrentemente quando o assunto é análise de redes sociais é como ela pode ser útil para estudos de ordem micro ou macro. No nível \textit{micro}, as análises destinam-se a examinar díades, tríades ou outros pequenos sub-grupos - conjuntos de duas, três ou mais atores sociais. No nível \textit{macro}, o objeto de estudo são grandes redes de atores sociais.
-Todos os dados obtidos durante a coleta permitem segmentar os atores sociais de diversas formas - gênero, idade, religião, posição demográfica, entre outros. Por exemplo, os dados extraídos a partir da API do Twitter, tema abordada no Capítulo 3, nos permite entender como um usuário específico reagiu a uma \textit{hashtag}. Da mesma forma, podemos olhar um cenário mais amplo, como por exemplo, todos usuários de uma região do país. As possibilidades de análise crescem e se tornam mais ricas conforme obtemos mais informações sobre os atores no momento de suas interações sociais.
-
 \section{API}\label{sec:api}
 
 Uma API é um conjunto de rotinas estabelecidos por um software para a utilização de suas funcionalidades e acessos aos seus dados por outro software que não pretende fazer uso de sua implementação, apenas de seus serviços. Através dessa interface, capaz de fazer uma abstração dos dados e funcionalidades de um software, conectar-se a estes serviços se torna muito mais simples.
@@ -131,7 +130,7 @@ Outro ponto que demonstra a importância das APIs durante o desenvolvimento de s
 	\label{uni}
 \end{figure}
 
-O Twitter, nossa fonte de dados durante este trabalho, possui uma API pública que pode ser utilizada por qualquer usuário da rede social \cite{twitterapidocs}. 
+O Twitter, possui uma API pública que pode ser utilizada por qualquer usuário da rede social \cite{twitterapidocs}. 
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/APIS.eps, width=10cm}
@@ -150,7 +149,7 @@ O protocolo REST foi criado em 2000 por Roy Fielding \cite{fieldingrest} como pa
 \item Separa claramente a implementação do cliente e do servidor;
 \item A comunicação não é controlada por uma entidade única;
 \item A informação pode ser armazenada pelo cliente prevenindo múltiplas chamadas;
-\item Pode retornar a informação em múltiplos formatos - JSON, \ac{XML} , entre outros.
+\item Pode retornar a informação em múltiplos formatos - \ac{JSON}, \ac{XML} , entre outros.
 \end{itemize}
 
 Por outro lado, o protocolo REST possui algumas limitações. Entre elas, podemos destacar:
@@ -169,38 +168,38 @@ Criado em 1998 por Dave Winer et al com colaboração da Microsoft, o protocolo 
 	\item Segue uma abordagem mais formal, corporativa;
 	\item Trabalha em cima de qualquer protocolo de comunicação, até mesmo assíncrono;
 	\item Recursos de autorização e segurança incorporados de forma nativa;
-	\item Pode ser descrito utilizando WSDL;
+	\item Pode ser descrito utilizando \ac{WSDL};
 \end{itemize}
 
-Entre suas principais desvantagens, podemos listar:
+Entre suas principais desvantagens, pode-se citar:
 
 \begin{itemize}
-	\item Gasta-se muita banda trafegando metadados
-	\item Difícil e implementação
-	\item Pouco popular entre desenvolvedores \textit{Web} e \textit{Mobile}
-	\item Retorna informação apenas em XML
+	\item Muita banda trafegando metadados;
+	\item Difícil e implementação;
+	\item Pouco popular entre desenvolvedores \textit{Web} e \textit{Mobile};
+	\item Retorna informação apenas em XML.
 \end{itemize}
 
 Geralmente, o protocolo SOAP é mais utilizado em serviços financeiros, \textit{gateways} de pagamento e serviços de telecomunicações.
 
-\section{Processamento de linguagem natural}\label{sec:pnl}
+\section{Processamento de Linguagem Natural}\label{sec:pnl}
 
 \subsection{Definição}
 
-\ac{PNL} baseia-se em modelos computacionais capazes de executar tarefas envolvem processar informações expresas em língua natural, como por exemplo, interpretação e tradução de textos. \cite{covington1994natural}.
+O \ac{PLN} baseia-se em modelos computacionais capazes de executar tarefas envolvem processar informações expresas em linguagem natural, como por exemplo, interpretação e tradução de textos. \cite{covington1994natural}.
 
 A pesquisa na área está voltada a quatro aspectos da comunicação essenciais:
 
 \begin{itemize}
-	\item fonologia: estudo dos sons;
-	\item morfologia: estudo da estrutura das palavras;
-	\item semântica: estudo do significado;
-	\item pragmática: estudo do significado aplicado a um contexto;
+	\item Fonologia: estudo dos sons;
+	\item Morfologia: estudo da estrutura das palavras;
+	\item Semântica: estudo do significado;
+	\item Pragmática: estudo do significado aplicado a um contexto;
 \end{itemize}
 
-Neste trabalho, o PNL será aplicado à area da semântica e pragmática, responsável por estudar os elementos usados durante uma comunicação para se expressar através da língua (semântica) e a diversidade que pode surgir a partir de um contexto (pragmática). É também um estudo sobre como usuários de uma língua adquirem conhecimento sobre a mesma, através da comunicação oral ou escrita e como essa língua se altera ao longo do tempo.
+Neste trabalho, o PLN será aplicado à area da semântica e pragmática, responsável por estudar os elementos usados durante uma comunicação para se expressar através da língua (semântica) e a diversidade que pode surgir a partir de um contexto (pragmática). É também um estudo sobre como usuários de uma língua adquirem conhecimento sobre a mesma, através da comunicação oral ou escrita e como essa língua se altera ao longo do tempo.
 
-Um dos grandes desafios da área é modelar o processamento de uma máquina para compreender uma estrutura tão complexa como uma linguagem. Existe um teste famoso na área de computação, o Teste de Turing, que levanta a questão "As máquinas podem pensar?". O teste fundamenta conceitos chave sobre a \ac{IA} , que serve como base para o PNL.
+Um dos grandes desafios da área é modelar o processamento de uma máquina para compreender uma estrutura tão complexa como uma linguagem. Existe um teste famoso na área de computação, o Teste de Turing, que levanta a questão "As máquinas podem pensar?". O teste fundamenta conceitos chave sobre a \ac{IA} , que serve como base para o PLN.
 
 \subsection{Teste de Turing}
 
@@ -218,32 +217,30 @@ O juiz conversa em linguagem natural com um outro ser humano e uma máquina atra
 
 
 \section{Classificador Naive Bayes}\label{sec:naive_bayes}
-O classificador conhecido como \textit{Naive Bayes} é um algoritmo probabilístico baseado no Teorema de Bayes que não considera que eventuais dependências possam existir. Por este motivo, suas suposições são nomeadas "ingênuas" - de onde surge o nome \textit{naive} - o que lhe confere uma maior simplicidade e um desempenho maior, em relação a outros algoritmos de classificação \cite{rennie2003tackling}. É um método popular para categorização de textos, como por exemplo a classificação de \textit{e-mails} em legítimos ou \textit{spam} - e-mails inúteis que são enviados na esperança que o receptor compre algum produto ou serviço. \cite{androutsopoulos2000evaluation}
+O classificador conhecido como \textit{Naive Bayes} é um algoritmo probabilístico baseado no Teorema de Bayes que não considera que eventuais dependências possam existir. Por este motivo, suas suposições são nomeadas ingênuas - de onde surge o nome \textit{naive} - o que lhe confere uma maior simplicidade e desempenho, em relação a outros algoritmos de classificação \cite{rennie2003tackling}. É um método popular para categorização de textos, como por exemplo a classificação de \textit{e-mails} em legítimos ou \textit{spam} - e-mails inúteis que são enviados na esperança que o receptor compre algum produto ou serviço. \cite{androutsopoulos2000evaluation}
 
 \subsection{O Teorema de Bayes}
 
-O Teorema de Bayes permite inferir qual é a probabilidade de um evento A dado um evento B e pode ser expressado pela seguinte equação:
+O Teorema de Bayes permite inferir qual é a probabilidade de um evento A dado que um evento B ocorreu e pode ser expressado pela seguinte equação:
 
 $$ P(A \mid B) = \frac{P(B \mid A) \ P(A)}{P(B)}, $$
-onde A e B são eventos.
 
 \begin{itemize}
+	\item A e B são eventos;
 	\item P(A) e P(B) são probabilidades de A e B sem considerar a relação entre ambos;
 	\item P(A|B), uma probabilidade condicional, é a probabilidade de observar o evento A, dado que o evento B ocorreu.
 	\item P(B|A) é a probabilidade de observar o evento B, dado que o evento A ocorreu.
 \end{itemize}
 
-Suponha que queremos saber a probabilidade de um indivíduo possuir câncer, sem saber nada sobre o indivíduo. Porém, sabemos que a chance de um indivíduo estar infectado com tal câncer é de 1\%, ou seja, P(A).
-Em seguida, suponha que esta pessoa tenha 70 anos de idade e que essa probabilidade é de 0,2\% e que 0,5\% das pessoas doente possuem 70 anos de idade ou P(B). Se assumirmos que a incidência de câncer e a idade estão relacionadas, podemos utilizar esta informação para melhor medir as chances desta pessoa estar doente. Logo, queremos saber a probabilidade de uma pessoa estar doente quando a mesma possui 70 anos de idade, ou P(A|B).
+Suponha que queremos saber a probabilidade de um indivíduo possuir câncer, sem saber nada sobre o indivíduo. Sabe-se que a chance de um indivíduo estar infectado com tal câncer é de 1\%, ou seja, P(A).
+Em seguida, suponha que esta pessoa tenha 70 anos de idade e que essa probabilidade é de 0,2\% e que 0,5\% das pessoas doente possuem 70 anos de idade ou P(B). Se assumirmos que a incidência de câncer e a idade estão relacionadas, podemos utilizar esta informação para melhor avaliar as chances desta pessoa estar doente. Logo, queremos saber a probabilidade de uma pessoa estar doente quando a mesma possui 70 anos de idade, ou P(A|B).
 
-$$ (\frac{0,5}{100} \times \frac{1}{100}) \div \frac{0,2}{100} = \frac{2,5}{100} $$
+$$ P(A \mid B) = (0,5\% \times 1\%) \div 0,2\% = 2,5\% $$
 
-Portanto, o resultado do teorema demonstra que possuir 70 anos de idade aumenta a chance de uma pessoa ser portadora de câncer, apesar desta probabilidade ainda ser baixa.
+Portanto, o resultado do teorema demonstra que possuir 70 anos de idade aumenta a chance de uma pessoa ser portadora de câncer.
 
 \subsection{Aplicação no trabalho}
 
-Nese trabalho o \emph{Naive Bayes} é utilizado  para categorizar \textit{tweets} extraídos do Twitter em positivos, neutros ou negativos. A diferença deste algoritmo para o Teorema de Bayes é assumir que a posição das palavras - eventos da probabilidade - que aparecem no texto não importa para determinar o resultado final.
+Nese trabalho o \emph{Naive Bayes} é utilizado  para classificar \textit{tweets} em positivos, neutros ou negativos. Este algoritmo está baseado no Teorema de Bayes porém assume que a posição das palavras - eventos da probabilidade - que aparecem no texto não importa para determinar o resultado final.
 
-Como visto em \cite{lucca2013implementaccao} o algoritmo calcula qual a probabilidade de uma frase, denominada documento pertencer a uma determinada classe(polaridade) \emph{P(C/D)}, a partir da probabilidade de \emph{P(C)} do documento pertencer a esta classe e das probabilidades condicionais de cada termo $t_{k}$ ocorrer em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade conforme a equação abaixo, onde $ n_{d} $ é o número de termos no documento \emph{d}. 
-
-$$ C_{map}= argmax_{c \epsilon C}P(c|d)=argmax_{c \epsilon C}P(c)\prod 1sksn_{d}P(t_{k}/d) $$
+Como visto em \cite{lucca2013implementaccao} o algoritmo calcula qual a probabilidade de uma frase, denominada documento pertencer a uma determinada classe(polaridade) \emph{P(C/D)}, a partir da probabilidade de \emph{P(C)} do documento pertencer a esta classe e das probabilidades condicionais de cada termo $t_{k}$ ocorrerem em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a posteriore. 

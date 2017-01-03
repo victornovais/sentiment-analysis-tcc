@@ -1,16 +1,16 @@
 \chapter{Proposta} \label{cap:proposta}
 
-Como visto no Capítulo 2, existe uma corrente dentro da Mineração de Opinião que vem desenvolvendo maneiras de explorar o conteúdo digital gerado pela nossa sociedade todos os dias em redes sociais, através de técnicas utilizando Processamento de Linguagem Natural e \textit{Machine Learning}, principalmente. Com este fato surge a oportunidade de explorar novas ferramentas na
+Como visto no Capítulo 2, a mineração de opinião pode ser usada para explorar o conteúdo digital gerado pela nossa sociedade todos os dias em redes sociais, através de técnicas utilizando Processamento de Linguagem Natural e \textit{Machine Learning}, principalmente. Com este fato surge a oportunidade de explorar novas ferramentas na
 solução de problemas que envolvem pesquisas de opinião de forma geral.
 
 Neste trabalho propõem-se um \textit{framework} que torna possível fazer pesquisas de opiniões em língua portuguesa sobre qualquer tema que seja rastreável a partir de uma \textit{hashtag} no Twitter.
 Para tal é necessário que o \textit{framework} criado seja capaz de:
 
 \begin{enumerate}
-	\item Coletar \textit{tweets} escritos em língua portuguesa que contenham uma determinada {hashtag};
+	\item Coletar \textit{tweets} escritos em língua portuguesa que contenham uma determinada \textit{hashtag};
 	\item Armazenar as mensagens em uma base de dados;
 	\item Classificar as mensagens de acordo com a polaridade: negativo, neutro e positivo;
-	\item Extrair \textit{insights} que auxiliem a tomada de decisão a partir da massa de dados classificada;
+	\item Extrair \textit{insights} que auxiliem a tomada de decisão a partir da massa de dados classificada.
 \end{enumerate}
 
 \section{Coleta de dados}
@@ -18,7 +18,7 @@ A plataforma do Twitter conecta aplicações e sites com seus dados através de 
 
 \subsection{Autenticação}
 
-Para que ter acesso à API antes é necessário possuir uma conta no Twitter e criar uma aplicação - através do próprio site \cite{twitterapp} - que utilizará o protocolo de autenticação OAuth\cite{oauth} para acessar os dados do Twitter se passando pelo usuário em questão. O objetivo do protocolo OAuth é permitir que uma aplicação se autentique em outra "em nome de um usuário". A aplicação pede permissão de acesso ao usuário, que possui a escolha de conceder permissão ou não. Um ponto importante: o usuário não precisa informar a sua senha para se autenticar, portanto a permissão continua vigente caso a senha do usuário se altere, o que permite que a aplicação não precise de manutenção neste caso, tornando-a mais resiliente. A autenticação por meio do OAuth necessita de três passos:
+Para que ter acesso à API é necessário possuir uma conta no Twitter e criar uma aplicação - através do próprio site \cite{twitterapp} - que utilizará o protocolo de autenticação OAuth\cite{oauth} para acessar os dados do Twitter se passando pelo usuário em questão. O objetivo do protocolo OAuth é permitir que uma aplicação se autentique em outra "em nome de um usuário". A aplicação pede permissão de acesso ao usuário, que possui a escolha de conceder permissão ou não. Um ponto importante: o usuário não precisa informar a sua senha para se autenticar, portanto a permissão continua vigente caso a senha do usuário se altere, o que permite que a aplicação não precise de manutenção neste caso, tornando-a mais resiliente. A autenticação por meio do OAuth necessita de três passos:
 
 \begin{enumerate}
 	\item Aplicação cliente obtém chave de autenticação;
@@ -29,7 +29,7 @@ Para que ter acesso à API antes é necessário possuir uma conta no Twitter e c
 Após o processo de criação da aplicação, é criado um \textit{token} de acesso que deve ser utilizado pelo sistema que deseja se autenticar no Twitter em nome de um usuário. Este \textit{token} deve ser incorporado em cada requisição à API do Twitter para autenticar a mesma e dizer ao Twitter qual é a fonte do acesso.
 
 \subsection{Limite de requisições}
-A fim de evitar grande concentração de requisições em seus serviços, o Twitter implementa um limitador em sua API \cite{twitterrequestlimit2016}. São permitidas até 180 requisições por janela, que dura 15 minutos. Caso o limite seja ultrapassado, o serviço passa a retornar um erro na resposta, até que a "janela" de 15 minutos se renove.
+A fim de evitar grande concentração de requisições em seus serviços, o Twitter implementa um limitador em sua API \cite{twitterrequestlimit2016}. São permitidas até 180 requisições por janela, que dura 15 minutos. Caso o limite seja ultrapassado, o serviço passa a retornar um erro na resposta, até que a janela de 15 minutos se renove.
 
 A partir da versão 1.1 da API, novos cabeçalhos \ac{HTTP} são retornados provendo \textit{feedback} sobre os limites para requisição. Este recurso permite que o código consiga entender em que momento da janela se encontra, quantos requisições ainda podem ser feitas neste período de tempo e quanto é necessário esperar para poder fazer novas requisições. Os cabeçalhos em questão são:
 
@@ -69,12 +69,12 @@ Como abordado acima, a API possui diversos parâmetros que podem ser usados para
 
 \begin{itemize}
 	\item \textit{\textbf{result\_type}}: permite escolher se o resultado da busca será representado pelos \textit{tweets} mais populares (\textit{popular}) ou mais recentes (\textit{recent});
-	\item \textit{\textbf{geocode}}: permite buscar por uma determinada latitude, longitude e raio, respectivamente, separando-os por vírgula. ex: geocode=-22.912214,-43.230182,1km;
+	\item \textit{\textbf{geocode}}: permite buscar por uma determinada latitude, longitude e raio, respectivamente, separando-os por vírgula. ex: geocode=-22.912214,-43.230182,1;
 	\item \textit{\textbf{lang}}: restringe os \textit{tweets} buscados a um idioma específico. ex: lang=pt;
-	\item \textit{\textbf{since\_id }},  \textit{\textbf{max\_id }}, \textit{\textbf{count}} e \textit{\textbf{until}}: possibilita iterar através dos resultados quando existe um grande números de \textit{tweets} a percorrer. De acordo com a concorrência e o volume, esta tarefa pode ficar mais complicada. Uma leitura recomendada se encontra em \cite{workingwithtimelimes}.
+	\item \textit{\textbf{since\_id }},  \textit{\textbf{max\_id }}, \textit{\textbf{count}} e \textit{\textbf{until}}: possibilita iterar através dos resultados quando existe um grande números de \textit{tweets} a percorrer. De acordo com a concorrência e o volume, esta tarefa pode ficar mais complicada. Uma leitura recomendada sobre o uso destes parâmetros pode ser encontrada em \cite{workingwithtimelimes}.
 \end{itemize}
 
-Como o objetivo deste trabalho é coletar novos \textit{tweets} conforme eles vão sendo postados, foi necessário utilizar apenas dois parâmetros da API de busca: \textit{count} e \textit{since id}. O primeiro tem o objetivo de garantir o número máximo de registros retornados pela API e o segundo define de onde se pretende partir para buscar novos \textit{tweets}, evitando que mensagens repetidas sejam coletadas.
+Como o objetivo deste trabalho é coletar novos \textit{tweets} conforme eles vão sendo postados, foi necessário utilizar apenas dois parâmetros da API de busca: \textit{count} e \textit{since id}. O primeiro tem o objetivo de garantir o número máximo de registros retornados pela API e o segundo define de onde se pretende partir para buscar novos \textit{tweets}, evitando que mensagens repetidas sejam coletadas. Um exemplo de requisição pode ser visto abaixo:
 
 \url{https://api.twitter.com/1.1/search/tweets.json?q=#oscars2016&count=100&since_id=123456789}
 
@@ -82,11 +82,11 @@ Neste caso, a API retornará os 100 \textit{tweets} publicados desde o \textit{t
 
 \subsubsection{O problema com a detecção automática de idioma do Twitter}
 
-O escopo deste trabalho determina que o objeto de estudo são apenas mensagens escritas em língua portuguesa. Como forma de obter somente \textit{tweets} escritos em língua portuguesa é preciso utilizar o parâmetro \textit{lang}, por exemplo:
+O escopo deste trabalho determina que o objeto de estudo são apenas mensagens escritas em língua portuguesa. Para tal é preciso utilizar o parâmetro \textit{lang}, por exemplo:
 
 \url{https://api.twitter.com/1.1/search/tweets.json?q=#oscars2016&lang=pt&result_type=recent}
 
-Porém, realizando alguns testes na API do Twitter, foi detectado que ao submeter algum \textit{tweet}, alguma rotina dentro do próprio Twitter atribui um idioma à mensagem automaticamente. Nos testes conduzidos durante este trabalho foi identificado que em mensagens curtas - algo recorrente no Twitter - o algoritmo apresenta resultados aquém do esperado na identificação do idioma, visto que as poucas palavras contidas na mensagem podem ser comuns a mais de um idioma. Por conta disso foi decidido que o filtro de idioma não seria utilizado. Esta decisão pode mudar de acordo com o evento monitorado ou com o escopo do estudo.
+Porém, realizando alguns testes na API do Twitter, foi detectado que ao submeter algum \textit{tweet}, alguma rotina dentro do próprio Twitter atribui um idioma à mensagem automaticamente. Nos testes conduzidos durante este trabalho foi identificado que em mensagens curtas - algo recorrente no Twitter - esta atribuição apresenta resultados aquém do esperado na identificação do idioma, visto que as poucas palavras contidas na mensagem podem ser comuns a mais de um idioma. Por conta disso foi decidido que o filtro de idioma não seria utilizado. Esta decisão pode mudar de acordo com o evento monitorado ou com o escopo do estudo.
 
 \subsubsection{Escalando de forma horizontal}
 
@@ -193,7 +193,7 @@ Dentro desta resposta, existem diversos dados que podem ser úteis para análise
 
 \subsection{Banco de dados orientado a documento}
 
-Existem diversas soluções de banco de dados disponíveis no mercado. Nos últimos anos, uma delas se tornou especialmente popular\cite{bhuvan2015technical}: os bancos de dados orientado a documento. Tais bancos de dados são uma das principais categorias de bancos conhecidos como \ac{NoSQL} que consiste em organizar os dados de forma "não-relacional", através de documentos, gráficos, chave-valores e colunas. Bancos NoSQL são conhecidos pela facilidade de modelagem e desenvolvimento, alto desempenho de leitura e escrita, alta disponibilidade e resiliência. Isso não significa que bancos \ac{SQL} são obsoletos ou piores, porém existem aplicações claras onde cada um desempenha um melhor papel. Podemos apontar algumas comparações, como por exemplo:
+Existem diversas soluções de banco de dados disponíveis no mercado. Nos últimos anos, uma delas se tornou especialmente popular: os bancos de dados orientado a documento\cite{bhuvan2015technical}. Tais bancos de dados são uma das principais categorias de bancos conhecidos como \ac{NoSQL} que consiste em organizar os dados de forma "não-relacional", através de documentos, gráficos, chave-valores e colunas. Bancos NoSQL são conhecidos pela facilidade de modelagem e desenvolvimento, alto desempenho de leitura e escrita, alta disponibilidade e resiliência. Isso não significa que bancos \ac{SQL} são obsoletos ou piores, porém existem aplicações claras onde cada um desempenha um melhor papel. Comparações são apresentadas a seguir:
 
 \begin{table}[H]
 	\label{tabela-sql-nosql}
@@ -202,14 +202,14 @@ Existem diversas soluções de banco de dados disponíveis no mercado. Nos últi
 		& Banco de dados relacional                                                                                                                                                                                                                            & Banco de dados NoSQL                                                                                                                                                                                                                                                                                                                \\ \hline 
 		Modelagem   & O modelo relacional normaliza dados em estruturas tabulares conhecidas como tabelas, que consistem em linhas e colunas. Um esquema ou \textit{scheme} define estritamente as tabelas, colunas, índices, relações entre tabelas e outros elementos do banco de dados.     & Bancos de dados não relacionais (NoSQL) normalmente não aplicam um esquema. Geralmente, uma chave de partição é usada para recuperar valores, conjuntos de colunas ou documentos semi-estruturados JSON, XML ou outros que contenham atributos de itens relacionados.                                                                  \\ \hline 
 		Desempenho  & O desempenho normalmente depende do subsistema do disco. A otimização de consultas, índices e estrutura de tabela é necessária para alcançar máximo desempenho.                                                                                      & Desempenho geralmente é uma função do tamanho do \textit{cluster} do hardware subjacente, da latência de rede e da aplicação que faz a chamada.  \\ \hline 
-		Escala      & Mais fácil de aumentar a escala "verticalmente" com hardware mais rápido.,Outros investimentos são necessários para tabelas relacionais para abranger um sistema distribuído.                                                                        & Projetado para aumentar a escala "horizontalmente" usando \textit{clusters} distribuídos de hardware de baixo custo para aumentar a transferência sem aumentar a latência.                                \\ \hline 
+		Escala      & Mais fácil de aumentar a escala verticalmente com hardware mais rápido. Outros investimentos são necessários para tabelas relacionais para abranger um sistema distribuído.                                                                        & Projetado para aumentar a escala horizontalmente usando \textit{clusters} distribuídos de hardware de baixo custo para aumentar a transferência sem aumentar a latência.                                \\ \hline 
 		APIs & As solicitações para armazenar e recuperar dados são comunicadas usando consultas compatíveis com SQL. Essas consultas são analisadas e executadas por \ac{RDBMS} . & APIs baseadas em objetos permitem que desenvolvedores de aplicações armazenem e restaurem facilmente estruturas de dados na memória. As chaves de partição permitem que os aplicativos procurem pares de chave-valor, conjuntos de colunas ou documentos semi-estruturados contendo objetos e atributos de aplicativos serializados. \\ \hline 
 	\end{tabular}
-		\caption{Comparação entre bancos SQL e NoSQL}
+		\caption{Comparação entre bancos SQL e NoSQL. Fonte:https://aws.amazon.com/pt/nosql/}
 \end{table}
 
 \subsection{Opções disponíveis}
-O movimento de adoção de bancos \textit{NoSQL} está bastante enraizada no mundo \textit{open source}. Alguns projetos como Voldemort\cite{voldemortproject}, MongoDB\cite{mongodb}, Tokyo Cabinet\cite{tokyocabinet} e CouchDB\cite{couchdb}. Apesar de uma grande quantidade de opções \textit{open source}, o movimento ganhou muita força com a publicação de duas publicações sobre implementações proprietárias: o Google BigTable\cite{chang2008bigtable} e o Amazon Dynamo\cite{decandia2007dynamo}. Para este trabalho, a opção escolhida foi o MongoDB, altamente popular na comunidade \textit{open source} e com bastante material disponível com melhores práticas de criação, manutenção e configuração.
+O movimento de adoção de bancos \textit{NoSQL} está bastante enraizada no mundo \textit{open source}, com projetos como Voldemort\cite{voldemortproject}, MongoDB\cite{mongodb}, Tokyo Cabinet\cite{tokyocabinet} e CouchDB\cite{couchdb}. Apesar de uma grande quantidade de opções \textit{open source}, o movimento ganhou muita força com a publicação de duas publicações sobre implementações proprietárias: o Google BigTable\cite{chang2008bigtable} e o Amazon Dynamo\cite{decandia2007dynamo}. Para este trabalho, a opção escolhida foi o MongoDB, altamente popular na comunidade \textit{open source} e com bastante material disponível com melhores práticas de criação, manutenção e configuração.
 
 \subsection{Armazenando \textit{tweets}}
 O objetivo deste trabalho é monitorar eventos através das \textit{hashtags}. E para cada uma delas é criada uma coleção - nome dado a um conjunto de documentos - dentro do banco de dados. O nome da coleção é dado pela \textit{hashtag} monitorada, como por exemplo \mbox{\#Oscars2016}.
@@ -217,18 +217,10 @@ O objetivo deste trabalho é monitorar eventos através das \textit{hashtags}. E
 No momento onde o processo consumidor - responsável por fazer requisições na API e lidar com o retorno - é ligado ocorre a criação da coleção, caso a mesma não exista, e dentro dela começam a ser armazenados os \textit{tweets} retornados pela API, obedecendo ao mesmo formato enviado pelo Twitter. Antes do armazenamento no banco alguns campos a mais são adicionados, mas vamos entrar neste detalhe apenas na seção sobre Classificação.
 
 \section{Classificação}
-\begin{itemize}
-	\item Aplicar técnicas de normalização no texto. As mesmas devem ser específicas para a língua portuguesa;
-	\item Construir base de palavras e termos classificados utilizadas como insumo para o modelo matemático;
-	\item Preparar uma massa de treino para validar o modelo matemático antes da execução;
-	\item Calibragem do algoritmo
-	\item Salvar informações sobre a classificação dentro do documento
-\end{itemize}
-
 O processo de classificação é a alma deste projeto. É ele que determina qual sentimento será possível extrair de um \textit{tweet} através conteúdo altamente resumido do mesmo. Durante o estudo e aperfeiçoamento deste processo foram utilizadas algumas técnicas que visam:
 
 \begin{itemize}
-	\item Diminuir a variabilidade de aplicações para uma palavra dentro da língua portuguesa. ex: aplicação de gênero, plurais e singulares, conjugações verbais, entre outras;
+	\item Diminuir a variabilidade de aplicações para uma palavra dentro da língua portuguesa. Ex: aplicação de gênero, plurais e singulares, conjugações verbais, entre outras;
 	\item Excluir do texto termos que são inúteis semanticamente, como por exemplo conjunções, preposições e marcações de usuários, conhecidas como menções ou \textit{mentions};
 	\item Treinar o algoritmo de classificação com uma base de palavras pertences ao mesmo universo e temática do estudo, permitindo que o algoritmo previamente conheça o contexto e força que alguns termos vão exercer sobre o texto.
 \end{itemize}
@@ -237,9 +229,9 @@ O processo de classificação é a alma deste projeto. É ele que determina qual
 Durante o estudo foram utilizadas algumas ferramentas que auxiliaram o processo de classificação. A principal delas foi a NLTK \cite{nltk_docs}, uma biblioteca em Python construída como suíte de soluções para trabalhar com linguagem natural. O NLTK conta com mais de 50 corpus linguísticos - conjunto de registros orais de uma determinada língua que servem como base para análises - além de diversas ferramentas para classificação, marcação e análise de texto. Seguindo uma documentação específica para aplicação em língua portuguesa\cite{nltk_portuguese}, foram utilizados os seguintes corpus do NLTK durante este trabalho:
 
 \begin{itemize}
-	\item Floresta Sintá(c)tica Corpus versão 7.4: uma colaboração entre a Linguateca\cite{linguateca} e o projeto VISL\cite{visl}. Contém textos em português (do Brasil e de Portugal) analisados automaticamente pelo analisador sintáctico PALAVRAS (Bick 2000) e revistos por linguistas.
-	\item Mac Morpho: Palavras extraídas a partir de textos do jornal Folha de São Paulo 
-	\item Machado: Obra completa do escritor Machado de Assis
+	\item \textbf{Floresta Sintá(c)tica Corpus versão 7.4}: uma colaboração entre a Linguateca\cite{linguateca} e o projeto VISL\cite{visl}. Contém textos em português (do Brasil e de Portugal) analisados automaticamente pelo analisador sintáctico PALAVRAS (Bick 2000) e revistos por linguistas.
+	\item \textbf{Mac Morpho}: Palavras extraídas a partir de textos do jornal Folha de São Paulo 
+	\item \textbf{Machado}: Obra completa do escritor Machado de Assis
 \end{itemize}
 
 
@@ -250,7 +242,7 @@ Porém, toda palavra da língua portuguesa possui um "núcleo" que não muda ind
 
 Para que a classificação seja eficiente em definir o sentimento contido nas mensagens extraídas a partir do Twitter é necessário que os termos existentes no mesmo sejam palavras já classificadas previamente em negativas ou positivas nas bases que foram escolhidas para treinar nosso algoritmo, como veremos mais a frente. Extrair os radicais tanto das palavras contidas no \textit{tweet} quanto das bases classificadas que utilizamos é uma técnica fundamental, dado que com ela se remove grande parte das variações linguísticas de um termo sem alterar o seu significado. A adição desta técnica no fluxo de normalização de texto foi feita num estágio tardio do projeto e gerou um cenário de teste que é apresentado no Capítulo 4, onde pode-se ver uma diminuição considerável no número de "falso neutros", ou seja, ocorrências onde o algoritmo falhava em classificar mensagens por falta de dados e por consequência as classificava como neutras.
 
-O NLTK possui duas implementação de \textit{stemmers} em sua biblioteca: a primeira é o \textit{Poter Stemmer} - algoritmo escrito por Martin Porter e publicado em 1980. O algoritmo se tornou extremamente popular e com isso se tornou o algoritmo padrão para processos de \textit{stemming} em língua inglesa. Para abranger outras línguas, outros algoritmos foram escritos, porém muitos deles possuíam falhas que dificultaram sua adesão. Por conta disso, durante os anos 2000 Porter expandiu seu trabalho criando o Snowball\cite{snowball}, um \textit{framework} para desenvolvimento de algoritmos de \textit{stemming}, um dos quais será utilizado neste trabalho para realizar o processo em língua portuguesa. 
+O NLTK possui duas implementação de \textit{stemmers} em sua biblioteca: a primeira é o \textit{Poter Stemmer} - algoritmo escrito por Martin Porter e publicado em 1980. O algoritmo se tornou extremamente popular e com isso se tornou o algoritmo padrão para processos de \textit{stemming} em língua inglesa. Para abranger outras línguas, outros algoritmos foram escritos, porém muitos deles possuíam falhas que dificultaram sua adesão. Por conta disso, durante os anos 2000 Porter expandiu seu trabalho criando o Snowball, um \textit{framework} para desenvolvimento de algoritmos de \textit{stemming}, um dos quais será utilizado neste trabalho para realizar o processo em língua portuguesa. Abaixo, as línguas suportadas pelo \textit{Snowball Stemmer} e um exemplo de como extrair o radical de todas as palavras de uma frase:
 
 
 \begin{lstlisting}[style=python, frame=single]
@@ -274,9 +266,9 @@ Out[1]: u"miner opin"
 
 \subsection{\textit{Stopwords}}
 
-A composição de um \textit{tweet} por muitas vezes possui palavras que são semanticamente nulas ou até mesmo nocivas para o nosso algoritmo de classificação. Por conta disso, uma das primeiras técnicas aplicadas em um texto antes da classificação consiste em conduzir uma normalização nos elementos contidos em uma sentença.
+A composição de um \textit{tweet} por muitas vezes possui palavras que são semanticamente nulas ou até mesmo nocivas para o algoritmo de classificação. Por conta disso, uma das primeiras técnicas aplicadas em um texto antes da classificação consiste em conduzir uma normalização nos elementos contidos em uma sentença.
 
-Palavras que não possuem valor semântico para uma sentença são conhecidas como "palavras vazias" ou \textit{stopwords}. O NLTK possui um vasto dicionário de palavras vazias graças aos corpus de língua portuguesas adicionados à ele anteriormente. Com base neste dicionários, é possível excluir palavras vazias da seguinte forma:
+Palavras que não possuem valor semântico para uma sentença são conhecidas como \enquote{palavras vazias} ou \textit{stopwords}. O NLTK possui um vasto dicionário de palavras vazias graças aos corpus de língua portuguesas adicionados à ele anteriormente. Com base neste material, é possível excluir palavras vazias da seguinte forma:
 
 \begin{lstlisting}[style=python, frame=single]
 In[1]: text = "Veja a lista completa dos vencedores do Oscar 2016"
@@ -285,7 +277,7 @@ In[2]: [i for i in text.split() if i not in stopwords.words("portuguese")]
 Out[1]:["Veja", "lista", "completa", "vencedores", "Oscar", "2016"]
 \end{lstlisting}
 
-Além disso, foi necessário adicionar inteligência ao nosso normalizador para também excluir palavras vazias específicas para \textit{tweets}, como por exemplo as \textit{hashtags}, menções a outros usuários - as \textit{mentions} - e \textit{links} para outras páginas, vídeos ou imagens.
+Além disso, foi necessário adicionar inteligência ao nosso normalizador para também excluir palavras vazias específicas para \textit{tweets}, como por exemplo as \textit{hashtags}, menções a outros usuários - as \textit{mentions} - e \textit{links} para outras páginas, vídeos ou imagens, como pode ser visto abaixo:
 
 \begin{lstlisting}[style=python, frame=single]
 In[1]: TWITTER_STOPWORDS = ["@","RT","http"]
@@ -317,8 +309,8 @@ Out[1]: "esta comecando agora transmissao vivo"
 Durante o processo de pesquisa de bases de termos classificadas previamente em positivos e negativos, foram encontradas algumas fontes interessantes a se utilizar como bases de dados confiáveis para a mineração de opinião em língua portuguesa.
 
 A primeira delas veio de um artigo escrito por Cláudia Freitas, estudante da Pontifícia Universidade Católica do Rio de Janeiro \cite{freitas2013construccao}. A temática do artigo gira em torno da construção de um léxico da afetividade para processamento computacional do português, que possui alta sinergia com a proposta deste trabalho. Esta base de dados foi apelidada durante o trabalho de "PUC".
-Outra base de dados utilizada durante este trabalho - apelidada de SentiLex-PT - foi encontrada durante a leitura de um artigo entitulado \textit{Building a sentiment lexicon for social judgement mining}\cite{marioj.silvapaulacarvalholuissarmento2012}, escrito em 2012 por Mário J. Silva, pesquisador Sênior do Instituto de Engenharia de Sistemas e Computadores, Investigação e Desenvolvimento em Lisboa e sua equipe. 
-Concluindo as bases de dados encontradas, o ReLi (REsenha de LIvros) foi criado no âmbito do projeto Anotadores Semânticos baseados em Aprendizado Ativo, do LEARN, coordenado por Ruy Milidiú (Departamento de Informática - PUC-Rio). Consiste em 1600 resenhas de livros anotadas manualmente quanto à presença de opinião sobre o livro resenhado e sua polaridade\cite{reli-resenha-livros}.Todas as bases, já normalizadas, podem ser encontradas no apêndice \ref{bases-palavras} deste trabalho. 
+Outra base de dados utilizada durante este trabalho - apelidada de \enquote{SentiLex-PT} - foi encontrada durante a leitura de um artigo entitulado \textit{Building a sentiment lexicon for social judgement mining}\cite{marioj.silvapaulacarvalholuissarmento2012}, escrito em 2012 por Mário J. Silva, pesquisador Sênior do Instituto de Engenharia de Sistemas e Computadores, Investigação e Desenvolvimento em Lisboa e sua equipe. 
+Concluindo as bases de dados encontradas, o \enquote{ReLi} (REsenha de LIvros) foi criado no âmbito do projeto Anotadores Semânticos baseados em Aprendizado Ativo, do LEARN, coordenado por Ruy Milidiú (Departamento de Informática - PUC-Rio). Consiste em 1600 resenhas de livros anotadas manualmente quanto à presença de opinião sobre o livro resenhado e sua polaridade\cite{reli-resenha-livros}.Todas as bases, já normalizadas, podem ser encontradas no apêndice \ref{bases-palavras} deste trabalho. 
 
 A construção da massa de treino foi feita com o intuito de melhor expressar um sentimento de uma palavra ou texto, unindo a perspectiva de diversas bases de dados, visando o melhor desempenho do algoritmo quando utilizado para classificar textos em português. Outro ponto interessante é que cada base de palavras possui um formato diferente e para encorporá-las a massa de treino do algoritmo de uma forma única foi necessário normalizá-las. Para isso, cada base foi dividida em dois arquivos: um contento apenas termos positivos - pos.txt - e outro apenas termos negativos - neg.txt . Segue um exemplo de como uma das normalizações foi feita:
 
@@ -335,9 +327,9 @@ E após a divisão dos termos positivos e negativos em arquivos distintos, o res
 \begin{figure}[H]
 	
 	\center
-	\subfigure[sentilexpos][Lista de termos positivas]{\includegraphics[width=7cm]{figuras/sentilexpos.eps}}
+	\subfigure[sentilexpos][Lista de termos positivos]{\includegraphics[width=7cm]{figuras/sentilexpos.eps}}
 	\qquad
-	\subfigure[sentilexneg][Lista de termos negativas]{\includegraphics[width=7cm]{figuras/sentilexneg.eps}}
+	\subfigure[sentilexneg][Lista de termos negativos]{\includegraphics[width=7cm]{figuras/sentilexneg.eps}}
 	\caption{Base SentiLex-PT normalizada, dividindo em dois arquivos distintos os termos positivos e negativos}
 	
 \end{figure}
@@ -354,9 +346,9 @@ Por último, durante os testes com a classificação surgiu a ideia de produzir 
 	
 \end{figure}
 
-\subsection{Classificação}
+\subsection{Aplicação do algoritmo Naive Bayes}
 O primeiro passo para a classificação de um \textit{tweet} é calibrar o algoritmo escolhido para efetuar a classificação - lembrando que para este trabalho foi utilizado o algoritmo \textit{Naive Bayes}. Com posse das bases de palavras e termos já classificados anteriormente foi necessário treinar o algoritmo para que ele conseguisse se calibrar através das palavras e termos classificados contidos nas bases. 
-Como já foi abordado anteriormente, para este projeto foi utilizada a biblioteca NLTK, construída como suíte de soluções para trabalhar com linguagem natural em Python. O NLTK possui diversos algoritmos de classificação disponíveis para uso, sendo o \textit{Naive Bayes} um deles.
+Como já foi abordado anteriormente, para este projeto foi utilizada a biblioteca NLTK, construída como suíte de soluções para trabalhar com linguagem natural para Python. O NLTK possui diversos algoritmos de classificação disponíveis para uso, sendo o \textit{Naive Bayes} um deles.
 
 Por padrão, para treinar o algoritmo, o NLTK utiliza como base de dados alguns bancos de palavras genéricas disponíveis dentro da própria biblioteca. Para utilizar as bases de dados mencionadas acima como massa de treino para o algoritmo foi necessário sobrescrever os métodos de treino do classificador contidos dentro do NLTK. Após esta customização, o algoritmo passou a classificar textos utilizando as bases descritas acima como massa de treino.
 
@@ -373,7 +365,7 @@ Out[1]: Sentiment({p_pos: 0.91, p_neg: 0.09, classification: "pos"})
 
 Durante testes com o algoritmo de classificação \textit{Naive Bayes} foi observado que quando o mesmo não conseguia extrair nenhuma tendência positiva ou negativa do texto a ser classificado o resultado determinava uma probabilidade igual do texto ser positivo ou negativo. Por este motivo, para facilitar as consultas e análises posteriores foi feita uma ligeira modificação para salvar o sentimento nesses casos como \textit{"neu"} - uma alusão a palavra \textit{"neutro"}.
 
-Como foi dito anteriormente em na seção \ref{proposta:armazenamento} (Armazenamento) antes de armazenar o documento extraído da API do Twitter são adicionadas algumas informações pertinentes ao processo de classificação. Entre elas podemos citar:
+Como foi dito anteriormente na seção \ref{proposta:armazenamento} antes de armazenar o documento extraído da API do Twitter são adicionadas algumas informações pertinentes ao processo de classificação. Entre elas podemos citar:
 
 \begin{itemize}
 	\item \textit{\textbf{normalized\_text}} texto normalizado sem \textit{stopwords} e apenas contendo o radical de cada palavra do \textit{tweet};
