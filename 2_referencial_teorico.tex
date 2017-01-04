@@ -55,11 +55,11 @@ Existem diversas maneiras de coletar sistematicamente fontes para extrair e arma
 
 A classificação é a alma do processo de mineração de opinião. Nesta etapa é determinada a polaridade do objeto de estudo em positivo, negativo e neutro.
 
-Essa etapa é a principal responsável pela acurácia da análise. Por ser a etapa mais delicada do processo é onde ocorrem a maior parte dos erros. Existem diversas técnicas e ferramentas que ajudam a mitigar tais problemas que serão abordadas mais adiante, no Capítulo~\ref{cap:proposta}.
+Essa etapa é a principal responsável pela acurácia da análise. Por ser a etapa mais delicada do processo é onde ocorre a maior parte dos erros. Existem diversas técnicas e ferramentas que ajudam a mitigar tais problemas que serão abordadas mais adiante, no Capítulo~\ref{cap:proposta}.
 
 \subsubsection{Análise dos resultados}
 
-A análise dos resultados envolve cruzar as informações de polaridade obtidas através texto com qualquer outra informação que exista sobre quem produziu aquela opinião. Desta forma, é possível, por exemplo, determinar qual gênero - masculino ou feminino - tem uma maior aceitação à um produto ou personalidade. As possibilidades para cruzar os dados e obter \textit{insights} será proporcional a quantidade de informações coletadas durante o processo.
+A análise dos resultados envolve cruzar as informações de polaridade obtidas através texto com qualquer outra informação que exista sobre quem produziu aquela opinião. Desta forma, é possível, por exemplo, determinar qual gênero - masculino ou feminino - tem uma maior aceitação a um produto ou personalidade. As possibilidades para cruzar os dados e obter \textit{insights} será proporcional à quantidade de informações coletadas durante o processo.
 
 \subsection{Aplicações práticas}
 
@@ -89,7 +89,7 @@ Um exemplo da utilização de mecanismos de busca para mineração de opinião �
 
 \subsubsection{Redes sociais}
 
-O intenso compartilhamento de informações o opiniões que vemos hoje nas redes sociais serve como uma excelente fonte de dados para a mineração de opiniões por dois motivos: diversidade e abundância. Somando-se os usuários de Facebook e Twitter por exemplo, obtemos uma amostra considerável da população mundial à disposição para pesquisas.
+O intenso compartilhamento de informações que vemos hoje nas redes sociais serve como uma excelente fonte de dados para a mineração de opiniões por dois motivos: diversidade e abundância. Somando-se os usuários de Facebook e Twitter por exemplo, obtemos uma amostra considerável da população mundial à disposição para pesquisas.
 
 Para este trabalho, o Twitter foi escolhido como base para a coleta de dados, por ser uma rede social focada em opiniões de usuários e pela grande facilidade que existe em consumir os seus dados através da API pública disponibilizada pelo mesmo.
 
@@ -100,9 +100,9 @@ Todos os dados obtidos durante a coleta permitem segmentar os atores sociais de 
 
 \section{Twitter}\label{sec:twitter}
 
-Contando com uma base ativa de usuários que ultrapassa 300 milhões \cite{twittercompany2016}, o Twitter é conhecido como um \emph{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Os usuários trocam mensagens de até 140 caracteres \cite{twittercharlimit2016} em um ambiente de rede social, que tem como objetivo dar à todos o poder de compartilhar ideias e informações instantaneamente \cite{twittercompany2016}. Após 10 anos de mercado, a empresa acumula números impressionantes: 300 bilhões de mensagens já foram compartilhadas por seus usuários, que em média enviam 500 milhões de \emph{tweets} \cite{twitterstats2016} - nome pelo qual as mensagens compartilhadas no microblog ficaram conhecidas na Internet - por dia.
+Contando com uma base ativa de usuários que ultrapassa 300 milhões \cite{twittercompany2016}, o Twitter é conhecido como um \emph{microblog} fundado em março de 2006 por Jack Dorsey, Evan Williams e Biz Stone. Os usuários trocam mensagens de até 140 caracteres \cite{twittercharlimit2016} em um ambiente de rede social, que tem como objetivo dar a todos o poder de compartilhar ideias e informações instantaneamente \cite{twittercompany2016}. Após 10 anos de mercado, a empresa acumula números impressionantes: 300 bilhões de mensagens já foram compartilhadas por seus usuários, que em média enviam 500 milhões de \emph{tweets} \cite{twitterstats2016} - nome pelo qual as mensagens compartilhadas no microblog ficaram conhecidas na Internet - por dia.
 
-Dentro do Twitter, O usuário pode fazer uso de \emph{hashtags} - marcadores conhecidos do público de rede social, que servem como uma indexação para um tópico específico \cite{waite2012paperback}. Apesar de simples, as \emph{hashtags} pode ser usadas das mais diversas maneiras:
+Dentro do Twitter, o usuário pode fazer uso de \emph{hashtags} - marcadores conhecidos do público de rede social, que servem como uma indexação para um tópico específico \cite{waite2012paperback}. Apesar de simples, as \emph{hashtags} pode ser usadas das mais diversas maneiras:
 \begin{itemize}
 \item Agrupar comentários e pensamentos acerca de um tema
 \item Estabelecer uma conexão entre dois tópicos
@@ -120,9 +120,9 @@ Um dos exemplos mais recentes e impressionantes de como as redes sociais desempe
 
 \section{API}\label{sec:api}
 
-Uma API é um conjunto de rotinas estabelecidos por um software para a utilização de suas funcionalidades e acessos aos seus dados por outro software que não pretende fazer uso de sua implementação, apenas de seus serviços. Através dessa interface, capaz de fazer uma abstração dos dados e funcionalidades de um software, conectar-se a estes serviços se torna muito mais simples.
+Uma API é um conjunto de rotinas estabelecido por um software para a utilização de suas funcionalidades e acessos aos seus dados por outro software que não pretende fazer uso de sua implementação, apenas de seus serviços. Através dessa interface, capaz de fazer uma abstração dos dados e funcionalidades de um software, conectar-se a estes serviços se torna muito mais simples.
 
-Outro ponto que demonstra a importância das APIs durante o desenvolvimento de software é a interoperabilidade. Atualmente, temos o mesmo serviço sendo oferecido em diferentes plataformas, como por exemplo \textit{web}, \textit{desktop} e \textit{mobile}. Cada plataforma possui características e implementações diferentes, porém é possível que todas as plataformas utilizem as APIs como meio único de acesso a dados e serviços, promovendo uma padronização de protocolos e funcionalidades e serviços, além de alta reusabilidade de código.
+Outro ponto que demonstra a importância das APIs durante o desenvolvimento de software é a interoperabilidade. Atualmente, temos o mesmo serviço sendo oferecido em diferentes plataformas, como por exemplo \textit{web}, \textit{desktop} e \textit{mobile}. Cada plataforma possui características e implementações diferentes, porém é possível que todas as plataformas utilizem as APIs como meio único de acesso a dados e serviços, promovendo uma padronização de protocolos, funcionalidades e serviços, além de alta reusabilidade de código.
 
 \begin{figure}[H]
 	\centering\epsfig{file=figuras/interoperabilidade_api.eps, width=10cm}
@@ -138,7 +138,7 @@ O Twitter, possui uma API pública que pode ser utilizada por qualquer usuário 
 	\label{uni}
 \end{figure}
 
-Para efetuar uma comunicação eficiente com quem acessa à API, é necessário implementar um protocolo de acesso aos dados. Os protocolos \ac{REST} e \ac{SOAP} são os mais utilizados.
+Para efetuar uma comunicação eficiente com quem acessa a API, é necessário implementar um protocolo de acesso aos dados. Os protocolos \ac{REST} e \ac{SOAP} são os mais utilizados.
 
 \subsection{REST}
 O protocolo REST foi criado em 2000 por Roy Fielding \cite{fieldingrest} como parte de sua dissertação de doutourado na \textit{University of California Irvine}. Suas principais vantagens são:
@@ -175,7 +175,7 @@ Entre suas principais desvantagens, pode-se citar:
 
 \begin{itemize}
 	\item Muita banda trafegando metadados;
-	\item Difícil e implementação;
+	\item Difícil implementação;
 	\item Pouco popular entre desenvolvedores \textit{Web} e \textit{Mobile};
 	\item Retorna informação apenas em XML.
 \end{itemize}
@@ -186,7 +186,7 @@ Geralmente, o protocolo SOAP é mais utilizado em serviços financeiros, \textit
 
 \subsection{Definição}
 
-O \ac{PLN} baseia-se em modelos computacionais capazes de executar tarefas envolvem processar informações expresas em linguagem natural, como por exemplo, interpretação e tradução de textos. \cite{covington1994natural}.
+O \ac{PLN} baseia-se em modelos computacionais capazes de executar tarefas que envolvem processar informações expresas em linguagem natural, como por exemplo, interpretação e tradução de textos. \cite{covington1994natural}.
 
 A pesquisa na área está voltada a quatro aspectos da comunicação essenciais:
 
@@ -199,13 +199,13 @@ A pesquisa na área está voltada a quatro aspectos da comunicação essenciais:
 
 Neste trabalho, o PLN será aplicado à area da semântica e pragmática, responsável por estudar os elementos usados durante uma comunicação para se expressar através da língua (semântica) e a diversidade que pode surgir a partir de um contexto (pragmática). É também um estudo sobre como usuários de uma língua adquirem conhecimento sobre a mesma, através da comunicação oral ou escrita e como essa língua se altera ao longo do tempo.
 
-Um dos grandes desafios da área é modelar o processamento de uma máquina para compreender uma estrutura tão complexa como uma linguagem. Existe um teste famoso na área de computação, o Teste de Turing, que levanta a questão "As máquinas podem pensar?". O teste fundamenta conceitos chave sobre a \ac{IA} , que serve como base para o PLN.
+Um dos grandes desafios da área é modelar o processamento de uma máquina para compreender uma estrutura tão complexa como uma linguagem. Existe um teste famoso na área de computação, o Teste de Turing, que levanta a questão "As máquinas podem pensar?". O teste fundamenta conceitos-chave sobre a \ac{IA}, que serve como base para o PLN.
 
 \subsection{Teste de Turing}
 
-Introduzido pelo matemático britânico Alan Turing em seu artigo de 1950 "\textit{Computing Machinery and Intelligence} \cite{turing1950computing}, o Teste de Turing explora a capacidade de um computador demonstrar comportamento inteligente equivalente ou indistiguível dos seres humanos.
+Introduzido pelo matemático britânico Alan Turing em seu artigo de 1950 \textit{Computing Machinery and Intelligence} \cite{turing1950computing}, o Teste de Turing explora a capacidade de um computador demonstrar comportamento inteligente equivalente ou indistiguível dos seres humanos.
 
-O teste é composto por três elementos: dois seres humanos, sendo um participante e um juiz e um computador.
+O teste é composto por três elementos: dois seres humanos, sendo um participante, um juiz e um computador.
 
 O juiz conversa em linguagem natural com um outro ser humano e uma máquina através de um canal de texto, composto por um teclado e uma tela que apresenta a conversa. Todos os participantes estão em ambientes separados. O juiz deve ser capaz de distinguir a máquina do ser humano, caso contrário, a máquina é considerada bem sucedida no teste. O objetivo não é analisar se a máquina é capaz de responder corretamente e sim dizer quão próximas as respostas da máquina foram das do ser humano.  
 
@@ -241,6 +241,6 @@ Portanto, o resultado do teorema demonstra que possuir 70 anos de idade aumenta 
 
 \subsection{Aplicação no trabalho}
 
-Nese trabalho o \emph{Naive Bayes} é utilizado  para classificar \textit{tweets} em positivos, neutros ou negativos. Este algoritmo está baseado no Teorema de Bayes porém assume que a posição das palavras - eventos da probabilidade - que aparecem no texto não importa para determinar o resultado final.
+Neste trabalho o \emph{Naive Bayes} é utilizado  para classificar \textit{tweets} em positivos, neutros ou negativos. Este algoritmo está baseado no Teorema de Bayes, porém assume que a posição das palavras - eventos da probabilidade - que aparecem no texto não importa para determinar o resultado final.
 
-Como visto em \cite{lucca2013implementaccao} o algoritmo calcula qual a probabilidade de uma frase, denominada documento pertencer a uma determinada classe(polaridade) \emph{P(C/D)}, a partir da probabilidade de \emph{P(C)} do documento pertencer a esta classe e das probabilidades condicionais de cada termo $t_{k}$ ocorrerem em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a posteriore. 
+Como visto em \cite{lucca2013implementaccao} o algoritmo calcula qual a probabilidade de uma frase, denominada documento, pertencer a uma determinada classe (polaridade) \emph{P(C/D)}, a partir da probabilidade de \emph{P(C)} do documento pertencer a esta classe e das probabilidades condicionais de cada termo $t_{k}$ ocorrerem em um documento da mesma classe. O algoritmo tem como objetivo encontrar a melhor classe para um documento maximizando a probabilidade a posteriore. 
