@@ -177,6 +177,16 @@ Segue abaixo um comparativo dos testes.
 
 Com o comparativo analisado na tabela \ref{teste-comp} foram escolhidas as configurações utilizadas no teste 4 para a realização da análise na base capturada, devido a menor presença de dados neutros classificados na base, comprovando que as técnicas de \textit{stemming} e \textit{stopwords} foram válidas e relevantes para a sustentação modelo.
 
+\section{Testes de acurácia}\label{result}
+Visando aferir a acurácia alcançada através da modelagem da solução, foi conduzido um teste de acurácia em todas as versões de testes apresentadas até então. Foram escolhidos 100 \textit{tweets} aleatoriamente e para cada um deles, foram atribuídos os valores "positivos", "negativos" ou "neutros" com base no julgamento dos idealizadores deste trabalho. Posteriormente, cada cenário de teste analisou os 100 \textit{tweets} e os resultados de cada cenário foram comparados com o gabarito criado pelos idealizadores deste trabalho. Abaixo, segue um comparativo entre a acurácia de cada cenário de teste:
+
+\begin{figure}[H]
+	\centering\epsfig{file=figuras/acuracia.eps, width=15cm}
+	\caption{Gráfico comparativo entre a acurácia dos testes.}
+	\label{teste-graf-comp}
+\end{figure}
+
+
 \section{Resultados}\label{result}
 
 Para a análise dos resultados é necessário estabelecer premissas. O evento Oscar 2016 foi a  88.ª cerimônia de entrega dos \textit{Academy Awards} em \textit{Los Angeles}, Estados Unidos. O evento teve duração de aproximadamente 4 horas com seu início na noite do dia 28 de fevereiro, às 20:00 horário de Brasília no tapete vermelho com a entrada dos artistas e convidados. Seu encerramento às 2h do horário de Brasília do dia 29 de Fevereiro com a premiação do melhor filme. Os marcos do evento relevantes para o estudo: 
